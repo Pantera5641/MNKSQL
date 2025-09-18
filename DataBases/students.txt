@@ -1,4 +1,0 @@
-id,name,lastname,mathCheckmate,enCheckmate
-1,Milim,Nava,98,65
-2,Gera,versel,45,90
-3,Shinia,Geralisovna,34,56
