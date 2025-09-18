@@ -1,0 +1,5 @@
+MM    MM  NN   NN  KK  KK  SSSSS   QQQQQ  LL      
+MMM  MMM  NNN  NN  KK KK  SS      QQ   QQ LL      
+MM MM MM  NN N NN  KKKK    SSSSS  QQ   QQ LL      
+MM    MM  NN  NNN  KK KK       SS QQ  QQ  LL      
+MM    MM  NN   NN  KK  KK  SSSSS   QQQQ Q LLLLLLL

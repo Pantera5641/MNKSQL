@@ -1,0 +1,14 @@
+/.vscode
+/ALL_BUILD.vcxproj
+/ALL_BUILD.vcxproj.filters
+/build
+/CMakeCache.txt
+/CMakeFiles
+/cmake_install.cmake
+/main.exe
+/main.ilk
+/main.obj
+/main.pdb
+/vc140.pdb
+/ZERO_CHECK.vcxproj
+/ZERO_CHECK.vcxproj.filters
