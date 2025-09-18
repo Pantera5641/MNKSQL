@@ -39,6 +39,7 @@ class Command_Db
 
     void Create(std::string fileName, std::string extension)
     {
+        std::filesystem::create_directories("DataBases");
         std::ofstream file(PathConstructor(fileName, extension));
         file << "id";
         std::cout << "DataBase " << fileName << " was created" << std::endl;

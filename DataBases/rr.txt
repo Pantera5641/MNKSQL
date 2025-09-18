@@ -1,5 +1,0 @@
-id,FER,FERi,FERifd,tr,trg
-1,12,fdf,gfg,dwe,fdd
-2,12,fdf,gfg,dwe,fdd
-3,DB,OPEN,rr\,sdf,sfg
-4,DB,OPEN,rr\,sdf,sfg
