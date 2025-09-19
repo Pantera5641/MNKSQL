@@ -24,6 +24,20 @@ class Parser
         return db;
     }
 
+    void ArrayIntoDB(std::vector<std::string> db, std::string path)
+    {
+        int count {};
+
+        std::ofstream file(path);
+
+        for (int i = 1; i < db.size(); i++)
+        {
+            file << db[count] << "\n";
+            count+=1;
+        }
+        file << db[db.size()-1];
+    }
+
     std::vector<std::string> GetLine(std::vector<std::string> db, int num)
     {
         if (db.size() < num || num < 0) 

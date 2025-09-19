@@ -28,7 +28,6 @@ class Command_Row
         return CommandRow::Unknown;
     }
 
-
     std::string PathConstructor(std::string fileName, std::string extension)
     {
         const std::string path = "DataBases/";
@@ -38,7 +37,7 @@ class Command_Row
     int CountRows(std::string path)
     {
         std::ifstream file(path);
-        std::string line;
+        std::string line {};
         int count {0};
 
         while (std::getline(file, line))
@@ -53,9 +52,9 @@ class Command_Row
 
     void Add()
     {
-        std::string line;
-        std::string userLine;
-        int numberOfColumns;
+        std::string line {};
+        std::string userLine {};
+        int numberOfColumns {};
 
         std::string path = PathConstructor(globalDbName, ".txt");
         
@@ -90,6 +89,73 @@ class Command_Row
         std::cout << "Row added in " << globalDbName << std::endl;
     }
 
+    void Rewrite(std::string rowNumStr)
+    {
+        int count {};
+        int rowNum {};
+        std::string line {};
+        std::string userLine {};
+
+        std::string path = PathConstructor(globalDbName, ".txt");
+        std::vector<std::string> db = Parser().DbIntoArray(path);
+
+        try
+        {
+            rowNum = std::stoi(rowNumStr);
+        }
+        catch(const std::exception& e)
+        {
+            std::cout << "Error: Invalid number of row" << std::endl;
+            return;
+        }
+        
+        std::vector<std::string> zeroLine = Helper().Strip(db[0], ',');
+        zeroLine.erase(zeroLine.begin());
+
+        std::cout << "Fill in all fields:" << std::endl;
+        std::cout << Helper().Connect(zeroLine, ' ') << std::endl;
+        std::getline(std::cin, userLine);
+
+        std::vector<std::string> userItems = Helper().Strip(userLine, ' ');
+        db[rowNum] = std::to_string(rowNum) + "," + Helper().Connect(userItems, ',');
+
+        Parser().ArrayIntoDB(db, path);
+        std::cout << "Row was rewrite" << std::endl;
+    }
+
+    void Delete(std::string rowNumStr)
+    {
+        int count {};
+        int rowNum {};
+        std::string line {};
+        std::string userLine {};
+
+        std::string path = PathConstructor(globalDbName, ".txt");
+        std::vector<std::string> db = Parser().DbIntoArray(path);
+
+        try
+        {
+            rowNum = std::stoi(rowNumStr);
+        }
+        catch(const std::exception& e)
+        {
+            std::cout << "Error: Invalid number of row" << std::endl;
+            return;
+        }
+
+        db.erase(db.begin()+rowNum);
+
+        for (int i = 1; i < db.size(); i++)
+        {
+            std::vector<std::string> line = Helper().Strip(db[i], ',');
+            line[0] = std::to_string(i);
+            db[i] = Helper().Connect(line, ',');
+        }
+
+        Parser().ArrayIntoDB(db, path);
+        std::cout << "Row was deleted" << std::endl;
+    }
+
     public:
     void Execute(std::vector<std::string> items)
     {
@@ -101,10 +167,10 @@ class Command_Row
             Add();
             break;
         case CommandRow::Rewrite:
-            std::cout << "Rewrite operation not implemented" << std::endl;
+            Rewrite(items[2]);
             break;
         case CommandRow::Delete:
-            std::cout << "Delete operation not implemented" << std::endl;
+            Delete(items[2]);
             break;
         case CommandRow::Unknown:
             std::cout << "Error: Unknown operation" << std::endl;

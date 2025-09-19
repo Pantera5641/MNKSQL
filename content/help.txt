@@ -9,8 +9,8 @@ DB - database operations:
 
 ROW - table row operations:
   ROW ADD                 : Add a new row to the current table
-  ROW REWRITE [rowIndex]  : Rewrite the specified row (not implemented)
-  ROW DELETE [rowIndex]   : Delete the specified row (not implemented) 
+  ROW REWRITE [rowIndex]  : Rewrite the specified row
+  ROW DELETE [rowIndex]   : Delete the specified row
 
 COL - table column operations:
   COL ADD [nameOfColumn]      : Add a new column to the current table
