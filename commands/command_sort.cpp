@@ -6,7 +6,7 @@
 #include <functional>
 
 #include "logic/helper.h"
-#include "content/globals.cpp"
+#include "content/globals.h"
 #include "content/parser.cpp"
 #include "logic/path.cpp"
 

@@ -5,7 +5,7 @@
 #include <string>
 
 #include "logic/helper.h"
-#include "content/globals.cpp"
+#include "content/globals.h"
 
 extern std::string globalDbName;
 
