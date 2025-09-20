@@ -10,7 +10,6 @@
 #include "content/parser.cpp"
 #include "logic/path.cpp"
 
-extern std::string globalDbName;
 
 enum class CommandSort
 {

@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
 
+#include "content/globals.h"
+
 #pragma once
 
-extern std::string globalDbName;
 
 class Path
 {
@@ -13,4 +14,4 @@ class Path
         const std::string path = "DataBases/";
         return path + globalDbName + extension;
     }
-}
+};

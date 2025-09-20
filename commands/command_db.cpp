@@ -8,7 +8,6 @@
 #include "logic/helper.h"
 #include "content/globals.h"
 
-extern std::string globalDbName;
 
 enum class CommandDb
 {
