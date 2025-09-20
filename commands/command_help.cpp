@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "logic/helper.cpp"
+#include "logic/helper.h"
 
 class Command_Help
 {

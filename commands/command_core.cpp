@@ -7,7 +7,7 @@
 #include "command_col.cpp"
 #include "command_help.cpp"
 
-#include "logic/helper.cpp"
+#include "logic/helper.h"
 
 enum class Commands
 {

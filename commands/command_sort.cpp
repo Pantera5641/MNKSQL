@@ -5,7 +5,7 @@
 #include <string>
 #include <functional>
 
-#include "logic/helper.cpp"
+#include "logic/helper.h"
 #include "content/globals.cpp"
 #include "content/parser.cpp"
 #include "logic/path.cpp"

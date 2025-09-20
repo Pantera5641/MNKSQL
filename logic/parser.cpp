@@ -4,7 +4,7 @@
 #include <fstream>
 #include <filesystem>
 
-#include "helper.cpp"
+#include "helper.h"
 
 class Parser
 {
