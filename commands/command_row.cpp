@@ -5,6 +5,7 @@
 #include <string>
 
 #include "logic/helper.h"
+#include "logic/path.cpp"
 #include "content/globals.h"
 
 
@@ -25,12 +26,6 @@ class Command_Row
         if(str == "REWRITE") return CommandRow::Rewrite; 
         if(str == "DELETE") return CommandRow::Delete; 
         return CommandRow::Unknown;
-    }
-
-    std::string PathConstructor(std::string fileName, std::string extension)
-    {
-        const std::string path = "DataBases/";
-        return path + fileName + extension;
     }
 
     int CountRows(std::string path)
@@ -55,7 +50,7 @@ class Command_Row
         std::string userLine {};
         int numberOfColumns {};
 
-        std::string path = PathConstructor(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName, ".txt");
         
         std::ifstream file(path);
 
@@ -95,7 +90,7 @@ class Command_Row
         std::string line {};
         std::string userLine {};
 
-        std::string path = PathConstructor(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName, ".txt");
         std::vector<std::string> db = Parser().DbIntoArray(path);
 
         try
@@ -129,7 +124,7 @@ class Command_Row
         std::string line {};
         std::string userLine {};
 
-        std::string path = PathConstructor(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName, ".txt");
         std::vector<std::string> db = Parser().DbIntoArray(path);
 
         try

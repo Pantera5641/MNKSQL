@@ -5,6 +5,7 @@
 #include <string>
 
 #include "logic/helper.h"
+#include "logic/path.cpp"
 #include "content/globals.h"
 
 
@@ -27,13 +28,6 @@ class Command_Col
         return CommandCol::Unknown;
     }
 
-
-    std::string PathConstructor(std::string fileName, std::string extension)
-    {
-        const std::string path = "DataBases/";
-        return path + fileName + extension;
-    }
-
     bool CheckRows(std::string path)
     {
         std::ifstream file(path);
@@ -51,7 +45,7 @@ class Command_Col
 
     void Add(std::string columnName)
     {
-        std::string path = PathConstructor(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName, ".txt");
 
         if (CheckRows(path) == false)
         {

@@ -1,17 +1,11 @@
-#include <iostream>
 #include <string>
 
-#include "content/globals.h"
+#include "path.h"
 
 #pragma once
 
-
-class Path
+std::string Path::Construct(const std::string& fileName, const std::string& extension)
 {
-    public:
-    std::string Construct(std::string extension)
-    {
-        const std::string path = "DataBases/";
-        return path + globalDbName + extension;
-    }
-};
+    const std::string path = "DataBases/";
+    return path + fileName + extension;
+}

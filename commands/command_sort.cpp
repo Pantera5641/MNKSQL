@@ -55,7 +55,6 @@ class Command_Sort
 
     }
 
-    
     public:
     void Execute(std::vector<std::string> items)
     {

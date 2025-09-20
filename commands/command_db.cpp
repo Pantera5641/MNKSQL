@@ -6,6 +6,7 @@
 
 #include "logic/parser.cpp"
 #include "logic/helper.h"
+#include "logic/path.cpp"
 #include "content/globals.h"
 
 
@@ -31,15 +32,10 @@ class Command_Db
         return CommandDb::Unknown;
     }
 
-    std::string PathConstructor(std::string fileName, std::string extension)
-    {
-        return "DataBases/" + fileName + extension;
-    }
-
     void Create(std::string fileName, std::string extension)
     {
         std::filesystem::create_directories("DataBases");
-        std::ofstream file(PathConstructor(fileName, extension));
+        std::ofstream file(Path().Construct(fileName, extension));
         file << "id";
         std::cout << "DataBase " << fileName << " was created" << std::endl;
         file.close();
@@ -64,7 +60,7 @@ class Command_Db
     //переделать этот плотный кусок ......
     void Show(std::string fileName)
     {
-        std::string path = PathConstructor(fileName, ".txt");
+        std::string path = Path().Construct(fileName, ".txt");
         std::vector<std::string> db = Parser().DbIntoArray(path);
         std::vector<std::string> zeroLine = Parser().GetLine(db, 0);
         int zeroLineSize = zeroLine.size();
@@ -117,7 +113,7 @@ class Command_Db
     void Delete(std::string fileName)
     {
         if (fileName == globalDbName) globalDbName = "";
-        std::filesystem::remove(PathConstructor(fileName, ".txt"));
+        std::filesystem::remove(Path().Construct(fileName, ".txt"));
         
         std::cout << "Database " << fileName << " was deleted." << std::endl;
     }
