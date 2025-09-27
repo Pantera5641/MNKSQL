@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "logic/helper.cpp"
+#include "logic/path.cpp"
 #include "commands/command_core.cpp"
 
 int main()

@@ -8,7 +8,7 @@
 #include "logic/helper.h"
 #include "content/globals.h"
 #include "content/parser.cpp"
-#include "logic/path.cpp"
+#include "logic/path.h"
 
 
 enum class CommandSort
