@@ -1,7 +1,7 @@
 === DATABASE COMMANDS HELP ===
 
 DB - database operations:
-  DB CREATETXT [dbName]   : Create a new text database with the given name
+  DB CREATE [dbName]      : Create a new text database with the given name
   DB CREATEBIN [dbName]   : Create a new binary database with the given name (not implemented)
   DB OPEN [dbName]        : Open an existing database
   DB SHOW [dbName]        : Display information about the current database

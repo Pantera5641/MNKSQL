@@ -1,82 +1,75 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <filesystem>
+#include "parser.h"
 
-#include "helper.h"
 
-class Parser
+std::vector<std::string> Parser::DbIntoArray(const std::string& path)
 {
-    public:
-    std::vector<std::string> DbIntoArray(std::string path)
+    std::vector<std::string> db {};
+    std::string line;
+
+    SmartFile file(path, std::ios::in);
+    std::cout << file.Read();
+
+    while (std::getline(file, line))
     {
-        std::vector<std::string> db {};
-        std::string line;
-
-        std::ifstream file(path);
-
-        while (std::getline(file, line))
-        {
-            db.push_back(line);
-        }
-        
-        return db;
+        db.push_back(line);
     }
+    
+    return db;
+}
 
-    void ArrayIntoDB(std::vector<std::string> db, std::string path)
+void Parser::ArrayIntoDB(const std::vector<std::string>& db, const std::string& path)
+{
+    int count {};
+
+    SmartFile file(path, std::ios::out);
+
+    for (int i = 1; i < db.size(); i++)
     {
-        int count {};
-
-        std::ofstream file(path);
-
-        for (int i = 1; i < db.size(); i++)
-        {
-            file << db[count] << "\n";
-            count+=1;
-        }
-        file << db[db.size()-1];
+        file.Write(db[count] + "\n");
+        count+=1;
     }
+    file << db[db.size()-1];
+}
 
-    std::vector<std::string> GetLine(std::vector<std::string> db, int num)
+std::vector<std::string> Parser::GetLine(const std::vector<std::string>& db, int num)
+{
+    if (db.size() < num || num < 0) 
     {
-        if (db.size() < num || num < 0) 
-        {
-            std::cout << "Error: You can't take a non-existent line." << std::endl;
-            return {};
-        }
-        return Helper().Strip(db[num], ',');
+        std::cout << "Error: You can't take a non-existent line." << std::endl;
+        return {};
     }
+    return Helper().Strip(db[num], ',');
+}
 
-    std::vector<std::string> GetLine(std::string path, int num)
+std::vector<std::string> Parser::GetLine(const std::string& path, int num)
+{
+    std::vector db = DbIntoArray(path);
+
+    return GetLine(db, num);
+}
+
+std::vector<std::string> Parser::GetColumn(const std::vector<std::string>& db, int num)
+{
+    std::vector<std::string> column {};
+
+    if (Helper().Strip(db[0], ',').size() < num || num < 0) 
     {
-        std::vector db = DbIntoArray(path);
-
-        return GetLine(db, num);
+        std::cout << "Error: You can't take a non-existent column." << std::endl;
+        return {};
     }
-
-    std::vector<std::string> GetColumn(std::vector<std::string> db, int num)
+    
+    for (int i = 0; i < db.size(); i++)
     {
-        std::vector<std::string> column {};
-
-        if (Helper().Strip(db[0], ',').size() < num || num < 0) 
-        {
-            std::cout << "Error: You can't take a non-existent column." << std::endl;
-            return {};
-        }
-        
-        for (int i = 0; i < db.size(); i++)
-        {
-            column.push_back(Helper().Strip(db[i], ',')[num]);
-        }
-        
-        return column;
+        column.push_back(Helper().Strip(db[i], ',')[num]);
     }
+    
+    return column;
+}
 
-    std::vector<std::string> GetColumn(std::string path, int num)
-    {
-        std::vector<std::string> db = DbIntoArray(path);
+std::vector<std::string> Parser::GetColumn(const std::string& path, int num)
+{
+    std::vector<std::string> db = DbIntoArray(path);
 
-        return GetColumn(db, num);
-    }
-};
+    return GetColumn(db, num);
+}
+

@@ -5,5 +5,7 @@
 class Path
 {
     public:
+    std::string Construct(const std::string& fileName);
+
     std::string Construct(const std::string& fileName, const std::string& extension);
 };

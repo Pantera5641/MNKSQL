@@ -1,14 +1,13 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
 #include <functional>
 
 #include "logic/helper.h"
-#include "content/globals.h"
-#include "content/parser.cpp"
+#include "content/parser.h"
 #include "logic/path.h"
+#include "logic/smartFile.h"
+#include "content/globals.h"
 
 
 enum class CommandSort
@@ -34,7 +33,7 @@ class Command_Sort
         std::vector<std::string> db = Parser().DbIntoArray(path);
         std::vector<std::string> SortedDb = sortAlg(db);
 
-        std::ofstream file(path);
+        SmartFile file(path, std::ios::out);
         for (int i = 0; i < SortedDb.size; i++)
         {
             file << SortedDb[i] << "\n";

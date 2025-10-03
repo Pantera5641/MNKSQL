@@ -1,11 +1,10 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
 
 #include "logic/helper.h"
 #include "logic/path.h"
+#include "logic/smartFile.h"
 #include "content/globals.h"
 
 
@@ -30,7 +29,7 @@ class Command_Row
 
     int CountRows(std::string path)
     {
-        std::ifstream file(path);
+        SmartFile file(path, std::ios::in);
         std::string line {};
         int count {0};
 
@@ -50,9 +49,9 @@ class Command_Row
         std::string userLine {};
         int numberOfColumns {};
 
-        std::string path = Path().Construct(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName);
         
-        std::ifstream file(path);
+        SmartFile file(path, std::ios::in | std::ios::out | std::ios::app);
 
         std::getline(file, line);
         std::vector<std::string> items = Helper().Strip(line, ',');
@@ -77,8 +76,7 @@ class Command_Row
             return;
         }
 
-        std::ofstream file1(path, std::ios::app);
-        file1 << "\n" << std::to_string(CountRows(path)) << ',' << Helper().Connect(userItems, ',');
+        file << "\n" << std::to_string(CountRows(path)) << ',' << Helper().Connect(userItems, ',');
 
         std::cout << "Row added in " << globalDbName << std::endl;
     }
@@ -90,7 +88,7 @@ class Command_Row
         std::string line {};
         std::string userLine {};
 
-        std::string path = Path().Construct(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName);
         std::vector<std::string> db = Parser().DbIntoArray(path);
 
         try
@@ -124,7 +122,7 @@ class Command_Row
         std::string line {};
         std::string userLine {};
 
-        std::string path = Path().Construct(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName);
         std::vector<std::string> db = Parser().DbIntoArray(path);
 
         try

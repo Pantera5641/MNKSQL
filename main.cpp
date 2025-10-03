@@ -1,7 +1,10 @@
 #include <iostream>
 
 #include "logic/helper.cpp"
+#include "logic/parser.cpp"
 #include "logic/path.cpp"
+#include "logic/smartFile.cpp"
+
 #include "commands/command_core.cpp"
 
 int main()

@@ -2,8 +2,13 @@
 
 #pragma once
 
-std::string Path::Construct(const std::string& fileName, const std::string& extension)
+std::string Path::Construct(const std::string& fileName)
 {
     const std::string path = "DataBases/";
-    return path + fileName + extension;
+    return path + fileName;
+}
+
+std::string Path::Construct(const std::string& fileName, const std::string& extension)
+{
+    return Construct(fileName) + extension;
 }

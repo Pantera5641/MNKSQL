@@ -4,9 +4,10 @@
 #include <string>
 #include <filesystem>
 
-#include "logic/parser.cpp"
+#include "logic/parser.h"
 #include "logic/helper.h"
 #include "logic/path.h"
+#include "logic/smartFile.h"
 #include "content/globals.h"
 
 
@@ -25,7 +26,8 @@ class Command_Db
     private:
     CommandDb strToAction(std::string str)
     {
-        if(str == "CREATETXT") return CommandDb::CreateTxt;
+        if(str == "CREATE") return CommandDb::CreateTxt;
+        if(str == "CREATEBIN") return CommandDb::CreateBin;
         if(str == "OPEN") return CommandDb::Open;
         if(str == "SHOW") return CommandDb::Show;
         if(str == "DELETE") return CommandDb::Delete; 
@@ -35,10 +37,9 @@ class Command_Db
     void Create(std::string fileName, std::string extension)
     {
         std::filesystem::create_directories("DataBases");
-        std::ofstream file(Path().Construct(fileName, extension));
-        file << "id";
+        SmartFile file(Path().Construct(fileName, extension), std::ios::out);
+        file.Write("id");
         std::cout << "DataBase " << fileName << " was created" << std::endl;
-        file.close();
     }
 
     void CreateTxt(std::string fileName)
@@ -57,10 +58,9 @@ class Command_Db
         std::cout << "Now you working with " << fileName << std::endl;
     }
 
-    //переделать этот плотный кусок ......
     void Show(std::string fileName)
     {
-        std::string path = Path().Construct(fileName, ".txt");
+        std::string path = Path().Construct(fileName);
         std::vector<std::string> db = Parser().DbIntoArray(path);
         std::vector<std::string> zeroLine = Parser().GetLine(db, 0);
         int zeroLineSize = zeroLine.size();
@@ -113,7 +113,7 @@ class Command_Db
     void Delete(std::string fileName)
     {
         if (fileName == globalDbName) globalDbName = "";
-        std::filesystem::remove(Path().Construct(fileName, ".txt"));
+        std::filesystem::remove(Path().Construct(fileName));
         
         std::cout << "Database " << fileName << " was deleted." << std::endl;
     }

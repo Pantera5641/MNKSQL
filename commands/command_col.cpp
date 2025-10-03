@@ -1,11 +1,10 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
 
 #include "logic/helper.h"
 #include "logic/path.h"
+#include "logic/smartFile.h"
 #include "content/globals.h"
 
 
@@ -30,7 +29,7 @@ class Command_Col
 
     bool CheckRows(std::string path)
     {
-        std::ifstream file(path);
+        SmartFile file(path, std::ios::in);
         std::string line;
         int count {0};
 
@@ -45,7 +44,7 @@ class Command_Col
 
     void Add(std::string columnName)
     {
-        std::string path = Path().Construct(globalDbName, ".txt");
+        std::string path = Path().Construct(globalDbName);
 
         if (CheckRows(path) == false)
         {
@@ -53,8 +52,8 @@ class Command_Col
             return;
         }
 
-        std::ofstream file(path, std::ios::app);
-        file << ',' << columnName;
+        SmartFile file(path, std::ios::out | std::ios::app);
+        file.Write(',' + columnName);
 
         std::cout << "Column added in " << globalDbName << std::endl;
     }
