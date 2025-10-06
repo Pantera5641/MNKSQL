@@ -17,10 +17,16 @@ class SmartFile : public std::fstream
 
     void WriteBin(const std::string& str);
 
+    std::vector<std::string> ReadAllTxt();
+
+    std::vector<std::string> ReadAllBin();
+
     public:
     SmartFile(const std::string& path, std::ios::openmode mode);
 
     std::string Read();
     
     void Write(const std::string& str);
+
+    std::vector<std::string> ReadAll();
 };

@@ -3,18 +3,9 @@
 
 std::vector<std::string> Parser::DbIntoArray(const std::string& path)
 {
-    std::vector<std::string> db {};
-    std::string line;
-
     SmartFile file(path, std::ios::in);
-    std::cout << file.Read();
 
-    while (std::getline(file, line))
-    {
-        db.push_back(line);
-    }
-    
-    return db;
+    return file.ReadAll();
 }
 
 void Parser::ArrayIntoDB(const std::vector<std::string>& db, const std::string& path)
