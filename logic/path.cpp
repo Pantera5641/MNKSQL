@@ -4,7 +4,7 @@
 
 std::string Path::Construct(const std::string& fileName)
 {
-    const std::string path = "DataBases/";
+    const std::string path = "tables/";
     return path + fileName;
 }
 

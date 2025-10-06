@@ -36,7 +36,7 @@ class Command_Db
 
     void Create(std::string fileName, std::string extension)
     {
-        std::filesystem::create_directories("DataBases");
+        std::filesystem::create_directories("tables");
         SmartFile file(Path().Construct(fileName, extension), std::ios::out);
         file.Write("id");
         std::cout << "DataBase " << fileName << " was created" << std::endl;
