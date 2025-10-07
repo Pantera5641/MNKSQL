@@ -11,7 +11,7 @@
 #include "content/globals.h"
 
 
-enum class CommandDb
+enum class CommandDb1
 {
     CreateTxt,
     CreateBin,
@@ -24,14 +24,14 @@ enum class CommandDb
 class Command_Db
 {
     private:
-    CommandDb strToAction(std::string str)
+    CommandDb1 strToAction(std::string str)
     {
-        if(str == "CREATE") return CommandDb::CreateTxt;
-        if(str == "CREATEBIN") return CommandDb::CreateBin;
-        if(str == "OPEN") return CommandDb::Open;
-        if(str == "SHOW") return CommandDb::Show;
-        if(str == "DELETE") return CommandDb::Delete; 
-        return CommandDb::Unknown;
+        if(str == "CREATE") return CommandDb1::CreateTxt;
+        if(str == "CREATEBIN") return CommandDb1::CreateBin;
+        if(str == "OPEN") return CommandDb1::Open;
+        if(str == "SHOW") return CommandDb1::Show;
+        if(str == "DELETE") return CommandDb1::Delete; 
+        return CommandDb1::Unknown;
     }
 
     void Create(std::string fileName, std::string extension)
@@ -121,32 +121,32 @@ class Command_Db
     public:
     void Execute(std::vector<std::string> arr)
     {
-        CommandDb cmd = strToAction(arr[1]);
+        CommandDb1 cmd = strToAction(arr[1]);
         std::string fileName = arr[2];
 
         switch (cmd)
         {
-        case CommandDb::CreateTxt:
+        case CommandDb1::CreateTxt:
             CreateTxt(fileName);
             break;
         
-        case CommandDb::CreateBin:
+        case CommandDb1::CreateBin:
             CreateBin(fileName);
             break;
 
-        case CommandDb::Show:
+        case CommandDb1::Show:
             Show(fileName);
             break;
         
-        case CommandDb::Open:
+        case CommandDb1::Open:
             Open(fileName);
             break;
 
-        case CommandDb::Delete:
+        case CommandDb1::Delete:
             Delete(fileName);
             break;
 
-        case CommandDb::Unknown:
+        case CommandDb1::Unknown:
             std::cout << "Error: Unknown operator" << std::endl;
             break;
         }

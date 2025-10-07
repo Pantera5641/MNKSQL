@@ -6,6 +6,10 @@
 #include "logic/smartFile.cpp"
 
 #include "commands/command_core.cpp"
+#include "commands/commandDb(t).cpp"
+
+#include "database/database.cpp"
+#include "database/student22/student22.cpp"
 
 int main()
 {
