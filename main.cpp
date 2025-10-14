@@ -5,8 +5,9 @@
 #include "logic/path.cpp"
 #include "logic/smartFile.cpp"
 
-#include "commands/command_core.cpp"
+#include "commands/commandCore.cpp"
 #include "commands/commandDb.cpp"
+#include "commands/commandHelp.cpp"
 
 #include "database/container.cpp"
 #include "database/dataStore.cpp"
@@ -32,6 +33,6 @@ int main()
         std::string str {};
         std::getline(std::cin, str);
 
-        Command_Core().commandHandler(str);
+        CommandCore().commandHandler(str);
     }
 }
