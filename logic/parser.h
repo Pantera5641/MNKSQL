@@ -22,4 +22,8 @@ class Parser
     std::vector<std::string> GetColumn(const std::vector<std::string>& db, int num);
 
     std::vector<std::string> GetColumn(const std::string& path, int num);
+
+    std::string extractBetween(const std::string& line, char firstItem, char secondItem);
+
+    std::string cutAfter(const std::string& line, char item);
 };

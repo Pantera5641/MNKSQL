@@ -29,7 +29,7 @@ std::vector<std::string> Parser::GetLine(const std::vector<std::string>& db, int
         std::cout << "Error: You can't take a non-existent line." << std::endl;
         return {};
     }
-    return Helper().Strip(db[num], ',');
+    return Helper().strip(db[num], ',');
 }
 
 std::vector<std::string> Parser::GetLine(const std::string& path, int num)
@@ -43,7 +43,7 @@ std::vector<std::string> Parser::GetColumn(const std::vector<std::string>& db, i
 {
     std::vector<std::string> column {};
 
-    if (Helper().Strip(db[0], ',').size() < num || num < 0) 
+    if (Helper().strip(db[0], ',').size() < num || num < 0) 
     {
         std::cout << "Error: You can't take a non-existent column." << std::endl;
         return {};
@@ -51,7 +51,7 @@ std::vector<std::string> Parser::GetColumn(const std::vector<std::string>& db, i
     
     for (int i = 0; i < db.size(); i++)
     {
-        column.push_back(Helper().Strip(db[i], ',')[num]);
+        column.push_back(Helper().strip(db[i], ',')[num]);
     }
     
     return column;
@@ -64,3 +64,19 @@ std::vector<std::string> Parser::GetColumn(const std::string& path, int num)
     return GetColumn(db, num);
 }
 
+std::string Parser::extractBetween(const std::string& line, char firstItem, char secondItem)
+{
+    int firstIndex = line.find_first_of(firstItem);
+    int secondIndex = line.find_last_of(secondItem);
+    std::string result = line.substr(firstIndex + 1, secondIndex - firstIndex - 1);
+
+    return result;
+}
+
+std::string Parser::cutAfter(const std::string& line, char item)
+{
+    int index = line.find_first_of(item);
+    std::string result = line.substr(0, index);
+
+    return result;
+}
