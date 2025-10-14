@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+#include "commandDb.h"
 #include "command_db.cpp"
 #include "command_row.cpp"
 #include "command_col.cpp"
@@ -9,19 +10,21 @@
 
 #include "logic/helper.h"
 
-enum class Commands
-{
-    Db,
-    Row,
-    Col,
-    Sort,
-    Data,
-    Help,
-    Unknown
-};
+
 class Command_Core
 {
     private: 
+    enum class Commands
+    {
+        Db,
+        Row,
+        Col,
+        Sort,
+        Data,
+        Help,
+        Unknown
+    };
+
     Commands StrToCommand(std::string str)
     {
         if (str == "DB") return Commands::Db;
@@ -36,14 +39,14 @@ class Command_Core
     public:
     void commandHandler(std::string str)
     {
-        std::vector<std::string> items = Helper().Strip(str, ' ');
+        std::vector<std::string> items = Helper().strip(str, ' ');
 
         Commands cmd = StrToCommand(items.front());
 
         switch (cmd)
         {
         case Commands::Db:
-            Command_Db().Execute(items);
+            CommandDb().execute(items);
             break;
         
         case Commands::Row:
