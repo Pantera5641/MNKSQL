@@ -54,7 +54,7 @@ class Command_Row
         SmartFile file(path, std::ios::in | std::ios::out | std::ios::app);
 
         std::getline(file, line);
-        std::vector<std::string> items = Helper().Strip(line, ',');
+        std::vector<std::string> items = Helper().strip(line, ',');
         items.erase(items.begin());
         numberOfColumns = items.size();
 
@@ -68,7 +68,7 @@ class Command_Row
         std::cout << Helper().Connect(items, ' ') << std::endl;
         std::getline(std::cin, userLine);
 
-        std::vector<std::string> userItems = Helper().Strip(userLine, ' ');
+        std::vector<std::string> userItems = Helper().strip(userLine, ' ');
 
         if (userItems.size() != numberOfColumns)
         {
@@ -101,14 +101,14 @@ class Command_Row
             return;
         }
         
-        std::vector<std::string> zeroLine = Helper().Strip(db[0], ',');
+        std::vector<std::string> zeroLine = Helper().strip(db[0], ',');
         zeroLine.erase(zeroLine.begin());
 
         std::cout << "Fill in all fields:" << std::endl;
         std::cout << Helper().Connect(zeroLine, ' ') << std::endl;
         std::getline(std::cin, userLine);
 
-        std::vector<std::string> userItems = Helper().Strip(userLine, ' ');
+        std::vector<std::string> userItems = Helper().strip(userLine, ' ');
         db[rowNum] = std::to_string(rowNum) + "," + Helper().Connect(userItems, ',');
 
         Parser().ArrayIntoDB(db, path);
@@ -139,7 +139,7 @@ class Command_Row
 
         for (int i = 1; i < db.size(); i++)
         {
-            std::vector<std::string> line = Helper().Strip(db[i], ',');
+            std::vector<std::string> line = Helper().strip(db[i], ',');
             line[0] = std::to_string(i);
             db[i] = Helper().Connect(line, ',');
         }

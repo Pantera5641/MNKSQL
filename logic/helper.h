@@ -9,7 +9,7 @@
 class Helper
 {
     public:
-    std::vector<std::string> Strip(const std::string& str, char toRemove);
+    std::vector<std::string> strip(const std::string& str, char toRemove);
 
     std::string Connect(const std::vector<std::string>& vec, char arg);
 

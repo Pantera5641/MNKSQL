@@ -1,7 +1,7 @@
 #include "helper.h"
 
 
-std::vector<std::string> Helper::Strip(const std::string& str, char toRemove)
+std::vector<std::string> Helper::strip(const std::string& str, char toRemove)
 {
     std::vector<std::string> vector;
     std::string item;
