@@ -7,6 +7,7 @@
 
 #include "commands/commandCore.cpp"
 #include "commands/commandDb.cpp"
+#include "commands/commandCol.cpp"
 #include "commands/commandHelp.cpp"
 
 #include "database/container.cpp"
@@ -17,7 +18,7 @@
 int main()
 {
     Descriptor des("qwerty;Name(string[none]);gerafe(int);fdfdf(int[x<16])");
-    Container cont = des.createContainer("123;123;123;123");
+    Container cont = des.createContainer("123;123;123;123;123;123;123");
     DataStore& store = DataStore::getInstance();
     store.descriptor = des;
     store.database.push_back(cont);
