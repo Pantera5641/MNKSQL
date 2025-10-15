@@ -4,10 +4,11 @@
 #include <vector>
 
 #include "commandDb.h"
-#include "command_row.cpp"
+#include "commandRow.h"
 #include "commandCol.h"
 #include "commandHelp.h"
 
+#include "content/constants.h"
 #include "logic/helper.h"
 
 

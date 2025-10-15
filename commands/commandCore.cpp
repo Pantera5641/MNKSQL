@@ -4,17 +4,17 @@
 CommandCore::Commands CommandCore::StrToCommand(std::string str)
 {
     if (str == "DB") return Commands::Db;
-    if (str == "ROW") return Commands::Row;
     if (str == "COL") return Commands::Col;
+    if (str == "ROW") return Commands::Row;
     if (str == "SORT") return Commands::Sort;
     if (str == "DATA") return Commands::Data;
     if (str == "HELP") return Commands::Help;
     return Commands::Unknown;
 }
 
-void CommandCore::commandHandler(std::string str)
+void CommandCore::commandHandler(std::string userInput)
 {
-    std::vector<std::string> items = Helper().strip(str, ' ');
+    std::vector<std::string> items = Helper().strip(userInput, SPACE);
 
     Commands cmd = StrToCommand(items.front());
 
@@ -24,13 +24,12 @@ void CommandCore::commandHandler(std::string str)
         CommandDb().execute(items);
         break;
     
-    case Commands::Row:
-        if(globalDbName == "") std::cout << "Error: Select the database you will work with." << std::endl;
-        Command_Row().Execute(items);
-        break;
-
     case Commands::Col:
         CommandCol().execute(items);
+        break;
+
+    case Commands::Row:
+        CommandRow().execute(items);
         break;
     
     case Commands::Sort:

@@ -8,6 +8,7 @@
 #include "commands/commandCore.cpp"
 #include "commands/commandDb.cpp"
 #include "commands/commandCol.cpp"
+#include "commands/commandRow.cpp"
 #include "commands/commandHelp.cpp"
 
 #include "database/container.cpp"
@@ -17,11 +18,9 @@
 
 int main()
 {
-    Descriptor des("qwerty;Name(string[none]);gerafe(int);fdfdf(int[x<16])");
-    Container cont = des.createContainer("123;123;123;123;123;123;123");
+    Descriptor des("qwerty,Name(STRING[NONE]),gerafe(INT),fdfdf(INT[x<16])");
     DataStore& store = DataStore::getInstance();
     store.descriptor = des;
-    store.database.push_back(cont);
     DataStore& store2 = DataStore::getInstance();
 
     std::cout << "\033[0;32m";
