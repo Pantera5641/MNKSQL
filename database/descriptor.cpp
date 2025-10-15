@@ -1,6 +1,12 @@
 #include "descriptor.h"
 
 
+std::type_index Descriptor::getType(const std::string& typeString)
+{
+    if (typeString == STRING) {return STRING_TYPE;};
+    return INT_TYPE;
+}
+
 Descriptor::Descriptor(const std::string& argsString)
 {
     fill(argsString);
@@ -8,7 +14,7 @@ Descriptor::Descriptor(const std::string& argsString)
 
 void Descriptor::fill(const std::string& argsString)
 {
-    std::vector<std::string> args = Helper().strip(argsString, SEMICOLON);
+    std::vector<std::string> args = Helper().strip(argsString, COMMA);
 
     for (std::string item : args)
     {
@@ -20,21 +26,21 @@ void Descriptor::fill(const std::string& argsString)
         else
         {
             fieldNames.push_back(item);
-            fieldType.push_back(STRING);
+            fieldType.push_back(STRING_TYPE);
             fieldParams.push_back(NONE);
             continue;
         }
         
         if (item.find(LEFT_SQUARE_BRACKET) != std::string::npos)
         {
-            fieldType.push_back(Parser().cutAfter(item, LEFT_SQUARE_BRACKET));
+            fieldType.push_back(getType(Parser().cutAfter(item, LEFT_SQUARE_BRACKET)));
             item = Parser().extractBetween(item, LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET);
 
             fieldParams.push_back(item);
         }
         else
         {
-            fieldType.push_back(item);
+            fieldType.push_back(getType(item));
             fieldParams.push_back(NONE);
         }
     }
@@ -42,7 +48,7 @@ void Descriptor::fill(const std::string& argsString)
 
 Container Descriptor::createContainer(const std::string& fieldsString)
 {
-    std::vector<std::string> fields = Helper().strip(fieldsString, SEMICOLON);
+    std::vector<std::string> fields = Helper().strip(fieldsString, COMMA);
 
     return Container(fields);
 }

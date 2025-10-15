@@ -13,6 +13,13 @@ void DataStore::newDescriptor(const std::string& argsString)
     this->descriptor = descriptor;
 }
 
+void DataStore::addContainer(const std::string& argsString)
+{
+    Container container = descriptor.createContainer(argsString);
+
+    database.push_back(container);
+}
+
 std::vector<std::string> DataStore::getLine(int num)
 {
     return database[num].getFields();

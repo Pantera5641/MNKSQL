@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <typeindex>
 
 #include "content/constants.h"
 #include "logic/helper.h"
@@ -14,8 +15,10 @@ struct Descriptor
 {
     private:
     std::vector<std::string> fieldNames {};
-    std::vector<std::string> fieldType {};
+    std::vector<std::type_index> fieldType {};
     std::vector<std::string> fieldParams {};
+
+    std::type_index getType(const std::string& typeString);
 
     public:
     Descriptor() = default;
