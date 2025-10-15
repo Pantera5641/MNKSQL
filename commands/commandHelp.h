@@ -8,5 +8,5 @@
 struct CommandHelp
 {
     public:
-    void Show();
+    void show();
 };

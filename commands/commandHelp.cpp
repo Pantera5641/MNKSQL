@@ -1,7 +1,7 @@
 #include "commandHelp.h"
 
 
-void CommandHelp::Show()
+void CommandHelp::show()
 {
     Helper().PrintTxt("content/help.txt");
 }
