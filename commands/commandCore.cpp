@@ -8,6 +8,7 @@ CommandCore::Commands CommandCore::StrToCommand(std::string str)
     if (str == "ROW") return Commands::Row;
     if (str == "SORT") return Commands::Sort;
     if (str == "DATA") return Commands::Data;
+    if (str == "FILE") return Commands::File;
     if (str == "HELP") return Commands::Help;
     return Commands::Unknown;
 }
@@ -38,6 +39,10 @@ void CommandCore::commandHandler(std::string userInput)
     
     case Commands::Data:
         std::cout << "Data command not implemented" << std::endl;
+        break;
+
+    case Commands::File:
+        CommandFile().execute(items);
         break;
 
     case Commands::Help:

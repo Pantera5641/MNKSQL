@@ -9,6 +9,7 @@
 #include "commands/commandDb.cpp"
 #include "commands/commandCol.cpp"
 #include "commands/commandRow.cpp"
+#include "commands/commandFile.cpp"
 #include "commands/commandHelp.cpp"
 
 #include "database/container.cpp"

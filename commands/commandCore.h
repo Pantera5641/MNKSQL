@@ -6,6 +6,7 @@
 #include "commandDb.h"
 #include "commandRow.h"
 #include "commandCol.h"
+#include "commandFile.h"
 #include "commandHelp.h"
 
 #include "content/constants.h"
@@ -22,6 +23,7 @@ struct CommandCore
         Col,
         Sort,
         Data,
+        File,
         Help,
         Unknown
     };
