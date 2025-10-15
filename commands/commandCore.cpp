@@ -30,8 +30,7 @@ void CommandCore::commandHandler(std::string str)
         break;
 
     case Commands::Col:
-        if(globalDbName == "") std::cout << "Error: Select the database you will work with." << std::endl;
-        Command_Col().Execute(items);
+        CommandCol().execute(items);
         break;
     
     case Commands::Sort:
@@ -43,7 +42,7 @@ void CommandCore::commandHandler(std::string str)
         break;
 
     case Commands::Help:
-        CommandHelp().Show();
+        CommandHelp().show();
         break;
 
     case Commands::Unknown:

@@ -5,7 +5,7 @@
 
 #include "commandDb.h"
 #include "command_row.cpp"
-#include "command_col.cpp"
+#include "commandCol.h"
 #include "commandHelp.h"
 
 #include "logic/helper.h"

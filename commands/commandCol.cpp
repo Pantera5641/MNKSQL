@@ -1,84 +1,42 @@
-#include <iostream>
-#include <vector>
-#include <string>
-
-#include "logic/helper.h"
-#include "logic/path.h"
-#include "logic/smartFile.h"
-#include "content/globals.h"
+#include "commandCol.h"
 
 
-enum class CommandCol
+CommandCol::Commands CommandCol::strToAction(std::string str)
+{ 
+    if(str == "ADD") return Commands::Add;
+    if(str == "EDIT") return Commands::Edit;
+    if(str == "DELETE") return Commands::Delete;
+    return Commands::Unknown;
+}
+
+void CommandCol::add(const std::string& args)
 {
-    Add,
-    Edit,
-    Delete,
-    Unknown
-};
+    DataStore& store = DataStore::getInstance();
 
-class Command_Col
+    store.descriptor.fill(args);
+
+    std::cout << "Column added in database" << std::endl;
+}
+
+void CommandCol::execute(const std::vector<std::string>& items)
 {
-    private:
-    CommandCol strToAction(std::string str)
-    { 
-        if(str == "ADD") return CommandCol::Add;
-        if(str == "EDIT") return CommandCol::Edit;
-        if(str == "DELETE") return CommandCol::Delete;
-        return CommandCol::Unknown;
-    }
+    Commands cmd = strToAction(items[1]);
 
-    bool CheckRows(std::string path)
+    switch (cmd)
     {
-        SmartFile file(path, std::ios::in);
-        std::string line;
-        int count {0};
+    case Commands::Add:
+        add(items[2]);
+        break;
 
-        while (std::getline(file, line))
-        {
-            count++;
-            if (count > 1) return 0;
-        }
+    case Commands::Edit:
+        std::cout << "Edit operation not implemented" << std::endl;
+        break;
 
-        return 1;
+    case Commands::Delete:
+        std::cout << "Delete operation not implemented" << std::endl;
+        break;
+
+    case Commands::Unknown:
+        break;
     }
-
-    void Add(std::string columnName)
-    {
-        std::string path = Path().Construct(globalDbName);
-
-        if (CheckRows(path) == false)
-        {
-            std::cout << "Error: Cannot adds columns if lines already exist." << std::endl;
-            return;
-        }
-
-        SmartFile file(path, std::ios::out | std::ios::app);
-        file.Write(',' + columnName);
-
-        std::cout << "Column added in " << globalDbName << std::endl;
-    }
-
-    public:
-    void Execute(std::vector<std::string> items)
-    {
-        CommandCol cmd = strToAction(items[1]);
-
-        switch (cmd)
-        {
-        case CommandCol::Add:
-            Add(items[2]);
-            break;
-
-        case CommandCol::Edit:
-            std::cout << "Edit operation not implemented" << std::endl;
-            break;
-
-        case CommandCol::Delete:
-            std::cout << "Delete operation not implemented" << std::endl;
-            break;
-
-        case CommandCol::Unknown:
-          break;
-        }
-    }
-};
+}
