@@ -62,7 +62,27 @@ void CommandDb::show()
 
 void CommandDb::clean()
 {
+    DataStore& store = DataStore::getInstance();
+    std::string userInput {};
 
+    std::cout << "This will delete all data from the database. Are you sure?(Y/N)" << std::endl;
+    std::cin >> userInput;
+
+    if (userInput == "Y")
+    {
+        store.database.clear();
+        store.descriptor.clear();
+        std::cout << "Database cleared." << std::endl;
+    }
+    else if (userInput == "N")
+    {
+        return;
+    }
+    else
+    {
+        std::cout << "Syntax error." << std::endl;
+        return;
+    }
 }
 
 void CommandDb::execute(const std::vector<std::string>& items)
