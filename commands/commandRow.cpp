@@ -12,22 +12,40 @@ CommandRow::Commands CommandRow::strToAction(std::string str)
 void CommandRow::add(const std::string& argsString)
 {
     DataStore& store = DataStore::getInstance();
-
+    int descriptorSize {store.descriptor.size()};
     std::vector<std::string> args {Helper().strip(argsString, COMMA)};
+    std::vector<std::string> fields(descriptorSize);
 
-    if (store.descriptor.size() == 0)
+    if (descriptorSize == 0)
     {
         std::cout << "Error: At least 1 column is needed to create a row." << std::endl;
         return;
     }
 
-    if (args.size() != store.descriptor.size())
+    if (args.size() != descriptorSize)
     {
         std::cout << "Error: Invalid number of elements." << std::endl;
         return;
     }
 
-    store.addContainer(argsString);
+    for (std::string item : args)
+    {
+        std::string userNameofField {Parser().cutAfter(item, EQUALS_SIGN)};
+        std::string userField {Parser().cutBefore(item, EQUALS_SIGN)};
+
+        for (int i = 0; i < descriptorSize; i++)
+        {
+            std::string nameofField {store.descriptor.getFieldNames()[i]};
+
+            if (userNameofField == nameofField)
+            {
+                fields[i] = userField;
+                break;
+            }
+        } 
+    }
+
+    store.addContainer(Helper().Connect(fields, COMMA));
 
     std::cout << "Row added in database." << std::endl;
 }
