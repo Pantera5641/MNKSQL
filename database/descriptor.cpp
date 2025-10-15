@@ -46,6 +46,13 @@ void Descriptor::fill(const std::string& argsString)
     }
 }
 
+void Descriptor::clear()
+{
+    fieldNames.clear();
+    fieldType.clear();
+    fieldParams.clear();
+}
+
 Container Descriptor::createContainer(const std::string& argsString)
 {
     std::vector<std::string> args {Helper().strip(argsString, COMMA)};

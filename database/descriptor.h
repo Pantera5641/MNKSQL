@@ -27,6 +27,8 @@ struct Descriptor
 
     void fill(const std::string& argsString);
 
+    void clear();
+
     Container createContainer(const std::string& argsString);
 
     std::vector<std::string> getFieldNames();
