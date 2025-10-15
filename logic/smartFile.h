@@ -9,24 +9,24 @@ class SmartFile : public std::fstream
     private:
     bool binarMode {};
 
-    std::string ReadTxt();
+    std::string readTxt();
 
-    std::string ReadBin();
+    std::string readBin();
 
-    void WriteTxt(const std::string& str);
+    void writeTxt(const std::string& str);
 
-    void WriteBin(const std::string& str);
+    void writeBin(const std::string& str);
 
-    std::vector<std::string> ReadAllTxt();
+    std::vector<std::string> readAllTxt();
 
-    std::vector<std::string> ReadAllBin();
+    std::vector<std::string> readAllBin();
 
     public:
     SmartFile(const std::string& path, std::ios::openmode mode);
 
-    std::string Read();
+    std::string smartRead();
     
-    void Write(const std::string& str);
+    void smartWrite(const std::string& str);
 
-    std::vector<std::string> ReadAll();
+    std::vector<std::string> readAll();
 };

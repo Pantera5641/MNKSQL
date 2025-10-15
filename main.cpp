@@ -25,7 +25,7 @@ int main()
     DataStore& store2 = DataStore::getInstance();
 
     std::cout << "\033[0;32m";
-    Helper().PrintTxt("content/logo.txt");
+    Helper().printTxt("content/logo.txt");
     std::cout << "\033[0m" << std::endl;
 
     std::cout << "Welcome in MNKSQL. To see all commands type: \"HELP\"" << std::endl;

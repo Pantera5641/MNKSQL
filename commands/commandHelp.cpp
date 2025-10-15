@@ -3,5 +3,5 @@
 
 void CommandHelp::show()
 {
-    Helper().PrintTxt("content/help.txt");
+    Helper().printTxt("content/help.txt");
 }

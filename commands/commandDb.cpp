@@ -34,7 +34,7 @@ void CommandDb::show()
 
         int itemSize = maxElementSize[i] - zeroLine[i].size();
 
-        std::cout << VERTICAL_BAR << SPACE << zeroLine[i] << Helper().Repeat(itemSize + 2, SPACE);
+        std::cout << VERTICAL_BAR << SPACE << zeroLine[i] << Helper().repeat(itemSize + 2, SPACE);
     }
     std::cout << VERTICAL_BAR << std::endl;
     
@@ -42,7 +42,7 @@ void CommandDb::show()
     {
         int itemSize = maxElementSize[i];
 
-        std::cout << VERTICAL_BAR <<  Helper().Repeat(itemSize + 3, HYPHEN);
+        std::cout << VERTICAL_BAR <<  Helper().repeat(itemSize + 3, HYPHEN);
     }
     std::cout << VERTICAL_BAR << std::endl;
 
@@ -54,7 +54,7 @@ void CommandDb::show()
         for (int j = 0; j < descriptor.size(); j++)
         {
             int itemSize = maxElementSize[j] - lines[j].size();
-            std::cout << VERTICAL_BAR << SPACE << lines[j] << Helper().Repeat(itemSize, SPACE) << Helper().Repeat(2, SPACE);
+            std::cout << VERTICAL_BAR << SPACE << lines[j] << Helper().repeat(itemSize, SPACE) << Helper().repeat(2, SPACE);
         }
         std::cout << VERTICAL_BAR << std::endl;
     }

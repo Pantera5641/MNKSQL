@@ -1,14 +1,14 @@
 #include "parser.h"
 
 
-std::vector<std::string> Parser::DbIntoArray(const std::string& path)
+std::vector<std::string> Parser::dbIntoArray(const std::string& path)
 {
     SmartFile file(path, std::ios::in);
 
-    return file.ReadAll();
+    return file.readAll();
 }
 
-void Parser::ArrayIntoDB(const std::vector<std::string>& db, const std::string& path)
+void Parser::arrayIntoDB(const std::vector<std::string>& db, const std::string& path)
 {
     int count {};
 
@@ -16,13 +16,13 @@ void Parser::ArrayIntoDB(const std::vector<std::string>& db, const std::string& 
 
     for (int i = 1; i < db.size(); i++)
     {
-        file.Write(db[count] + "\n");
+        file.smartWrite(db[count] + "\n");
         count+=1;
     }
     file << db[db.size()-1];
 }
 
-std::vector<std::string> Parser::GetLine(const std::vector<std::string>& db, int num)
+std::vector<std::string> Parser::getLine(const std::vector<std::string>& db, int num)
 {
     if (db.size() < num || num < 0) 
     {
@@ -32,14 +32,14 @@ std::vector<std::string> Parser::GetLine(const std::vector<std::string>& db, int
     return Helper().strip(db[num], ',');
 }
 
-std::vector<std::string> Parser::GetLine(const std::string& path, int num)
+std::vector<std::string> Parser::getLine(const std::string& path, int num)
 {
-    std::vector db = DbIntoArray(path);
+    std::vector db = dbIntoArray(path);
 
-    return GetLine(db, num);
+    return getLine(db, num);
 }
 
-std::vector<std::string> Parser::GetColumn(const std::vector<std::string>& db, int num)
+std::vector<std::string> Parser::getColumn(const std::vector<std::string>& db, int num)
 {
     std::vector<std::string> column {};
 
@@ -57,11 +57,11 @@ std::vector<std::string> Parser::GetColumn(const std::vector<std::string>& db, i
     return column;
 }
 
-std::vector<std::string> Parser::GetColumn(const std::string& path, int num)
+std::vector<std::string> Parser::getColumn(const std::string& path, int num)
 {
-    std::vector<std::string> db = DbIntoArray(path);
+    std::vector<std::string> db = dbIntoArray(path);
 
-    return GetColumn(db, num);
+    return getColumn(db, num);
 }
 
 std::string Parser::extractBetween(const std::string& line, char firstItem, char secondItem)

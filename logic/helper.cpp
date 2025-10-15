@@ -17,7 +17,7 @@ std::vector<std::string> Helper::strip(const std::string& str, char toRemove)
     return vector;
 }
 
-std::string Helper::Connect(const std::vector<std::string>& vec, char arg)
+std::string Helper::connect(const std::vector<std::string>& vec, char arg)
 {
     std::string line;
 
@@ -31,7 +31,7 @@ std::string Helper::Connect(const std::vector<std::string>& vec, char arg)
     return line;
 }
 
-std::string Helper::Repeat(int num, char item)
+std::string Helper::repeat(int num, char item)
 {
     std::string result {};
 
@@ -43,7 +43,7 @@ std::string Helper::Repeat(int num, char item)
     return result;
 }
 
-void Helper::PrintTxt(const std::string& path)
+void Helper::printTxt(const std::string& path)
 {
     std::string line;
 

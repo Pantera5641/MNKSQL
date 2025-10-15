@@ -45,7 +45,7 @@ void CommandRow::add(const std::string& argsString)
         } 
     }
 
-    store.addContainer(Helper().Connect(fields, COMMA));
+    store.addContainer(Helper().connect(fields, COMMA));
 
     std::cout << "Row added in database." << std::endl;
 }

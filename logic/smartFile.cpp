@@ -15,25 +15,25 @@ SmartFile::SmartFile(const std::string& path, std::ios::openmode mode)
     }
 }
 
-std::string SmartFile::Read()
+std::string SmartFile::smartRead()
 {
-    if (binarMode == false) {return ReadTxt();}
-    return ReadBin();
+    if (binarMode == false) {return readTxt();}
+    return readBin();
 }
 
-void SmartFile::Write(const std::string& str)
+void SmartFile::smartWrite(const std::string& str)
 {
-    if (binarMode == false) {return WriteTxt(str);}
-    return WriteBin(str);
+    if (binarMode == false) {return writeTxt(str);}
+    return writeBin(str);
 }
 
-std::vector<std::string> SmartFile::ReadAll()
+std::vector<std::string> SmartFile::readAll()
 {
-    if (binarMode == false) {return ReadAllTxt();}
-    return ReadAllBin();
+    if (binarMode == false) {return readAllTxt();}
+    return readAllBin();
 }
 
-std::string SmartFile::ReadTxt()
+std::string SmartFile::readTxt()
 {    
     std::string line {};
 
@@ -42,7 +42,7 @@ std::string SmartFile::ReadTxt()
     return line;
 }
 
-std::string SmartFile::ReadBin()
+std::string SmartFile::readBin()
 {
     std::size_t len {};
     std::string line(len, '\0');
@@ -53,12 +53,12 @@ std::string SmartFile::ReadBin()
     return line;
 }
 
-void SmartFile::WriteTxt(const std::string& str)
+void SmartFile::writeTxt(const std::string& str)
 {
     *this << str;
 }
 
-void SmartFile::WriteBin(const std::string& line)
+void SmartFile::writeBin(const std::string& line)
 {
     std::size_t len = line.size();
 
@@ -66,7 +66,7 @@ void SmartFile::WriteBin(const std::string& line)
     this->write(line.data(), len);  
 }
 
-std::vector<std::string> SmartFile::ReadAllTxt()
+std::vector<std::string> SmartFile::readAllTxt()
 {
     std::vector<std::string> lines {};
     std::string line {};
@@ -89,7 +89,7 @@ std::vector<std::string> SmartFile::ReadAllTxt()
     return lines;
 }
 
-std::vector<std::string> SmartFile::ReadAllBin()
+std::vector<std::string> SmartFile::readAllBin()
 {
     std::vector<std::string> lines;
 
