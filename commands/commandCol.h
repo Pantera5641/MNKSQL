@@ -4,9 +4,6 @@
 #include <string>
 
 #include "database/dataStore.h"
-#include "logic/helper.h"
-#include "logic/path.h"
-#include "logic/smartFile.h"
 
 
 struct CommandCol

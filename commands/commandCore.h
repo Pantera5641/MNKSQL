@@ -14,7 +14,7 @@
 struct CommandCore
 {
     private: 
-    enum class Commands
+    enum Commands
     {
         Db,
         Row,
