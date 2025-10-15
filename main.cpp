@@ -32,7 +32,9 @@ int main()
     {
         std::string str {};
         std::getline(std::cin, str);
-
-        CommandCore().commandHandler(str);
+        if (str != "") 
+        {
+            CommandCore().commandHandler(str);
+        }
     }
 }
