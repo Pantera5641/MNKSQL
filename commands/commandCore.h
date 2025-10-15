@@ -28,8 +28,8 @@ struct CommandCore
         Unknown
     };
 
-    Commands StrToCommand(std::string str);
+    Commands StrToCommand(const std::string& str);
 
     public:
-    void commandHandler(std::string str);
+    void commandHandler(const std::string& str);
 };

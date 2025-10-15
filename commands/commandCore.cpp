@@ -1,7 +1,7 @@
 #include "commandCore.h"
 
 
-CommandCore::Commands CommandCore::StrToCommand(std::string str)
+CommandCore::Commands CommandCore::StrToCommand(const std::string& str)
 {
     if (str == "DB") return Commands::Db;
     if (str == "COL") return Commands::Col;
@@ -13,7 +13,7 @@ CommandCore::Commands CommandCore::StrToCommand(std::string str)
     return Commands::Unknown;
 }
 
-void CommandCore::commandHandler(std::string userInput)
+void CommandCore::commandHandler(const std::string& userInput)
 {
     std::vector<std::string> items = Helper().strip(userInput, SPACE);
 

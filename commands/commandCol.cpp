@@ -1,7 +1,7 @@
 #include "commandCol.h"
 
 
-CommandCol::Commands CommandCol::strToAction(std::string str)
+CommandCol::Commands CommandCol::strToAction(const std::string& str)
 { 
     if(str == "ADD") return Commands::Add;
     if(str == "EDIT") return Commands::Edit;

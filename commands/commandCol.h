@@ -17,7 +17,7 @@ struct CommandCol
         Unknown
     };
 
-    Commands strToAction(std::string str);
+    Commands strToAction(const std::string& str);
 
     void add(const std::string& args);
 
