@@ -46,11 +46,11 @@ void Descriptor::fill(const std::string& argsString)
     }
 }
 
-Container Descriptor::createContainer(const std::string& fieldsString)
+Container Descriptor::createContainer(const std::string& argsString)
 {
-    std::vector<std::string> fields = Helper().strip(fieldsString, COMMA);
+    std::vector<std::string> args {Helper().strip(argsString, COMMA)};
 
-    return Container(fields);
+    return Container(args);
 }
 
 std::vector<std::string> Descriptor::getFieldNames()
