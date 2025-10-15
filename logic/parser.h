@@ -26,4 +26,6 @@ class Parser
     std::string extractBetween(const std::string& line, char firstItem, char secondItem);
 
     std::string cutAfter(const std::string& line, char item);
+
+    std::string cutBefore(const std::string& line, char item);
 };

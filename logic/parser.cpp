@@ -80,3 +80,11 @@ std::string Parser::cutAfter(const std::string& line, char item)
 
     return result;
 }
+
+std::string Parser::cutBefore(const std::string& line, char item)
+{
+    int index = line.find_first_of(item);
+    std::string result = line.substr(index + 1);
+
+    return result;
+}
