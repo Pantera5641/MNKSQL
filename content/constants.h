@@ -5,6 +5,7 @@
 const char SPACE {' '};
 const char COMMA {','};
 const char HYPHEN {'-'};
+const char EQUALS_SIGN {'='};
 const char LEFT_PARENTHESIS {'('};
 const char RIGHT_PARENTHESIS {')'};
 const char LEFT_SQUARE_BRACKET {'['};
