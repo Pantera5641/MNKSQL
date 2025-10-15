@@ -1,172 +1,94 @@
-#include <iostream>
-#include <vector>
-#include <string>
-
-#include "logic/helper.h"
-#include "logic/path.h"
-#include "logic/smartFile.h"
-#include "content/globals.h"
+#include "commandRow.h"
 
 
-enum class CommandRow
+CommandRow::Commands CommandRow::strToAction(std::string str)
 {
-    Add,
-    Rewrite,
-    Delete,
-    Unknown
-};
+    if(str == "ADD") return Commands::Add; 
+    if(str == "REWRITE") return Commands::Rewrite; 
+    if(str == "REMOVE") return Commands::Remove; 
+    return Commands::Unknown;
+}
 
-class Command_Row
+void CommandRow::add(const std::string& argsString)
 {
-    private:
-    CommandRow strToAction(std::string str)
+    DataStore& store = DataStore::getInstance();
+
+    std::vector<std::string> args {Helper().strip(argsString, COMMA)};
+
+    if (store.descriptor.size() == 0)
     {
-        if(str == "ADD") return CommandRow::Add; 
-        if(str == "REWRITE") return CommandRow::Rewrite; 
-        if(str == "DELETE") return CommandRow::Delete; 
-        return CommandRow::Unknown;
+        std::cout << "Error: At least 1 column is needed to create a row." << std::endl;
+        return;
     }
 
-    int CountRows(std::string path)
+    if (args.size() != store.descriptor.size())
     {
-        SmartFile file(path, std::ios::in);
-        std::string line {};
-        int count {0};
-
-        while (std::getline(file, line))
-        {
-            count++;
-        }
-        
-        file.close();
-
-        return count;
+        std::cout << "Error: Invalid number of elements." << std::endl;
+        return;
     }
 
-    void Add()
+    store.addContainer(argsString);
+
+    std::cout << "Row added in database." << std::endl;
+}
+
+void CommandRow::rewrite(const std::string& indexString, const std::string& argsString)
+{
+    int index {};
+    DataStore& store = DataStore::getInstance();
+
+    try
     {
-        std::string line {};
-        std::string userLine {};
-        int numberOfColumns {};
-
-        std::string path = Path().Construct(globalDbName);
-        
-        SmartFile file(path, std::ios::in | std::ios::out | std::ios::app);
-
-        std::getline(file, line);
-        std::vector<std::string> items = Helper().strip(line, ',');
-        items.erase(items.begin());
-        numberOfColumns = items.size();
-
-        if (numberOfColumns == 0)
-        {
-            std::cout << "Error: At least 1 column is needed to create a row." << std::endl;
-            return;
-        }
-
-        std::cout << "Fill in all fields:" << std::endl;
-        std::cout << Helper().Connect(items, ' ') << std::endl;
-        std::getline(std::cin, userLine);
-
-        std::vector<std::string> userItems = Helper().strip(userLine, ' ');
-
-        if (userItems.size() != numberOfColumns)
-        {
-            std::cout << "Error: Invalid number of elements." << std::endl;
-            return;
-        }
-
-        file << "\n" << std::to_string(CountRows(path)) << ',' << Helper().Connect(userItems, ',');
-
-        std::cout << "Row added in " << globalDbName << std::endl;
+        index = std::stoi(indexString) - 1;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Error: Invalid number of row" << std::endl;
+        return;
     }
 
-    void Rewrite(std::string rowNumStr)
+    store.database[index] = store.descriptor.createContainer(argsString);
+
+    std::cout << "Row was rewrite" << std::endl;
+}
+
+void CommandRow::remove(const std::string& indexString)
+{
+    int index {};
+    DataStore& store = DataStore::getInstance();
+
+    try
     {
-        int count {};
-        int rowNum {};
-        std::string line {};
-        std::string userLine {};
-
-        std::string path = Path().Construct(globalDbName);
-        std::vector<std::string> db = Parser().DbIntoArray(path);
-
-        try
-        {
-            rowNum = std::stoi(rowNumStr);
-        }
-        catch(const std::exception& e)
-        {
-            std::cout << "Error: Invalid number of row" << std::endl;
-            return;
-        }
-        
-        std::vector<std::string> zeroLine = Helper().strip(db[0], ',');
-        zeroLine.erase(zeroLine.begin());
-
-        std::cout << "Fill in all fields:" << std::endl;
-        std::cout << Helper().Connect(zeroLine, ' ') << std::endl;
-        std::getline(std::cin, userLine);
-
-        std::vector<std::string> userItems = Helper().strip(userLine, ' ');
-        db[rowNum] = std::to_string(rowNum) + "," + Helper().Connect(userItems, ',');
-
-        Parser().ArrayIntoDB(db, path);
-        std::cout << "Row was rewrite" << std::endl;
+        index = std::stoi(indexString) - 1;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Error: Invalid number of row" << std::endl;
+        return;
     }
 
-    void Delete(std::string rowNumStr)
+    store.database.erase(store.database.begin() + index);
+
+    std::cout << "Row was deleted" << std::endl;
+}
+
+void CommandRow::execute(const std::vector<std::string>& items)
+{
+    Commands cmd = strToAction(items[1]);
+
+    switch (cmd)
     {
-        int count {};
-        int rowNum {};
-        std::string line {};
-        std::string userLine {};
-
-        std::string path = Path().Construct(globalDbName);
-        std::vector<std::string> db = Parser().DbIntoArray(path);
-
-        try
-        {
-            rowNum = std::stoi(rowNumStr);
-        }
-        catch(const std::exception& e)
-        {
-            std::cout << "Error: Invalid number of row" << std::endl;
-            return;
-        }
-
-        db.erase(db.begin()+rowNum);
-
-        for (int i = 1; i < db.size(); i++)
-        {
-            std::vector<std::string> line = Helper().strip(db[i], ',');
-            line[0] = std::to_string(i);
-            db[i] = Helper().Connect(line, ',');
-        }
-
-        Parser().ArrayIntoDB(db, path);
-        std::cout << "Row was deleted" << std::endl;
+    case Commands::Add:
+        add(items[2]);
+        break;
+    case Commands::Rewrite:
+        rewrite(items[2], items[3]);
+        break;
+    case Commands::Remove:
+        remove(items[2]);
+        break;
+    case Commands::Unknown:
+        std::cout << "Error: Unknown operation" << std::endl;
+        break;
     }
-
-    public:
-    void Execute(std::vector<std::string> items)
-    {
-        CommandRow cmd = strToAction(items[1]);
-
-        switch (cmd)
-        {
-        case CommandRow::Add:
-            Add();
-            break;
-        case CommandRow::Rewrite:
-            Rewrite(items[2]);
-            break;
-        case CommandRow::Delete:
-            Delete(items[2]);
-            break;
-        case CommandRow::Unknown:
-            std::cout << "Error: Unknown operation" << std::endl;
-          break;
-        }
-    }
-};
+}
