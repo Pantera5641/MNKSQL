@@ -1,6 +1,5 @@
 #include "path.h"
 
-#pragma once
 
 std::string Path::construct(const std::string& fileName)
 {

@@ -1,12 +1,11 @@
 #pragma once
-#include <iostream>
 #include <string>
 #include <vector>
 #include <typeindex>
 
-#include "content/constants.h"
-#include "logic/helper.h"
-#include "logic/parser.h"
+#include "../content/constants.h"
+#include "../logic/helper.h"
+#include "../logic/parser.h"
 
 #include "container.h"
 

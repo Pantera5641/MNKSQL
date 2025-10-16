@@ -48,7 +48,7 @@ std::string SmartFile::readBin()
     std::string line(len, '\0');
 
     this->read(reinterpret_cast<char*>(&len), sizeof(len));
-    this->read(line.data(), len);
+    //this->read(line.data(), len);
 
     return line;
 }
@@ -101,7 +101,7 @@ std::vector<std::string> SmartFile::readAllBin()
         if (this->eof()) break;  // защита на случай неполных данных
 
         std::string line(len, '\0');
-        this->read(line.data(), len);
+        //this->read(line.data(), len);
 
         lines.push_back(line);
     }

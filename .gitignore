@@ -6,10 +6,13 @@
 /CMakeFiles
 /cmake_install.cmake
 /main.exe
-/main.ilk
-/main.obj
-/main.pdb
-/vc140.pdb
+/.cache
 /ZERO_CHECK.vcxproj
 /ZERO_CHECK.vcxproj.filters
 /commands/vc140.pdb
+/*.ilk
+/*.obj
+/*.pdb
+/.clangd
+/ninja-build.ps1
+/CMakeLists.txt

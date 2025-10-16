@@ -22,7 +22,7 @@ struct DataStore
 
     void newDescriptor(const std::string& argsString);
 
-    void DataStore::addContainer(const std::string& fieldsString);
+    void addContainer(const std::string& fieldsString);
 
     std::vector<std::string> getLine(int num);
 

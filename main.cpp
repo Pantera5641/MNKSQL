@@ -1,33 +1,19 @@
 #include <iostream>
 
-#include "logic/helper.cpp"
-#include "logic/parser.cpp"
-#include "logic/path.cpp"
-#include "logic/smartFile.cpp"
-
-#include "commands/commandCore.cpp"
-#include "commands/commandDb.cpp"
-#include "commands/commandCol.cpp"
-#include "commands/commandRow.cpp"
-#include "commands/commandFile.cpp"
-#include "commands/commandHelp.cpp"
-
-#include "database/container.cpp"
-#include "database/dataStore.cpp"
-#include "database/descriptor.cpp"
-
+#include "commands/commandCore.h"
+#include "logic/helper.h"
+#include "database/dataStore.h"
 
 int main()
-{
+ {
     Descriptor des("qwerty,Name(STRING[NONE]),gerafe(INT),fdfdf(INT[x<16])");
     DataStore& store = DataStore::getInstance();
     store.descriptor = des;
-    DataStore& store2 = DataStore::getInstance();
-
+    
     std::cout << "\033[0;32m";
     Helper().printTxt("content/logo.txt");
     std::cout << "\033[0m" << std::endl;
-
+    
     std::cout << "Welcome in MNKSQL. To see all commands type: \"HELP\"" << std::endl;
     while (true)
     {

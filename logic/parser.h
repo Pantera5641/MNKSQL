@@ -1,12 +1,10 @@
 #pragma once
-
 #include <iostream>
 #include <vector>
 #include <string>
-#include <filesystem>
 
 #include "helper.h"
-#include "smartFile.h"
+
 
 class Parser
 {

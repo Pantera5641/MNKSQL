@@ -34,7 +34,7 @@ std::vector<std::string> Parser::getLine(const std::vector<std::string>& db, int
 
 std::vector<std::string> Parser::getLine(const std::string& path, int num)
 {
-    std::vector db = dbIntoArray(path);
+    std::vector<std::string> db = dbIntoArray(path);
 
     return getLine(db, num);
 }

@@ -1,13 +1,14 @@
+/*
 #include <iostream>
 #include <vector>
 #include <string>
 #include <functional>
 
-#include "logic/helper.h"
-#include "content/parser.h"
-#include "logic/path.h"
-#include "logic/smartFile.h"
-#include "content/globals.h"
+#include "parser.h"
+#include "helper.h"
+#include "path.h"
+#include "smartFile.h"
+#include "globals.h"
 
 
 enum class CommandSort
@@ -73,3 +74,4 @@ class Command_Sort
         }
     }
 };
+*/

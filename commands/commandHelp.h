@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-#include "logic/helper.h"
+#include "../logic/helper.h"
 
 
 struct CommandHelp

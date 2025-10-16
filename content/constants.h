@@ -2,20 +2,20 @@
 #include <string>
 #include <typeindex>
 
-const char SPACE {' '};
-const char COMMA {','};
-const char HYPHEN {'-'};
-const char EQUALS_SIGN {'='};
-const char LEFT_PARENTHESIS {'('};
-const char RIGHT_PARENTHESIS {')'};
-const char LEFT_SQUARE_BRACKET {'['};
-const char RIGHT_SQUARE_BRACKET {']'};
-const char VERTICAL_BAR {'|'};
+inline const char SPACE {' '};
+inline const char COMMA {','};
+inline const char HYPHEN {'-'};
+inline const char EQUALS_SIGN {'='};
+inline const char LEFT_PARENTHESIS {'('};
+inline const char RIGHT_PARENTHESIS {')'};
+inline const char LEFT_SQUARE_BRACKET {'['};
+inline const char RIGHT_SQUARE_BRACKET {']'};
+inline const char VERTICAL_BAR {'|'};
 
-const std::string& INT {"INT"};
-const std::string& STRING {"STRING"};
+inline const std::string INT {"INT"};
+inline const std::string STRING {"STRING"};
 
-const std::type_index INT_TYPE {typeid(int)};
-const std::type_index STRING_TYPE {typeid(std::string)};
+inline const std::type_index INT_TYPE {typeid(int)};
+inline const std::type_index STRING_TYPE {typeid(std::string)};
 
-const std::string& NONE {"NONE"};
+inline const std::string NONE {"NONE"};
