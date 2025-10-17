@@ -3,7 +3,7 @@
 #include <vector>
 #include <typeindex>
 
-#include "constants.h"
+#include "symbols.h"
 #include "helper.h"
 #include "parser.h"
 
@@ -18,6 +18,8 @@ struct Descriptor
     std::vector<std::string> fieldParams {};
 
     std::type_index setType(const std::string& typeString);
+
+    std::string getType(std::type_index type);
 
     public:
     Descriptor() = default;
@@ -35,6 +37,8 @@ struct Descriptor
     std::vector<std::type_index> getFieldTypes();
 
     std::vector<std::string> getFieldParams();
+
+    std::vector<std::string> getAllField();
 
     int size();
 };

@@ -2,7 +2,10 @@
 #include <string>
 #include <typeindex>
 
+
+inline const char EMPTY {};
 inline const char SPACE {' '};
+inline const char DOT {'.'};
 inline const char COMMA {','};
 inline const char HYPHEN {'-'};
 inline const char EQUALS_SIGN {'='};

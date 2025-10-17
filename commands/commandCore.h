@@ -9,7 +9,7 @@
 #include "commandFile.h"
 #include "commandHelp.h"
 
-#include "constants.h"
+#include "symbols.h"
 #include "helper.h"
 
 
