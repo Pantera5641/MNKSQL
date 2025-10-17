@@ -11,7 +11,7 @@ int main()
     store.descriptor = des;
     
     std::cout << "\033[0;32m";
-    Helper().printTxt("content/logo.txt");
+    Helper().printTxt("data/logo.txt");
     std::cout << "\033[0m" << std::endl;
     
     std::cout << "Welcome in MNKSQL. To see all commands type: \"HELP\"" << std::endl;

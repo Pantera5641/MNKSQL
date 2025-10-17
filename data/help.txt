@@ -1,0 +1,59 @@
+=== DATABASE COMMANDS HELP ===
+
+PWD - Password Management
+  PWD SET <password>                       : Set a password for the file or database
+  PWD EDIT <old_password> <new_password>   : Change password (use NONE to remove it)
+  Note: Password is optional for files.
+
+FILE - File Operations
+  FILE LOAD <filename> [password]          : Load data from a .txt or .bin file
+  FILE SAVE <filename> [password]          : Save current data to a file
+  FILE DELETE <filename> [password]        : Delete a file
+  FILE CONVERT <input> <output> [password] : Convert file format (.txt ↔ .bin)
+  Note: [password] is only needed if the file is protected.
+
+BD - Main Database Operations
+  BD SHOW                               : Display all rows in the main database
+  BD CLEAN                              : Clear all data in the main database
+  BD SORT <field> [type]                : Sort the main database by the specified column
+                                           <type> = ASC | DESC | ALPHA | NUM
+  Examples:
+    BD SORT age ASC
+    BD SORT name ALPHA
+  Note: Sorting affects the main database permanently.
+
+VIEW - Temporary Selection (does not affect main database)
+  VIEW FILTER <condition>               : Select rows by a condition (e.g., age>30)
+  VIEW SORT <field> [type]              : Sort the temporary selection
+                                           <type> = ASC | DESC | ALPHA | NUM
+  Examples:
+    VIEW FILTER age>30
+    VIEW SORT age DESC
+
+COL - Table Column Operations
+  COL ADD <name(TYPE[ARG]), ...>       : Add a new column with specified type and constraints
+  COL EDIT <id> <name(TYPE[ARG])>      : Edit a column definition by ID
+  COL DELETE <id>                      : Delete a column by ID
+  Examples:
+    COL ADD id(INT[X>0]),name(STRING[NONE]),age(INT[5<X<18])
+    COL EDIT 2 age(INT[X<30])
+  Note: You cannot edit columns if there are already rows in the database.
+
+ROW - Table Row Operations
+  ROW ADD <name=value, ...>            : Add a new row; unspecified fields = NONE
+  ROW EDIT <id> <name=value>           : Edit a field in a row by ID
+  ROW DELETE <id>                      : Delete a row by ID
+  Examples:
+    ROW ADD name=Alex,age=19,city=Moscow
+    ROW ADD name=John                   -> other fields = NONE
+    ROW EDIT 4 age=22
+
+SERVICE COMMANDS
+  HELP                                  : Display this help
+  SAVE                                  : Save current state to memory
+  LOAD                                  : Load the last saved state from memory
+  EXIT                                  : Save the last version and exit the program
+
+Notes:
+- VIEW commands only affect the temporary selection, not the main database.
+- BD SORT permanently changes the database order, unlike VIEW SORT.
