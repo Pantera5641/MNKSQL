@@ -7,6 +7,12 @@ std::type_index Descriptor::setType(const std::string& typeString)
     return INT_TYPE;
 }
 
+std::string Descriptor::getType(std::type_index type)
+{
+    if (type == STRING_TYPE) {return STRING;};
+    return INT;
+}
+
 Descriptor::Descriptor(const std::string& argsString)
 {
     fill(argsString);
@@ -73,6 +79,21 @@ std::vector<std::type_index> Descriptor::getFieldTypes()
 std::vector<std::string> Descriptor::getFieldParams()
 {
     return fieldParams;
+}
+
+std::vector<std::string> Descriptor::getAllField()
+{
+    std::vector<std::string> fields {};
+    for (int i = 0; i < size(); i++) 
+    {
+        std::string name = fieldNames[i] + LEFT_PARENTHESIS;
+        std::string type =  getType(fieldTypes[i]) + LEFT_SQUARE_BRACKET;
+        std::string param = fieldParams[i] + RIGHT_SQUARE_BRACKET + RIGHT_PARENTHESIS;
+
+        fields.push_back(name + type + param);
+    }
+
+    return fields;
 }
 
 int Descriptor::size()
