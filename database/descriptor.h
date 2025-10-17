@@ -14,10 +14,10 @@ struct Descriptor
 {
     private:
     std::vector<std::string> fieldNames {};
-    std::vector<std::type_index> fieldType {};
+    std::vector<std::type_index> fieldTypes {};
     std::vector<std::string> fieldParams {};
 
-    std::type_index getType(const std::string& typeString);
+    std::type_index setType(const std::string& typeString);
 
     public:
     Descriptor() = default;
@@ -31,6 +31,10 @@ struct Descriptor
     Container createContainer(const std::string& argsString);
 
     std::vector<std::string> getFieldNames();
+
+    std::vector<std::type_index> getFieldTypes();
+
+    std::vector<std::string> getFieldParams();
 
     int size();
 };

@@ -1,7 +1,7 @@
 #include "descriptor.h"
 
 
-std::type_index Descriptor::getType(const std::string& typeString)
+std::type_index Descriptor::setType(const std::string& typeString)
 {
     if (typeString == STRING) {return STRING_TYPE;};
     return INT_TYPE;
@@ -26,21 +26,21 @@ void Descriptor::fill(const std::string& argsString)
         else
         {
             fieldNames.push_back(item);
-            fieldType.push_back(STRING_TYPE);
+            fieldTypes.push_back(STRING_TYPE);
             fieldParams.push_back(NONE);
             continue;
         }
         
         if (item.find(LEFT_SQUARE_BRACKET) != std::string::npos)
         {
-            fieldType.push_back(getType(Parser().cutAfter(item, LEFT_SQUARE_BRACKET)));
+            fieldTypes.push_back(setType(Parser().cutAfter(item, LEFT_SQUARE_BRACKET)));
             item = Parser().extractBetween(item, LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET);
 
             fieldParams.push_back(item);
         }
         else
         {
-            fieldType.push_back(getType(item));
+            fieldTypes.push_back(setType(item));
             fieldParams.push_back(NONE);
         }
     }
@@ -49,7 +49,7 @@ void Descriptor::fill(const std::string& argsString)
 void Descriptor::clear()
 {
     fieldNames.clear();
-    fieldType.clear();
+    fieldTypes.clear();
     fieldParams.clear();
 }
 
@@ -63,6 +63,16 @@ Container Descriptor::createContainer(const std::string& argsString)
 std::vector<std::string> Descriptor::getFieldNames()
 {
     return fieldNames;
+}
+
+std::vector<std::type_index> Descriptor::getFieldTypes()
+{
+    return fieldTypes;
+}
+
+std::vector<std::string> Descriptor::getFieldParams()
+{
+    return fieldParams;
 }
 
 int Descriptor::size()

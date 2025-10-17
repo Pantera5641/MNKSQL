@@ -6,7 +6,7 @@
 
 int main()
  {
-    Descriptor des("qwerty,Name(STRING[NONE]),gerafe(INT),fdfdf(INT[1999<x<2025])");
+    Descriptor des("qwerty,Name(STRING[NONE]),gerafe(INT),fdfdf(INT[1999<X<2025])");
     DataStore& store = DataStore::getInstance();
     store.descriptor = des;
     

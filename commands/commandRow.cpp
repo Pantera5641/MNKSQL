@@ -1,4 +1,14 @@
 #include "commandRow.h"
+#include "constants.h"
+#include "dataStore.h"
+#include "helper.h"
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <ostream>
+#include <string>
+#include <typeindex>
+#include <vector>
 
 
 CommandRow::Commands CommandRow::strToAction(std::string str)
@@ -7,6 +17,84 @@ CommandRow::Commands CommandRow::strToAction(std::string str)
     if(str == "REWRITE") return Commands::Rewrite; 
     if(str == "REMOVE") return Commands::Remove; 
     return Commands::Unknown;
+}
+
+bool CommandRow::isInt(const std::string& item)
+{
+    int intItem {};
+    try 
+    {
+        intItem = std::stoi(item);
+    } 
+    catch(...)
+    {
+        return false;
+    }
+    return true;
+}
+
+bool CommandRow::inDiapasone(int num, const std::string& argsString)
+{
+    if (argsString.find(GREATER_THAN) && std::count(argsString.begin(), argsString.end(), GREATER_THAN) == 1) 
+    {
+        std::vector<std::string> args = Helper().strip(argsString, GREATER_THAN);
+        if (args[0] == "X" && isInt(args[1])) 
+        {
+            return num > std::stoi(args[1]);
+        }
+    }
+
+    if (argsString.find(LESS_THAN) && std::count(argsString.begin(), argsString.end(), LESS_THAN) == 1) 
+    {
+        std::vector<std::string> args = Helper().strip(argsString, LESS_THAN);
+        if (args[0] == "X" && isInt(args[1])) 
+        {
+            return num < std::stoi(args[1]);
+        }
+    }
+
+    if (argsString.find(LESS_THAN) && std::count(argsString.begin(), argsString.end(), LESS_THAN) == 2) 
+    {
+        std::vector<std::string> args = Helper().strip(argsString, LESS_THAN);
+        if (isInt(args[0]) && args[1] == "X" && isInt(args[2])) 
+        {
+            return std::stoi(args[0]) < num && num < std::stoi(args[2]);
+        }
+    }
+    return false;
+}
+
+bool CommandRow::validator(const std::string& rowElement, int index)
+{
+    DataStore& store = DataStore::getInstance();
+    std::type_index type {store.descriptor.getFieldTypes()[index]};
+    std::string param {store.descriptor.getFieldParams()[index]};
+
+    if (typeid(rowElement) == type) 
+    {
+        return true;
+    }
+
+    int intElement {};
+    try 
+    {
+        intElement = std::stoi(rowElement);
+    } 
+    catch(...)
+    {
+        return false;
+    }
+
+    if (param == NONE) 
+    {
+        return true;
+    }
+
+    if (inDiapasone(intElement ,param)) 
+    {
+        return true;
+    }
+    return false;
 }
 
 void CommandRow::add(const std::string& argsString)
@@ -31,15 +119,21 @@ void CommandRow::add(const std::string& argsString)
 
     for (std::string item : args)
     {
-        std::string userNameofField {Parser().cutAfter(item, EQUALS_SIGN)};
+        std::string userNameOfField {Parser().cutAfter(item, EQUALS_SIGN)};
         std::string userField {Parser().cutBefore(item, EQUALS_SIGN)};
 
         for (int i = 0; i < descriptorSize; i++)
         {
-            std::string nameofField {store.descriptor.getFieldNames()[i]};
+            std::string nameOfField {store.descriptor.getFieldNames()[i]};
 
-            if (userNameofField == nameofField)
+            if (userNameOfField == nameOfField)
             {
+                if (validator(userField, i) != true) 
+                {
+                    std::cout << "Error in value:" << userNameOfField << std::endl;
+                    return;
+                }
+
                 fields[i] = userField;
                 break;
             }
