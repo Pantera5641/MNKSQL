@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "../database/dataStore.h"
+#include "dataStore.h"
 
 
 struct CommandCol

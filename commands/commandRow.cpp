@@ -13,6 +13,7 @@ void CommandRow::add(const std::string& argsString)
 {
     DataStore& store = DataStore::getInstance();
     int descriptorSize {store.descriptor.size()};
+
     std::vector<std::string> args {Helper().strip(argsString, COMMA)};
     std::vector<std::string> fields(descriptorSize);
 

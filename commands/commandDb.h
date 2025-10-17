@@ -3,9 +3,9 @@
 #include <vector>
 #include <string>
 
-#include "../content/constants.h"
-#include "../database/dataStore.h"
-#include "../logic/helper.h"
+#include "constants.h"
+#include "dataStore.h"
+#include "helper.h"
 
 
 struct CommandDb

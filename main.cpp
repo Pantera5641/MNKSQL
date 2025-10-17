@@ -1,12 +1,12 @@
 #include <iostream>
 
-#include "commands/commandCore.h"
-#include "logic/helper.h"
-#include "database/dataStore.h"
+#include "commandCore.h"
+#include "helper.h"
+#include "dataStore.h"
 
 int main()
  {
-    Descriptor des("qwerty,Name(STRING[NONE]),gerafe(INT),fdfdf(INT[x<16])");
+    Descriptor des("qwerty,Name(STRING[NONE]),gerafe(INT),fdfdf(INT[1999<x<2025])");
     DataStore& store = DataStore::getInstance();
     store.descriptor = des;
     

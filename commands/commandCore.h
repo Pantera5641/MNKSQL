@@ -9,8 +9,8 @@
 #include "commandFile.h"
 #include "commandHelp.h"
 
-#include "../content/constants.h"
-#include "../logic/helper.h"
+#include "constants.h"
+#include "helper.h"
 
 
 struct CommandCore

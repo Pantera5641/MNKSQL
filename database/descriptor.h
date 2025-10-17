@@ -3,9 +3,9 @@
 #include <vector>
 #include <typeindex>
 
-#include "../content/constants.h"
-#include "../logic/helper.h"
-#include "../logic/parser.h"
+#include "constants.h"
+#include "helper.h"
+#include "parser.h"
 
 #include "container.h"
 
