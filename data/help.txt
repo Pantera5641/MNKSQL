@@ -1,15 +1,15 @@
 === DATABASE COMMANDS HELP ===
 
 PWD - Password Management
-  PWD SET <password>                       : Set a password for the file or database
-  PWD EDIT <old_password> <new_password>   : Change password (use NONE to remove it)
+  PWD SET <filename> [password]                       : Set a password for the file or database
+  PWD EDIT <filename> [old_password] [new_password]   : Change password (use NONE to remove it)
   Note: Password is optional for files.
 
 FILE - File Operations
   FILE LOAD <filename> [password]          : Load data from a .txt or .bin file
-  FILE SAVE <filename> [password]          : Save current data to a file
+  FILE SAVE <filename>                     : Save current data to a file
   FILE DELETE <filename> [password]        : Delete a file
-  FILE CONVERT <input> <output> [password] : Convert file format (.txt ↔ .bin)
+  FILE CONVERT <input> <output> [password] : Convert file format (.txt <-> .bin)
   Note: [password] is only needed if the file is protected.
 
 BD - Main Database Operations
