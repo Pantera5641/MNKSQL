@@ -30,5 +30,5 @@ struct CommandFile
     void remove(const std::string& fileName, const std::string& password = std::string());
 
     public:
-    void execute(const std::vector<std::string>& arr);
+    void execute(const std::vector<std::string>& items);
 };

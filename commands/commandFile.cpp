@@ -70,7 +70,7 @@ void CommandFile::remove(const std::string& fileName, const std::string& passwor
 
 void CommandFile::execute(const std::vector<std::string>& items)
 {
-    Commands cmd = strToAction(items[1]);
+    Commands cmd = strToAction(items.at(1));
 
     switch (cmd)
     {

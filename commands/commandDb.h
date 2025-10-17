@@ -25,5 +25,5 @@ struct CommandDb
     void clean();
 
     public:
-    void execute(const std::vector<std::string>& arr);
+    void execute(const std::vector<std::string>& items);
 };

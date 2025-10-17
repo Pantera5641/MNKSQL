@@ -87,7 +87,7 @@ void CommandDb::clean()
 
 void CommandDb::execute(const std::vector<std::string>& items)
 {
-    Commands cmd = strToAction(items[1]);
+    Commands cmd = strToAction(items.at(1));
 
     switch (cmd)
     {

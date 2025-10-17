@@ -163,19 +163,45 @@ void CommandRow::remove(const std::string& indexString)
 
 void CommandRow::execute(const std::vector<std::string>& items)
 {
-    Commands cmd = strToAction(items[1]);
+    Commands cmd = strToAction(items.at(1));
 
     switch (cmd)
     {
     case Commands::Add:
-        add(items[2]);
+        try 
+        {
+            add(items.at(2));
+        } 
+        catch (...) 
+        {
+        
+        }
+    
         break;
+
     case Commands::Rewrite:
-        rewrite(items[2], items[3]);
+        try 
+        {
+            rewrite(items.at(2), items.at(3));
+        } 
+        catch (...) 
+        {
+        
+        }
+    
         break;
+
     case Commands::Remove:
-        remove(items[2]);
+        try 
+        {
+            remove(items.at(2));
+        } 
+        catch (...) 
+        {
+        
+        }
         break;
+
     case Commands::Unknown:
         std::cout << "Error: Unknown operation" << std::endl;
         break;

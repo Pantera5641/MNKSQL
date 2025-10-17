@@ -20,12 +20,19 @@ void CommandCol::add(const std::string& args)
 
 void CommandCol::execute(const std::vector<std::string>& items)
 {
-    Commands cmd = strToAction(items[1]);
+    Commands cmd = strToAction(items.at(1));
 
     switch (cmd)
     {
     case Commands::Add:
-        add(items[2]);
+        try 
+        {
+            add(items.at(2));
+        } 
+        catch (...) 
+        {
+        
+        }
         break;
 
     case Commands::Edit:
