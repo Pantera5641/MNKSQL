@@ -25,7 +25,7 @@ void CommandCore::commandHandler(const std::string& userInput)
     switch (cmd)
     {
     case Commands::Password:
-        std::cout << "Command not implemented" << std::endl;
+        CommandPwd().execute(items);
         break;
     
     case Commands::File:
@@ -37,7 +37,7 @@ void CommandCore::commandHandler(const std::string& userInput)
         break;
     
     case Commands::View:
-        std::cout << "Command not implemented" << std::endl;
+        CommandView().execute(items);
         break;
     
     case Commands::Column:

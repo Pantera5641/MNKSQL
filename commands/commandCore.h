@@ -3,10 +3,12 @@
 #include <string>
 #include <vector>
 
+#include "commandPwd.h"
+#include "commandFile.h"
 #include "commandDb.h"
+#include "commandView.h"
 #include "commandRow.h"
 #include "commandCol.h"
-#include "commandFile.h"
 #include "commandHelp.h"
 
 #include "symbols.h"
