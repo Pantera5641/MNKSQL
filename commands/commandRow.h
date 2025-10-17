@@ -21,8 +21,6 @@ struct CommandRow
 
     Commands strToAction(std::string str);
 
-    bool isInt(const std::string& item);
-
     bool inDiapasone(int num, const std::string& argsString);
 
     bool validator(const std::string& rowElement, int index);

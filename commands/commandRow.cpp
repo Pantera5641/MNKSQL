@@ -1,14 +1,4 @@
 #include "commandRow.h"
-#include "constants.h"
-#include "dataStore.h"
-#include "helper.h"
-#include <algorithm>
-#include <iostream>
-#include <iterator>
-#include <ostream>
-#include <string>
-#include <typeindex>
-#include <vector>
 
 
 CommandRow::Commands CommandRow::strToAction(std::string str)
@@ -19,26 +9,12 @@ CommandRow::Commands CommandRow::strToAction(std::string str)
     return Commands::Unknown;
 }
 
-bool CommandRow::isInt(const std::string& item)
-{
-    int intItem {};
-    try 
-    {
-        intItem = std::stoi(item);
-    } 
-    catch(...)
-    {
-        return false;
-    }
-    return true;
-}
-
 bool CommandRow::inDiapasone(int num, const std::string& argsString)
 {
     if (argsString.find(GREATER_THAN) && std::count(argsString.begin(), argsString.end(), GREATER_THAN) == 1) 
     {
         std::vector<std::string> args = Helper().strip(argsString, GREATER_THAN);
-        if (args[0] == "X" && isInt(args[1])) 
+        if (args[0] == "X" && Helper().isInt(args[1])) 
         {
             return num > std::stoi(args[1]);
         }
@@ -47,7 +23,7 @@ bool CommandRow::inDiapasone(int num, const std::string& argsString)
     if (argsString.find(LESS_THAN) && std::count(argsString.begin(), argsString.end(), LESS_THAN) == 1) 
     {
         std::vector<std::string> args = Helper().strip(argsString, LESS_THAN);
-        if (args[0] == "X" && isInt(args[1])) 
+        if (args[0] == "X" && Helper().isInt(args[1])) 
         {
             return num < std::stoi(args[1]);
         }
@@ -56,7 +32,7 @@ bool CommandRow::inDiapasone(int num, const std::string& argsString)
     if (argsString.find(LESS_THAN) && std::count(argsString.begin(), argsString.end(), LESS_THAN) == 2) 
     {
         std::vector<std::string> args = Helper().strip(argsString, LESS_THAN);
-        if (isInt(args[0]) && args[1] == "X" && isInt(args[2])) 
+        if (Helper().isInt(args[0]) && args[1] == "X" && Helper().isInt(args[2])) 
         {
             return std::stoi(args[0]) < num && num < std::stoi(args[2]);
         }
@@ -64,21 +40,21 @@ bool CommandRow::inDiapasone(int num, const std::string& argsString)
     return false;
 }
 
-bool CommandRow::validator(const std::string& rowElement, int index)
+bool CommandRow::validator(const std::string& item, int index)
 {
     DataStore& store = DataStore::getInstance();
     std::type_index type {store.descriptor.getFieldTypes()[index]};
     std::string param {store.descriptor.getFieldParams()[index]};
 
-    if (typeid(rowElement) == type) 
+    if (typeid(item) == type) 
     {
         return true;
     }
 
-    int intElement {};
+    int intItem {};
     try 
     {
-        intElement = std::stoi(rowElement);
+        intItem = std::stoi(item);
     } 
     catch(...)
     {
@@ -90,7 +66,7 @@ bool CommandRow::validator(const std::string& rowElement, int index)
         return true;
     }
 
-    if (inDiapasone(intElement ,param)) 
+    if (inDiapasone(intItem ,param)) 
     {
         return true;
     }

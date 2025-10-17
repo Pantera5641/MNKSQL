@@ -54,3 +54,17 @@ void Helper::printTxt(const std::string& path)
         std::cout << line << std::endl;
     }
 }
+
+bool Helper::isInt(const std::string& item)
+{
+    int intItem {};
+    try 
+    {
+        intItem = std::stoi(item);
+    } 
+    catch(...)
+    {
+        return false;
+    }
+    return true;
+}

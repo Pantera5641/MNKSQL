@@ -16,4 +16,6 @@ class Helper
     std::string repeat(int num, char item);
 
     void printTxt(const std::string& path);
+
+    bool isInt(const std::string& item);
 };
