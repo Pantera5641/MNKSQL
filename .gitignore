@@ -16,3 +16,4 @@
 /.clangd
 /ninja-build.ps1
 /CMakeLists.txt
+/tables
