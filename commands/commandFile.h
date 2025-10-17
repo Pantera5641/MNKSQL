@@ -1,6 +1,10 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <filesystem>
+
+#include "dataStore.h"
+#include "path.h"
 
 
 struct CommandFile
@@ -15,9 +19,15 @@ struct CommandFile
 
     Commands strToAction(const std::string& str);
 
-    void save(const std::string& fileName);
+    void saveTxt(const std::string& fileName, const std::vector<std::string>& data);
 
-    void load(const std::string& fileName);
+    void saveBin(const std::string& fileName, const std::vector<std::string>& data);
+
+    void save(const std::string& fileName, const std::string& password = std::string());
+
+    void load(const std::string& fileName, const std::string& password = std::string());
+
+    void remove(const std::string& fileName, const std::string& password = std::string());
 
     public:
     void execute(const std::vector<std::string>& arr);

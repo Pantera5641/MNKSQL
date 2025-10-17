@@ -3,5 +3,5 @@
 
 void CommandHelp::show()
 {
-    Helper().printTxt("content/help.txt");
+    Helper().printTxt("data/help.txt");
 }
