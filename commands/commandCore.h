@@ -18,13 +18,16 @@ struct CommandCore
     private: 
     enum Commands
     {
-        Db,
-        Row,
-        Col,
-        Sort,
-        Data,
+        Password,
         File,
+        Database,
+        View,
+        Row,
+        Column,
         Help,
+        Save,
+        Load,
+        Exit,
         Unknown
     };
 
