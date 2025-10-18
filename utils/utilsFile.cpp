@@ -14,6 +14,8 @@ void UtilsFile::saveRawData(const std::string& fileName, const std::string& pass
         rawData.push_back(Helper().connect(item.getFields(), COMMA));
     }
 
+    std::filesystem::remove(Path().construct(fileName));
+
     if (Parser().cutBefore(fileName, DOT) == "txt")
     {
         saveTxt(fileName, rawData);

@@ -9,6 +9,7 @@
 #include "commandView.h"
 #include "commandRow.h"
 #include "commandCol.h"
+#include "commandSave.h"
 #include "commandHelp.h"
 
 #include "symbols.h"

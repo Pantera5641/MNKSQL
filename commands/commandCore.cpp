@@ -53,7 +53,7 @@ void CommandCore::commandHandler(const std::string& userInput)
         break;
     
     case Commands::Save:
-        std::cout << "Command not implemented" << std::endl;
+        CommandSave().save();
         break;
     
     case Commands::Load:
