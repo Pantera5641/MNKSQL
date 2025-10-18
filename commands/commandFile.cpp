@@ -11,54 +11,14 @@ CommandFile::Commands CommandFile::strToAction(const std::string& str)
 
 void CommandFile::save(const std::string& fileName, const std::string& password)
 {
-    DataStore& store = DataStore::getInstance();
-    std::vector<std::string> rawData {};
-
-    rawData.push_back(LEFT_PARENTHESIS + password + RIGHT_PARENTHESIS);
-    rawData.push_back(Helper().connect(store.descriptor.getAllField(), COMMA));
-
-    for (Container item : store.database)
-    {
-        rawData.push_back(Helper().connect(item.getFields(), COMMA));
-    }
-
-    std::filesystem::create_directories("tables");
-
-    if (Parser().cutBefore(fileName, DOT) == "txt") 
-    {
-        UtilsFile().saveTxt(fileName, rawData);
-    }
-    else 
-    {
-        UtilsFile().saveBin(fileName, rawData);
-    }
+    UtilsFile().saveRawData(fileName, password);
 
     std::cout << "Your data has been saved to " << fileName << std::endl;
 }
 
 void CommandFile::load(const std::string& fileName, const std::string& password)
 {
-    DataStore& store = DataStore::getInstance();
-    std::vector<std::string> rawData {};
-
-    if (Parser().cutBefore(fileName, DOT) == "txt") 
-    {
-        rawData = UtilsFile().loadTxt(fileName);
-    }
-    else
-    {
-        rawData = UtilsFile().loadBin(fileName);
-    }
-
-    //password logic
-
-    store.descriptor.clear();
-    store.descriptor.fill(rawData.at(1));
-    
-    for (int i = 2; i < rawData.size(); i++)
-    {
-        store.addContainer(rawData.at(i));
-    }
+    UtilsFile().loadRawData(fileName, password);
     
     std::cout << "Your data has been load from " << fileName << std::endl;
 }
