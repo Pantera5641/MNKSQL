@@ -5,28 +5,8 @@ CommandFile::Commands CommandFile::strToAction(const std::string& str)
 {
     if(str == "SAVE") return Commands::Save;
     if(str == "LOAD") return Commands::Load; 
+    if(str == "DELETE") return Commands::Remove; 
     return Commands::Unknown;
-}
-
-void CommandFile::saveTxt(const std::string& fileName, const std::vector<std::string>& data)
-{
-    std::fstream file(Path().construct(fileName), std::ios::out | std::ios::app);
-    for (std::string item : data) 
-    {
-        file << item << '\n';
-    }
-}
-
-void CommandFile::saveBin(const std::string& fileName, const std::vector<std::string>& data)
-{
-    std::fstream file(Path().construct(fileName), std::ios::out | std::ios::app | std::ios::binary);
-
-    for (std::string item : data)
-    {
-        int len = item.size();
-        file.write(reinterpret_cast<const char*>(&len), sizeof(len));
-        file.write(item.data(), len);  
-    }
 }
 
 void CommandFile::save(const std::string& fileName, const std::string& password)
@@ -46,11 +26,11 @@ void CommandFile::save(const std::string& fileName, const std::string& password)
 
     if (Parser().cutBefore(fileName, DOT) == "txt") 
     {
-        saveTxt(fileName, rawData);
+        UtilsFile().saveTxt(fileName, rawData);
     }
     else 
     {
-        saveBin(fileName, rawData);
+        UtilsFile().saveBin(fileName, rawData);
     }
 
     std::cout << "Your data has been saved to " << fileName << std::endl;
@@ -58,7 +38,29 @@ void CommandFile::save(const std::string& fileName, const std::string& password)
 
 void CommandFile::load(const std::string& fileName, const std::string& password)
 {
+    DataStore& store = DataStore::getInstance();
+    std::vector<std::string> rawData {};
 
+    if (Parser().cutBefore(fileName, DOT) == "txt") 
+    {
+        rawData = UtilsFile().loadTxt(fileName);
+    }
+    else
+    {
+        rawData = UtilsFile().loadBin(fileName);
+    }
+
+    //password logic
+
+    store.descriptor.clear();
+    store.descriptor.fill(rawData.at(1));
+    
+    for (int i = 2; i < rawData.size(); i++)
+    {
+        store.addContainer(rawData.at(i));
+    }
+    
+    std::cout << "Your data has been load from " << fileName << std::endl;
 }
 
 void CommandFile::remove(const std::string& fileName, const std::string& password)
@@ -93,6 +95,17 @@ void CommandFile::execute(const std::vector<std::string>& items)
         catch (...) 
         {
             load(items.at(2));
+        }
+        break;
+    
+    case Commands::Remove:
+        try 
+        {
+            remove(items.at(2), items.at(3));
+        } 
+        catch (...) 
+        {
+
         }
         break;
 
