@@ -4,6 +4,7 @@
 #include <typeindex>
 
 #include "symbols.h"
+#include "types.h"
 #include "helper.h"
 #include "parser.h"
 
