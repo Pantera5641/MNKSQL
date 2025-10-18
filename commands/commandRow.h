@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "utilsRow.h"
+
 #include "dataStore.h"
 #include "helper.h"
 #include "symbols.h"

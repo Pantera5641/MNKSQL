@@ -9,70 +9,6 @@ CommandRow::Commands CommandRow::strToAction(std::string str)
     return Commands::Unknown;
 }
 
-bool CommandRow::inDiapasone(int num, const std::string& argsString)
-{
-    if (argsString.find(GREATER_THAN) && std::count(argsString.begin(), argsString.end(), GREATER_THAN) == 1) 
-    {
-        std::vector<std::string> args = Helper().strip(argsString, GREATER_THAN);
-        if (args[0] == "X" && Helper().isInt(args[1])) 
-        {
-            return num > std::stoi(args[1]);
-        }
-    }
-
-    if (argsString.find(LESS_THAN) && std::count(argsString.begin(), argsString.end(), LESS_THAN) == 1) 
-    {
-        std::vector<std::string> args = Helper().strip(argsString, LESS_THAN);
-        if (args[0] == "X" && Helper().isInt(args[1])) 
-        {
-            return num < std::stoi(args[1]);
-        }
-    }
-
-    if (argsString.find(LESS_THAN) && std::count(argsString.begin(), argsString.end(), LESS_THAN) == 2) 
-    {
-        std::vector<std::string> args = Helper().strip(argsString, LESS_THAN);
-        if (Helper().isInt(args[0]) && args[1] == "X" && Helper().isInt(args[2])) 
-        {
-            return std::stoi(args[0]) < num && num < std::stoi(args[2]);
-        }
-    }
-    return false;
-}
-
-bool CommandRow::validator(const std::string& item, int index)
-{
-    DataStore& store = DataStore::getInstance();
-    std::type_index type {store.descriptor.getFieldTypes()[index]};
-    std::string param {store.descriptor.getFieldParams()[index]};
-
-    if (typeid(item) == type) 
-    {
-        return true;
-    }
-
-    int intItem {};
-    try 
-    {
-        intItem = std::stoi(item);
-    } 
-    catch(...)
-    {
-        return false;
-    }
-
-    if (param == NONE) 
-    {
-        return true;
-    }
-
-    if (inDiapasone(intItem ,param)) 
-    {
-        return true;
-    }
-    return false;
-}
-
 void CommandRow::add(const std::string& argsString)
 {
     DataStore& store = DataStore::getInstance();
@@ -104,7 +40,7 @@ void CommandRow::add(const std::string& argsString)
 
             if (userNameOfField == nameOfField)
             {
-                if (validator(userField, i) != true) 
+                if (UtilsRow().validator(userField, i) != true) 
                 {
                     std::cout << "Error in value:" << userNameOfField << std::endl;
                     return;
