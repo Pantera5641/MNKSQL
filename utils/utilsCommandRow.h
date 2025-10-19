@@ -7,7 +7,7 @@
 #include "symbols.h"
 
 
-struct UtilsRow
+struct UtilsCommandRow
 {
     public:
     bool inDiapasone(int num, const std::string& argsString);

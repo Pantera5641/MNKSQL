@@ -7,7 +7,7 @@
 #include "symbols.h"
 
 
-struct UtilsDb
+struct UtilsShow
 {
     public:
     void showTable(const std::vector<std::string>& db);

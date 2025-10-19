@@ -19,7 +19,7 @@ void CommandDb::show()
     } 
 
     
-    UtilsDb().showTable(db);
+    UtilsShow().showTable(db);
 }
 
 void CommandDb::clean()

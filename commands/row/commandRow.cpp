@@ -40,7 +40,7 @@ void CommandRow::add(const std::string& argsString)
 
             if (userNameOfField == nameOfField)
             {
-                if (UtilsRow().validator(userField, i) != true) 
+                if (UtilsCommandRow().validator(userField, i) != true) 
                 {
                     std::cout << "Error in value:" << userNameOfField << std::endl;
                     return;

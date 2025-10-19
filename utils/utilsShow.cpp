@@ -1,7 +1,7 @@
-#include "utilsDb.h"
+#include "utilsShow.h"
 
 
-void UtilsDb::showTable(const std::vector<std::string>& db)
+void UtilsShow::showTable(const std::vector<std::string>& db)
 {
     std::vector<int> maxElementSize {};
     int numOfColumn = Helper().strip(db.at(0), COMMA).size();

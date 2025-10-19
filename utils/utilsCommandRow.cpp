@@ -1,7 +1,7 @@
-#include "utilsRow.h"
+#include "utilsCommandRow.h"
 
 
-bool UtilsRow::inDiapasone(int num, const std::string& argsString)
+bool UtilsCommandRow::inDiapasone(int num, const std::string& argsString)
 {
     if (argsString.find(GREATER_THAN) && std::count(argsString.begin(), argsString.end(), GREATER_THAN) == 1) 
     {
@@ -32,7 +32,7 @@ bool UtilsRow::inDiapasone(int num, const std::string& argsString)
     return false;
 }
 
-bool UtilsRow::validator(const std::string& item, int index)
+bool UtilsCommandRow::validator(const std::string& item, int index)
 {
     DataStore& store = DataStore::getInstance();
     std::type_index type {store.descriptor.getFieldTypes()[index]};
