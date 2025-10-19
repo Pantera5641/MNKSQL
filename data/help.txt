@@ -7,7 +7,7 @@ PWD - Password Management
 
 FILE - File Operations
   FILE LOAD <filename> [password]          : Load data from a .txt or .bin file
-  FILE SAVE <filename>                     : Save current data to a file
+  FILE SAVE <filename> [password]          : Save current data to a file
   FILE DELETE <filename> [password]        : Delete a file
   FILE CONVERT <input> <output> [password] : Convert file format (.txt <-> .bin)
   Note: [password] is only needed if the file is protected.
