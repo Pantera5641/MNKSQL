@@ -38,7 +38,7 @@ void UtilsDb::showTable(const std::vector<std::string>& db)
     std::cout << VERTICAL_BAR << std::endl;
 
     int calumnSize = Parser().getColumn(db,0).size() - 1;
-    for (int i = 0; i < calumnSize; i++)
+    for (int i = 1; i < calumnSize; i++)
     {
         std::vector<std::string> lines = Parser().getLine(db, i);
 
