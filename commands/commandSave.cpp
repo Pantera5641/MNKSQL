@@ -3,7 +3,7 @@
 
 void CommandSave::save()
 {
-    UtilsFile().saveRawData(HOT_SAVE_PATH);
+    UtilsFile().saveRawData(QUICK_SAVE_PATH);
 
     std::cout << "Data saved" << std::endl;
 }
