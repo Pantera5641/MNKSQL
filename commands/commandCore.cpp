@@ -57,7 +57,7 @@ void CommandCore::commandHandler(const std::string& userInput)
         break;
     
     case Commands::Load:
-        std::cout << "Command not implemented" << std::endl;
+        CommandLoad().load();
         break;
     
     case Commands::Exit:

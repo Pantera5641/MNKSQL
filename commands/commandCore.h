@@ -10,6 +10,7 @@
 #include "commandRow.h"
 #include "commandCol.h"
 #include "commandSave.h"
+#include "commandLoad.h"
 #include "commandHelp.h"
 
 #include "symbols.h"
