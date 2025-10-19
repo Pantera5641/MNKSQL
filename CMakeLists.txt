@@ -22,7 +22,16 @@ file(GLOB_RECURSE SOURCES
 add_executable(MNKSQL ${SOURCES})
 
 target_include_directories(MNKSQL PRIVATE
-    ${CMAKE_SOURCE_DIR}/commands
+    ${CMAKE_SOURCE_DIR}/commands/column
+    ${CMAKE_SOURCE_DIR}/commands/core
+    ${CMAKE_SOURCE_DIR}/commands/database
+    ${CMAKE_SOURCE_DIR}/commands/file
+    ${CMAKE_SOURCE_DIR}/commands/help
+    ${CMAKE_SOURCE_DIR}/commands/load
+    ${CMAKE_SOURCE_DIR}/commands/password
+    ${CMAKE_SOURCE_DIR}/commands/row
+    ${CMAKE_SOURCE_DIR}/commands/save
+    ${CMAKE_SOURCE_DIR}/commands/view
     ${CMAKE_SOURCE_DIR}/constants
     ${CMAKE_SOURCE_DIR}/database
     ${CMAKE_SOURCE_DIR}/logic
