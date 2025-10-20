@@ -5,7 +5,7 @@
 #include <fstream>
 #include <vector>
 
-class SmartFile : public std::fstream
+struct SmartFile : public std::fstream
 {
     private:
     bool binarMode {};

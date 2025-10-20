@@ -6,7 +6,7 @@
 #include "helper.h"
 
 
-class Parser
+struct Parser
 {
     public:
     void arrayIntoDB(const std::vector<std::string>& db, const std::string& path);

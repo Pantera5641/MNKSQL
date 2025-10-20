@@ -7,7 +7,7 @@
 
 #pragma once
 
-class Helper
+struct Helper
 {
     public:
     std::vector<std::string> strip(const std::string& str, char toRemove);
