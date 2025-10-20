@@ -47,7 +47,7 @@ void Helper::printTxt(const std::string& path)
 {
     std::string line;
 
-    SmartFile file(path, std::ios::in);
+    std::fstream file(path, std::ios::in);
 
     while (std::getline(file, line))
     {

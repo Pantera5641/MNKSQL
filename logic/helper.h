@@ -1,8 +1,9 @@
+#include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
+#include <fstream>
 
-#include "smartFile.h"
 
 #pragma once
 
