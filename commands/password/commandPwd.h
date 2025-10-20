@@ -3,6 +3,12 @@
 #include <string>
 #include <vector>
 
+#include "symbols.h"
+#include "types.h"
+#include "utilsTable.h"
+#include "utilsCommandPwd.h"
+
+
 struct CommandPwd
 {
     private:
@@ -15,7 +21,7 @@ struct CommandPwd
 
     Commands strToAction(const std::string& str);
 
-    void set(const std::string& fileName, const std::string& password);
+    void set(const std::string& fileName, const std::string& newPassword);
 
     void edit(const std::string& fileName, const std::string& oldPassword, const std::string& newPassword);
 
