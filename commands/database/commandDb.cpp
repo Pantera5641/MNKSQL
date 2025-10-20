@@ -62,7 +62,7 @@ void CommandDb::execute(const std::vector<std::string>& items)
         break;
 
     case Commands::Unknown:
-        std::cout << "Error: Unknown operator" << std::endl;
+        std::cout << "ERROR: Unknown operator" << std::endl;
         break;
     }
 }

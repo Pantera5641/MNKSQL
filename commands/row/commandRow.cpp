@@ -19,13 +19,13 @@ void CommandRow::add(const std::string& argsString)
 
     if (descriptorSize == 0)
     {
-        std::cout << "Error: At least 1 column is needed to create a row." << std::endl;
+        std::cout << "ERROR: At least 1 column is needed to create a row." << std::endl;
         return;
     }
 
     if (args.size() != descriptorSize)
     {
-        std::cout << "Error: Invalid number of elements." << std::endl;
+        std::cout << "ERROR: Invalid number of elements." << std::endl;
         return;
     }
 
@@ -68,7 +68,7 @@ void CommandRow::rewrite(const std::string& indexString, const std::string& args
     }
     catch(const std::exception& e)
     {
-        std::cout << "Error: Invalid number of row" << std::endl;
+        std::cout << "ERROR: Invalid number of row" << std::endl;
         return;
     }
 
@@ -88,7 +88,7 @@ void CommandRow::remove(const std::string& indexString)
     }
     catch(const std::exception& e)
     {
-        std::cout << "Error: Invalid number of row" << std::endl;
+        std::cout << "ERROR: Invalid number of row" << std::endl;
         return;
     }
 
@@ -139,7 +139,7 @@ void CommandRow::execute(const std::vector<std::string>& items)
         break;
 
     case Commands::Unknown:
-        std::cout << "Error: Unknown operation" << std::endl;
+        std::cout << "ERROR: Unknown operation" << std::endl;
         break;
     }
 }

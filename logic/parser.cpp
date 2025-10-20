@@ -19,7 +19,7 @@ std::vector<std::string> Parser::getLine(const std::vector<std::string>& db, int
 {
     if (db.size() < num || num < 0) 
     {
-        std::cout << "Error: You can't take a non-existent line." << std::endl;
+        std::cout << "ERROR: You can't take a non-existent line." << std::endl;
         return {};
     }
     return Helper().strip(db[num], ',');
@@ -31,7 +31,7 @@ std::vector<std::string> Parser::getColumn(const std::vector<std::string>& db, i
 
     if (Helper().strip(db[0], ',').size() < num || num < 0) 
     {
-        std::cout << "Error: You can't take a non-existent column." << std::endl;
+        std::cout << "ERROR: You can't take a non-existent column." << std::endl;
         return {};
     }
     

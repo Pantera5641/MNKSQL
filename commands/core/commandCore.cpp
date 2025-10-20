@@ -65,7 +65,7 @@ void CommandCore::commandHandler(const std::string& userInput)
         break;
 
     case Commands::Unknown:
-        std::cout << "Error: Unknown command" << std::endl;
+        std::cout << "ERROR: Unknown command" << std::endl;
         break;
     }
 }
