@@ -6,10 +6,6 @@
 
 int main()
  {
-    Descriptor des("qwerty,Name(STRING[NONE]),gerafe(INT),fdfdf(INT[1999<X<2025])");
-    DataStore& store = DataStore::getInstance();
-    store.descriptor = des;
-    
     std::cout << "\033[0;32m";
     Helper().printTxt("data/logo.txt");
     std::cout << "\033[0m" << std::endl;
