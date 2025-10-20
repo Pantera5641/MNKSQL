@@ -3,7 +3,7 @@
 #include <vector>
 #include <filesystem>
 
-#include "utilsFile.h" 
+#include "utilsTable.h" 
 
 #include "dataStore.h"
 #include "path.h"
@@ -22,11 +22,11 @@ struct CommandFile
 
     Commands strToAction(const std::string& str);
 
-    void save(const std::string& fileName, const std::string& password = std::string());
+    void save(const std::string& fileName, const std::string& password = NONE);
 
-    void load(const std::string& fileName, const std::string& password = std::string());
+    void load(const std::string& fileName, const std::string& password = NONE);
 
-    void remove(const std::string& fileName, const std::string& password = std::string());
+    void remove(const std::string& fileName, const std::string& password = NONE);
 
     public:
     void execute(const std::vector<std::string>& items);

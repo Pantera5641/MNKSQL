@@ -11,14 +11,14 @@ CommandFile::Commands CommandFile::strToAction(const std::string& str)
 
 void CommandFile::save(const std::string& fileName, const std::string& password)
 {
-    UtilsFile().saveRawData(fileName, password);
+    UtilsTable().saveRawData(fileName, password);
 
     std::cout << "Your data has been saved to " << fileName << std::endl;
 }
 
 void CommandFile::load(const std::string& fileName, const std::string& password)
 {
-    UtilsFile().loadRawData(fileName, password);
+    UtilsTable().loadRawData(fileName, password);
     
     std::cout << "Your data has been load from " << fileName << std::endl;
 }
