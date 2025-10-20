@@ -17,6 +17,7 @@ file(GLOB_RECURSE SOURCES
     "database/*.cpp" 
     "logic/*.cpp" 
     "utils/*.cpp" 
+    "validators/*.cpp"
     "main.cpp"
     )
 add_executable(MNKSQL ${SOURCES})
@@ -34,6 +35,7 @@ target_include_directories(MNKSQL PRIVATE
     ${CMAKE_SOURCE_DIR}/commands/view
     ${CMAKE_SOURCE_DIR}/constants
     ${CMAKE_SOURCE_DIR}/database
+    ${CMAKE_SOURCE_DIR}/validators
     ${CMAKE_SOURCE_DIR}/logic
     ${CMAKE_SOURCE_DIR}/utils
     )
