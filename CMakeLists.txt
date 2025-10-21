@@ -19,23 +19,19 @@ file(GLOB_RECURSE SOURCES
     "utils/*.cpp" 
     "validators/*.cpp"
     "main.cpp"
-    )
+)
 add_executable(MNKSQL ${SOURCES})
 
+file(GLOB COMMAND_DIRS
+    "${CMAKE_SOURCE_DIR}/commands/*"
+)
+
 target_include_directories(MNKSQL PRIVATE
-    ${CMAKE_SOURCE_DIR}/commands/column
-    ${CMAKE_SOURCE_DIR}/commands/core
-    ${CMAKE_SOURCE_DIR}/commands/database
-    ${CMAKE_SOURCE_DIR}/commands/file
-    ${CMAKE_SOURCE_DIR}/commands/help
-    ${CMAKE_SOURCE_DIR}/commands/load
-    ${CMAKE_SOURCE_DIR}/commands/password
-    ${CMAKE_SOURCE_DIR}/commands/row
-    ${CMAKE_SOURCE_DIR}/commands/save
-    ${CMAKE_SOURCE_DIR}/commands/view
+    ${COMMAND_DIRS}
     ${CMAKE_SOURCE_DIR}/constants
     ${CMAKE_SOURCE_DIR}/database
-    ${CMAKE_SOURCE_DIR}/validators
     ${CMAKE_SOURCE_DIR}/logic
     ${CMAKE_SOURCE_DIR}/utils
+    ${CMAKE_SOURCE_DIR}/validators
+    ${CM${CMAKE_SOURCE_DIR}/commandsAKE_SOURCE_DIR}/utils
     )
