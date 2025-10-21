@@ -3,9 +3,10 @@
 
 void CommandLoad::load()
 {
-    if (ValidateFile().isTableExists(QUICK_SAVE_PATH) == false) 
+    std::string error {ValidateFile().checkLoadAndRemoveErrors(QUICK_SAVE_PATH, NONE)};
+    if (error != NONE) 
     {
-        std::cout << "ERROR: Data does not exist, please save it before loading" << std::endl;
+        std::cout << error << std::endl;
         return;
     }
 
