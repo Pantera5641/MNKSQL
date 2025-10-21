@@ -11,6 +11,13 @@ CommandFile::Commands CommandFile::strToAction(const std::string& str)
 
 void CommandFile::save(const std::string& fileName, const std::string& password)
 {
+    std::string error {ValidateFile().checkSaveErrors(fileName, password)};
+    if (error != NONE) 
+    {
+        std::cout << error << std::endl;
+        return;
+    }
+
     UtilsTable().saveRawData(fileName, password);
 
     std::cout << "Your data has been saved to " << fileName << std::endl;
@@ -18,6 +25,13 @@ void CommandFile::save(const std::string& fileName, const std::string& password)
 
 void CommandFile::load(const std::string& fileName, const std::string& password)
 {
+    std::string error {ValidateFile().checkLoadAndRemoveErrors(fileName, password)};
+    if (error != NONE) 
+    {
+        std::cout << error << std::endl;
+        return;
+    }
+
     UtilsTable().loadRawData(fileName, password);
     
     std::cout << "Your data has been load from " << fileName << std::endl;
@@ -25,6 +39,13 @@ void CommandFile::load(const std::string& fileName, const std::string& password)
 
 void CommandFile::remove(const std::string& fileName, const std::string& password)
 {
+    std::string error {ValidateFile().checkLoadAndRemoveErrors(fileName, password)};
+    if (error != NONE) 
+    {
+        std::cout << error << std::endl;
+        return;
+    }
+
     std::filesystem::remove(Path().construct(fileName));
     
     std::cout << "Table " << fileName << " was deleted." << std::endl;
@@ -65,7 +86,7 @@ void CommandFile::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-
+            remove(items.at(2));
         }
         break;
 

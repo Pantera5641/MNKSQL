@@ -4,6 +4,7 @@
 #include <filesystem>
 
 #include "utilsTable.h" 
+#include "validateFile.h"
 
 #include "dataStore.h"
 #include "path.h"
