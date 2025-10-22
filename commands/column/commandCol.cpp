@@ -9,11 +9,18 @@ CommandCol::Commands CommandCol::strToAction(const std::string& str)
     return Commands::Unknown;
 }
 
-void CommandCol::add(const std::string& args)
+void CommandCol::add(const std::string& argsString)
 {
+    std::string error {ValidateCol().checkAddErrors(argsString)};
+    if (error != NONE) 
+    {
+        std::cout << error << std::endl;
+        return;
+    }
+
     DataStore& store = DataStore::getInstance();
 
-    store.descriptor.fill(args);
+    store.descriptor.fill(argsString);
 
     std::cout << "Column added in database" << std::endl;
 }

@@ -4,6 +4,7 @@
 #include <string>
 
 #include "dataStore.h"
+#include "validateCol.h"
 
 
 struct CommandCol
@@ -19,7 +20,7 @@ struct CommandCol
 
     Commands strToAction(const std::string& str);
 
-    void add(const std::string& args);
+    void add(const std::string& argsString);
 
     public:
     void execute(const std::vector<std::string>& items);
