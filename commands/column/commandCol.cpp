@@ -22,7 +22,7 @@ void CommandCol::add(const std::string& argsString)
 
     store.descriptor.fill(argsString);
 
-    std::cout << "Column added in database" << std::endl;
+    std::cout << COLUMN_ADDED_MESSAGE << std::endl;
 }
 
 void CommandCol::execute(const std::vector<std::string>& items)
@@ -43,14 +43,15 @@ void CommandCol::execute(const std::vector<std::string>& items)
         break;
 
     case Commands::Edit:
-        std::cout << "Edit operation not implemented" << std::endl;
+        std::cout << OPERATION_NOT_IMPLEMENTED_ERROR << std::endl;
         break;
 
     case Commands::Delete:
-        std::cout << "Delete operation not implemented" << std::endl;
+        std::cout << OPERATION_NOT_IMPLEMENTED_ERROR << std::endl;
         break;
 
     case Commands::Unknown:
+        std::cout << UNKNOWN_OPERATOR_ERROR << std::endl;
         break;
     }
 }

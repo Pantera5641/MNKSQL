@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 
+#include "messages.h"
 #include "dataStore.h"
 #include "validateCol.h"
 

@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "messages.h"
+
 struct CommandView
 {
     private:

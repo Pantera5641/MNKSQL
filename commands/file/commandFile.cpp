@@ -20,7 +20,7 @@ void CommandFile::save(const std::string& fileName, const std::string& password)
 
     UtilsTable().saveRawData(fileName, password);
 
-    std::cout << "Your data has been saved to " << fileName << std::endl;
+    std::cout << DATA_SAVED_TO_PATH_MESSAGE << fileName << std::endl;
 }
 
 void CommandFile::load(const std::string& fileName, const std::string& password)
@@ -34,7 +34,7 @@ void CommandFile::load(const std::string& fileName, const std::string& password)
 
     UtilsTable().loadRawData(fileName, password);
     
-    std::cout << "Your data has been load from " << fileName << std::endl;
+    std::cout << DATA_LOADED_FROM_PATH_MESSAGE << fileName << std::endl;
 }
 
 void CommandFile::remove(const std::string& fileName, const std::string& password)
@@ -48,7 +48,7 @@ void CommandFile::remove(const std::string& fileName, const std::string& passwor
 
     std::filesystem::remove(Path().construct(fileName));
     
-    std::cout << "Table " << fileName << " was deleted." << std::endl;
+    std::cout << TABLE_DELETED_MESSAGE << fileName << std::endl;
 }
 
 void CommandFile::execute(const std::vector<std::string>& items)
@@ -91,7 +91,7 @@ void CommandFile::execute(const std::vector<std::string>& items)
         break;
 
     case Commands::Unknown:
-        std::cout << "ERROR: Unknown operator" << std::endl;
+        std::cout << UNKNOWN_OPERATOR_ERROR << std::endl;
         break;
     }
 }

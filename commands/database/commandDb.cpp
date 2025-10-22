@@ -27,14 +27,14 @@ void CommandDb::clean()
     DataStore& store = DataStore::getInstance();
     std::string userInput {};
 
-    std::cout << "This will delete all data from the database. Are you sure?(Y/N)" << std::endl;
+    std::cout << CONFIRM_DATABASE_DELETE_PROMPT << std::endl;
     std::cin >> userInput;
 
     if (userInput == "Y")
     {
         store.database.clear();
         store.descriptor.clear();
-        std::cout << "Database cleared." << std::endl;
+        std::cout << DATABASE_CLEARED_MESSAGE << std::endl;
     }
     else if (userInput == "N")
     {
@@ -42,7 +42,7 @@ void CommandDb::clean()
     }
     else
     {
-        std::cout << "Syntax error." << std::endl;
+        std::cout << SYNTAX_ERROR << std::endl;
         return;
     }
 }
@@ -62,7 +62,7 @@ void CommandDb::execute(const std::vector<std::string>& items)
         break;
 
     case Commands::Unknown:
-        std::cout << "ERROR: Unknown operator" << std::endl;
+        std::cout << UNKNOWN_OPERATOR_ERROR << std::endl;
         break;
     }
 }

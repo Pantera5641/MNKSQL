@@ -12,5 +12,5 @@ void CommandLoad::load()
 
     UtilsTable().loadRawData(QUICK_SAVE_PATH);
 
-    std::cout << "Data loaded" << std::endl;
+    std::cout << DATA_LOADED_MESSAGE << std::endl;
 }

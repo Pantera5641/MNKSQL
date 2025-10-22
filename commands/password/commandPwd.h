@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "symbols.h"
+#include "messages.h"
 #include "types.h"
 #include "utilsTable.h"
 #include "utilsCommandPwd.h"

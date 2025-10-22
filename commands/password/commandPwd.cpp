@@ -19,7 +19,7 @@ void CommandPwd::set(const std::string& fileName, const std::string& newPassword
 
     UtilsCommandPwd().setPassword(fileName, newPassword);
 
-    std::cout << "Set to: " << newPassword << std::endl;
+    std::cout << PASSWORD_SET_MESSAGE << newPassword << std::endl;
 }
 
 void CommandPwd::edit(const std::string& fileName, const std::string& oldPassword, const std::string& newPassword)
@@ -33,7 +33,7 @@ void CommandPwd::edit(const std::string& fileName, const std::string& oldPasswor
 
     UtilsCommandPwd().setPassword(fileName, newPassword);
 
-    std::cout << "Password changed to: " << newPassword << std::endl;
+    std::cout << PASSWORD_CHANGED_MESSAGE << newPassword << std::endl;
 }
 
 void CommandPwd::execute(const std::vector<std::string>& items)
@@ -49,7 +49,7 @@ void CommandPwd::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-            std::cout << "ERROR: Invalid arguments" << std::endl;
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
         break;
 
@@ -60,12 +60,12 @@ void CommandPwd::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-            std::cout << "ERROR: Invalid arguments" << std::endl;
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
         break;
 
     case Commands::Unknown:
-        std::cout << "ERROR: Unknown command" << std::endl;
+        std::cout << UNKNOWN_OPERATOR_ERROR << std::endl;
         break;
     }
 }

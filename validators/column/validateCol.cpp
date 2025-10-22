@@ -133,7 +133,7 @@ std::string ValidateCol::checkAddErrors(const std::string& argsString)
     {
         if (checkSyntaxErrors(item) == false) 
         {
-            return "ERROR: Syntax error.";
+            return SYNTAX_ERROR;
         }
     }
 

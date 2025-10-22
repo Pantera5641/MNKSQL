@@ -13,7 +13,7 @@ std::string ValidateFile::checkSaveErrors(const std::string& fileName, const std
     std::string extension {Parser().cutBefore(fileName, DOT)};
     if (extension != "txt" && extension != "bin") 
     {
-        return "ERROR: You cannot use this extension";
+        return EXTENSION_NOT_ALLOWED_ERROR;
     }
 
     return NONE;
@@ -23,13 +23,13 @@ std::string ValidateFile::checkLoadAndRemoveErrors(const std::string& fileName, 
 {
     if (isTableExists(fileName) == false) 
     {
-        return "ERROR: File does not exist";
+        return FILE_NOT_FOUND_ERROR;
     }
 
     std::string currentPassword {UtilsTable().loadFile(fileName).at(0)};
     if ((LEFT_PARENTHESIS + password + RIGHT_PARENTHESIS) != currentPassword)
     {
-        return "ERROR: Incorrect password";
+        return INCORRECT_PASSWORD_ERROR;
     }
 
     return NONE;

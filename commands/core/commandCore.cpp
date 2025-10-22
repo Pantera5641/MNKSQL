@@ -59,13 +59,13 @@ void CommandCore::commandHandler(const std::string& userInput)
     case Commands::Load:
         CommandLoad().load();
         break;
-    
+
     case Commands::Exit:
-        std::cout << "Command not implemented" << std::endl;
+        std::cout << COMMAND_NOT_IMPLEMENTED_ERROR << std::endl;
         break;
 
     case Commands::Unknown:
-        std::cout << "ERROR: Unknown command" << std::endl;
+        std::cout << UNKNOWN_COMMAND_ERROR << std::endl;
         break;
     }
 }

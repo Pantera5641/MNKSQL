@@ -6,6 +6,7 @@
 #include "parser.h"
 #include "path.h"
 #include "symbols.h"
+#include "messages.h"
 #include "types.h"
 #include "utilsTable.h"
 

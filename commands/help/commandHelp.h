@@ -3,6 +3,7 @@
 #include <string>
 
 #include "helper.h"
+#include "paths.h"
 
 
 struct CommandHelp

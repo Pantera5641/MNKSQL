@@ -37,7 +37,7 @@ void CommandRow::add(const std::string& argsString)
             {
                 if (UtilsCommandRow().validator(userField, i) != true) 
                 {
-                    std::cout << "Error in value:" << userNameOfField << std::endl;
+                    std::cout << VALUE_ERROR_MESSAGE << userNameOfField << std::endl;
                     return;
                 }
 
@@ -49,7 +49,7 @@ void CommandRow::add(const std::string& argsString)
 
     store.addContainer(Helper().connect(fields, COMMA));
 
-    std::cout << "Row added in database." << std::endl;
+    std::cout << ROW_ADDED_MESSAGE << std::endl;
 }
 
 void CommandRow::rewrite(const std::string& indexString, const std::string& argsString)
@@ -66,7 +66,7 @@ void CommandRow::rewrite(const std::string& indexString, const std::string& args
 
     store.database[index] = store.descriptor.createContainer(argsString);
 
-    std::cout << "Row was rewrite" << std::endl;
+    std::cout << ROW_REWRITTEN_MESSAGE << std::endl;
 }
 
 void CommandRow::remove(const std::string& indexString)
@@ -83,7 +83,7 @@ void CommandRow::remove(const std::string& indexString)
 
     store.database.erase(store.database.begin() + index);
 
-    std::cout << "Row was deleted" << std::endl;
+    std::cout << ROW_DELETED_MESSAGE << std::endl;
 }
 
 void CommandRow::execute(const std::vector<std::string>& items)
@@ -99,7 +99,7 @@ void CommandRow::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-        
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
     
         break;
@@ -111,7 +111,7 @@ void CommandRow::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-        
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
     
         break;
@@ -123,12 +123,12 @@ void CommandRow::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-        
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
         break;
 
     case Commands::Unknown:
-        std::cout << "ERROR: Unknown operation" << std::endl;
+        std::cout << UNKNOWN_OPERATOR_ERROR << std::endl;
         break;
     }
 }

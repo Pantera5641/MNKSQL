@@ -13,6 +13,7 @@
 #include "commandLoad.h"
 #include "commandHelp.h"
 
+#include "messages.h"
 #include "symbols.h"
 #include "helper.h"
 

@@ -4,6 +4,7 @@
 #include <string>
 
 #include "symbols.h"
+#include "messages.h"
 #include "dataStore.h"
 #include "helper.h"
 

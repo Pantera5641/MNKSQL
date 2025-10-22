@@ -8,6 +8,7 @@
 
 #include "dataStore.h"
 #include "path.h"
+#include "messages.h"
 
 
 struct CommandFile

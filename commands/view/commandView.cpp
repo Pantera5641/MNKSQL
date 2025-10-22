@@ -10,12 +10,12 @@ CommandView::Commands CommandView::strToAction(const std::string& str)
 
 void CommandView::filter(const std::string& arg)
 {
-
+    std::cout << COMMAND_NOT_IMPLEMENTED_ERROR << std::endl;
 }
 
 void CommandView::sort(const std::string& column, const std::string& typeOfSort)
 {
-
+    std::cout << COMMAND_NOT_IMPLEMENTED_ERROR << std::endl;
 }
 
 void CommandView::execute(const std::vector<std::string>& items)
@@ -31,7 +31,7 @@ void CommandView::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-        
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
         break;
 
@@ -42,11 +42,12 @@ void CommandView::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-        
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
         break;
 
     case Commands::Unknown:
+        std::cout << UNKNOWN_OPERATOR_ERROR << std::endl;
         break;
     }
 }

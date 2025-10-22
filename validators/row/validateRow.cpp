@@ -8,13 +8,13 @@ std::string ValidateRow::checkAddErrors(const std::string& argsString)
     int descriptorSize {store.descriptor.size()};
     if (store.descriptor.size() == 0)
     {
-        return "ERROR: At least 1 column is needed to create a row.";
+        return INSUFFICIENT_COLUMNS_ERROR;
     }
 
     std::vector<std::string> args {Helper().strip(argsString, COMMA)};
     if (args.size() != descriptorSize)
     {
-        return "ERROR: Invalid number of elements.";
+        return INVALID_ARGUMENTS_ERROR;
     }
 
     return NONE;
@@ -24,7 +24,7 @@ std::string ValidateRow::checkRewriteErrors(const std::string& indexString, cons
 {
     if (Helper().isInt(indexString) == false) 
     {
-        return "ERROR: Invalid number of row";
+        return INVALID_ROW_NUMBER_ERROR;
     }
 
     return NONE;
@@ -34,7 +34,7 @@ std::string ValidateRow::checkRemoveErrors(const std::string& indexString)
 {
     if (Helper().isInt(indexString) == false) 
     {
-        return "ERROR: Invalid number of row";
+        return INVALID_ROW_NUMBER_ERROR;
     }
 
     return NONE;

@@ -6,7 +6,7 @@ std::string ValidatePwd::checkSetErrors(const std::string& fileName, const std::
     std::string password {UtilsTable().loadFile(fileName).at(0)};
     if (password != (LEFT_PARENTHESIS + NONE + RIGHT_PARENTHESIS))
     {
-        return "ERROR: This file already has a password, use the EDIT command to change it";
+        return FILE_ALREADY_HAS_PASSWORD_ERROR;
     }
 
     return NONE;
@@ -17,7 +17,7 @@ std::string ValidatePwd::checkEditErrors(const std::string& fileName, const std:
     std::string password {UtilsTable().loadFile(fileName).at(0)};
     if (password != (LEFT_PARENTHESIS + oldPassword + RIGHT_PARENTHESIS))
     {
-        return "ERROR: Incorrect password";
+        return INCORRECT_PASSWORD_ERROR;
     }
 
     return NONE;
