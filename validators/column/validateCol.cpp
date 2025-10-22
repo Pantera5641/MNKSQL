@@ -123,11 +123,6 @@ bool ValidateCol::checkSyntaxErrors(const std::string& item)
 
 std::string ValidateCol::checkAddErrors(const std::string& argsString)
 {
-    if (argsString.find(COMMA) == std::string::npos && checkSyntaxErrors(argsString) == true)
-    {
-        return NONE;
-    }
-
     std::vector<std::string> args = Helper().strip(argsString, COMMA);
     for (std::string item : args)
     {
@@ -135,6 +130,12 @@ std::string ValidateCol::checkAddErrors(const std::string& argsString)
         {
             return SYNTAX_ERROR;
         }
+    }
+
+    DataStore& store = DataStore::getInstance();
+    if (store.database.size() != 0)
+    {
+        return CANNOT_ADD_COLUMNS_WITH_EXISTING_ROWS_ERROR;
     }
 
     return NONE;

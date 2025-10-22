@@ -8,9 +8,8 @@ inline const std::string DATA_LOADED_MESSAGE {"Data loaded"};
 
 //column messages
 inline const std::string COLUMN_ADDED_MESSAGE {"Column added in database"};
-inline const std::string INSUFFICIENT_COLUMNS_ERROR {"ERROR: At least 1 column is needed to create a row"};
 inline const std::string INVALID_ROW_NUMBER_ERROR {"ERROR: Invalid number of row"};
-
+inline const std::string CANNOT_ADD_COLUMNS_WITH_EXISTING_ROWS_ERROR {"ERROR: You cannot add new columns while rows exist"};
 
 //database messages
 inline const std::string CONFIRM_DATABASE_DELETE_PROMPT {"This will delete all data from the database. Are you sure?(Y/N)"};
@@ -34,6 +33,8 @@ inline const std::string VALUE_ERROR_MESSAGE {"Error in value: "};
 inline const std::string ROW_ADDED_MESSAGE {"Row added in database"};
 inline const std::string ROW_REWRITTEN_MESSAGE {"Row was rewrite"};
 inline const std::string ROW_DELETED_MESSAGE {"Row was deleted"};
+inline const std::string ASSIGN_TO_NONEXISTENT_FIELD_ERROR {"ERROR: You are trying to assign a value to a non-existent field"};
+inline const std::string INSUFFICIENT_COLUMNS_ERROR {"ERROR: At least 1 column is needed to create a row"};
 
 //error messages
 inline const std::string SYNTAX_ERROR {"ERROR: Syntax error"};
