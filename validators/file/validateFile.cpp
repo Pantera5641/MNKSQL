@@ -10,6 +10,12 @@ bool ValidateFile::isTableExists(const std::string& tableName)
 
 std::string ValidateFile::checkSaveErrors(const std::string& fileName, const std::string& password)
 {
+    DataStore& store = DataStore::getInstance();
+    if (store.descriptor.size() == 0) 
+    {
+        return CANNOT_SAVE_EMPTY_DATABASE_ERROR;
+    }
+
     std::string extension {Parser().cutBefore(fileName, DOT)};
     if (extension != "txt" && extension != "bin") 
     {

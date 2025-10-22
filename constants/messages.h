@@ -14,6 +14,7 @@ inline const std::string CANNOT_ADD_COLUMNS_WITH_EXISTING_ROWS_ERROR {"ERROR: Yo
 //database messages
 inline const std::string CONFIRM_DATABASE_DELETE_PROMPT {"This will delete all data from the database. Are you sure?(Y/N)"};
 inline const std::string DATABASE_CLEARED_MESSAGE {"Database cleared"};
+inline const std::string EMPTY_DATABASE_DISPLAY_ERROR {"ERROR: You cannot display an empty database"};
 
 //file messages
 inline const std::string DATA_SAVED_TO_PATH_MESSAGE {"Your data has been saved to: "};
@@ -21,6 +22,7 @@ inline const std::string DATA_LOADED_FROM_PATH_MESSAGE {"Your data has been load
 inline const std::string TABLE_DELETED_MESSAGE {"This table was deleted: "};
 inline const std::string EXTENSION_NOT_ALLOWED_ERROR {"ERROR: You cannot use this extension"};
 inline const std::string FILE_NOT_FOUND_ERROR {"ERROR: File does not exist"};
+inline const std::string CANNOT_SAVE_EMPTY_DATABASE_ERROR {"ERROR: You cannot save an empty database"};
 
 //password messages
 inline const std::string PASSWORD_SET_MESSAGE {"Password set to: "};
