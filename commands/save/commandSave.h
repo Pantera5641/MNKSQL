@@ -4,6 +4,7 @@
 #include "paths.h"
 #include "messages.h"
 #include "utilsTable.h"
+#include "validateFile.h"
 
 
 struct CommandSave
