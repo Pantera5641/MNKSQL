@@ -10,11 +10,10 @@ CommandPwd::Commands CommandPwd::strToAction(const std::string& str)
 
 void CommandPwd::set(const std::string& fileName, const std::string& newPassword)
 {
-    std::string password {UtilsTable().loadFile(fileName).at(0)};
-
-    if (password != (LEFT_PARENTHESIS + NONE + RIGHT_PARENTHESIS))
+    std::string error {ValidatePwd().checkSetErrors(fileName, newPassword)};
+    if (error != NONE) 
     {
-        std::cout << "ERROR: This file already has a password, use the EDIT command to change it" << std::endl;
+        std::cout << error << std::endl;
         return;
     }
 
@@ -25,11 +24,10 @@ void CommandPwd::set(const std::string& fileName, const std::string& newPassword
 
 void CommandPwd::edit(const std::string& fileName, const std::string& oldPassword, const std::string& newPassword)
 {
-    std::string password {UtilsTable().loadFile(fileName).at(0)};
-
-    if (password != (LEFT_PARENTHESIS + oldPassword + RIGHT_PARENTHESIS))
+    std::string error {ValidatePwd().checkEditErrors(fileName, newPassword, newPassword)};
+    if (error != NONE) 
     {
-        std::cout << "ERROR: Incorrect password" << std::endl;
+        std::cout << error << std::endl;
         return;
     }
 

@@ -22,16 +22,14 @@ file(GLOB_RECURSE SOURCES
 )
 add_executable(MNKSQL ${SOURCES})
 
-file(GLOB COMMAND_DIRS
-    "${CMAKE_SOURCE_DIR}/commands/*"
-)
+file(GLOB COMMAND_DIRS "${CMAKE_SOURCE_DIR}/commands/*")
+file(GLOB VALIDATOR_DIRS "${CMAKE_SOURCE_DIR}/validators/*")
 
 target_include_directories(MNKSQL PRIVATE
     ${COMMAND_DIRS}
+    ${VALIDATOR_DIRS}
     ${CMAKE_SOURCE_DIR}/constants
     ${CMAKE_SOURCE_DIR}/database
     ${CMAKE_SOURCE_DIR}/logic
     ${CMAKE_SOURCE_DIR}/utils
-    ${CMAKE_SOURCE_DIR}/validators
-    ${CM${CMAKE_SOURCE_DIR}/commandsAKE_SOURCE_DIR}/utils
     )

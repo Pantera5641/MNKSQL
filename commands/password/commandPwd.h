@@ -7,6 +7,7 @@
 #include "types.h"
 #include "utilsTable.h"
 #include "utilsCommandPwd.h"
+#include "validatePwd.h"
 
 
 struct CommandPwd
