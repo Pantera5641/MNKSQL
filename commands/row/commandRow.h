@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 
+#include "validateRow.h"
 #include "utilsCommandRow.h"
 
 #include "dataStore.h"
@@ -22,10 +23,6 @@ struct CommandRow
     };
 
     Commands strToAction(std::string str);
-
-    bool inDiapasone(int num, const std::string& argsString);
-
-    bool validator(const std::string& rowElement, int index);
 
     void add(const std::string& argsString);
 

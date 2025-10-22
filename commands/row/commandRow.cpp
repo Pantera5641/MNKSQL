@@ -11,23 +11,18 @@ CommandRow::Commands CommandRow::strToAction(std::string str)
 
 void CommandRow::add(const std::string& argsString)
 {
+    std::string error {ValidateRow().checkAddErrors(argsString)};
+    if (error != NONE) 
+    {
+        std::cout << error << std::endl;
+        return;
+    }
+
     DataStore& store = DataStore::getInstance();
     int descriptorSize {store.descriptor.size()};
 
     std::vector<std::string> args {Helper().strip(argsString, COMMA)};
     std::vector<std::string> fields(descriptorSize);
-
-    if (descriptorSize == 0)
-    {
-        std::cout << "ERROR: At least 1 column is needed to create a row." << std::endl;
-        return;
-    }
-
-    if (args.size() != descriptorSize)
-    {
-        std::cout << "ERROR: Invalid number of elements." << std::endl;
-        return;
-    }
 
     for (std::string item : args)
     {
@@ -59,18 +54,15 @@ void CommandRow::add(const std::string& argsString)
 
 void CommandRow::rewrite(const std::string& indexString, const std::string& argsString)
 {
-    int index {};
-    DataStore& store = DataStore::getInstance();
-
-    try
+    std::string error {ValidateRow().checkRewriteErrors(indexString, argsString)};
+    if (error != NONE) 
     {
-        index = std::stoi(indexString) - 1;
-    }
-    catch(const std::exception& e)
-    {
-        std::cout << "ERROR: Invalid number of row" << std::endl;
+        std::cout << error << std::endl;
         return;
     }
+
+    int index {std::stoi(indexString) - 1};
+    DataStore& store = DataStore::getInstance();
 
     store.database[index] = store.descriptor.createContainer(argsString);
 
@@ -79,18 +71,15 @@ void CommandRow::rewrite(const std::string& indexString, const std::string& args
 
 void CommandRow::remove(const std::string& indexString)
 {
-    int index {};
-    DataStore& store = DataStore::getInstance();
-
-    try
+    std::string error {ValidateRow().checkRemoveErrors(indexString)};
+    if (error != NONE) 
     {
-        index = std::stoi(indexString) - 1;
-    }
-    catch(const std::exception& e)
-    {
-        std::cout << "ERROR: Invalid number of row" << std::endl;
+        std::cout << error << std::endl;
         return;
     }
+
+    int index {std::stoi(indexString) - 1};
+    DataStore& store = DataStore::getInstance();
 
     store.database.erase(store.database.begin() + index);
 
