@@ -5,7 +5,7 @@ CommandRow::Commands CommandRow::strToAction(std::string str)
 {
     if(str == "ADD") return Commands::Add; 
     if(str == "REWRITE") return Commands::Rewrite; 
-    if(str == "REMOVE") return Commands::Remove; 
+    if(str == "DELETE") return Commands::Remove; 
     return Commands::Unknown;
 }
 
