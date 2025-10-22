@@ -9,6 +9,7 @@
 #include "helper.h"
 
 #include "utilsShow.h"
+#include "validateDb.h"
 
 
 struct CommandDb

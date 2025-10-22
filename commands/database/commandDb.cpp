@@ -10,6 +10,13 @@ CommandDb::Commands CommandDb::strToAction(const std::string& str)
 
 void CommandDb::show()
 {
+    std::string error {ValidateDb().checkShowErrors()};
+    if (error != NONE) 
+    {
+        std::cout << error << std::endl;
+        return;
+    }
+
     DataStore& store = DataStore::getInstance();
     std::vector<std::string> db {Helper().connect(store.descriptor.getFieldNames(), COMMA)};
 
