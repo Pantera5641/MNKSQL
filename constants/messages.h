@@ -29,6 +29,7 @@ inline const std::string PASSWORD_SET_MESSAGE {"Password set to: "};
 inline const std::string PASSWORD_CHANGED_MESSAGE {"Password changed to: "};
 inline const std::string INCORRECT_PASSWORD_ERROR {"ERROR: Incorrect password"};
 inline const std::string FILE_ALREADY_HAS_PASSWORD_ERROR {"ERROR: This file already has a password, use the EDIT command to change it"};
+inline const std::string SYSTEM_FILE_PASSWORD_ERROR {"ERROR: It is not possible to set a password on a system file"};
 
 //row messages
 inline const std::string VALUE_ERROR_MESSAGE {"Error in value: "};

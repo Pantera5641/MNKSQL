@@ -1,8 +1,15 @@
 #include "validatePwd.h"
+#include "paths.h"
 
 
 std::string ValidatePwd::checkSetErrors(const std::string& fileName, const std::string& newPassword)
 {
+    if (fileName == QUICK_SAVE_PATH)
+    {
+        return SYSTEM_FILE_PASSWORD_ERROR;
+    }
+    
+
     std::string password {UtilsTable().loadFile(fileName).at(0)};
     if (password != (LEFT_PARENTHESIS + NONE + RIGHT_PARENTHESIS))
     {
