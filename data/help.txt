@@ -1,7 +1,7 @@
 === DATABASE COMMANDS HELP ===
 
 PWD - Password Management
-  PWD SET <filename> [password]                       : Set a password for the file or database
+  PWD SET <filename> [password]                       : Set a password for the file
   PWD EDIT <filename> [old_password] [new_password]   : Change password (use NONE to remove it)
   Note: Password is optional for files.
 
@@ -32,7 +32,7 @@ VIEW - Temporary Selection (does not affect main database)
 
 COL - Table Column Operations
   COL ADD <name(TYPE[ARG]), ...>       : Add a new column with specified type and constraints
-  COL EDIT <id> <name(TYPE[ARG])>      : Edit a column definition by ID
+  COL INSERT <id> <name(TYPE[ARG])>    : Insert a column by ID
   COL DELETE <id>                      : Delete a column by ID
   Examples:
     COL ADD id(INT[X>0]),name(STRING[NONE]),age(INT[5<X<18])
