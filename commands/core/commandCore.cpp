@@ -61,7 +61,7 @@ void CommandCore::commandHandler(const std::string& userInput)
         break;
 
     case Commands::Exit:
-        std::cout << COMMAND_NOT_IMPLEMENTED_ERROR << std::endl;
+        CommandExit().exit();
         break;
 
     case Commands::Unknown:
