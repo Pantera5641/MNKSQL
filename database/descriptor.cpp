@@ -52,6 +52,13 @@ void Descriptor::fill(const std::string& argsString)
     }
 }
 
+void Descriptor::removeByIndex(int index)
+{
+    fieldNames.erase(fieldNames.begin() + index);
+    fieldTypes.erase(fieldTypes.begin() + index);
+    fieldParams.erase(fieldParams.begin() + index);
+}
+
 void Descriptor::clear()
 {
     fieldNames.clear();

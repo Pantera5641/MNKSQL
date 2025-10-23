@@ -28,6 +28,8 @@ struct Descriptor
     Descriptor(const std::string& argsString);
 
     void fill(const std::string& argsString);
+    
+    void removeByIndex(int index);
 
     void clear();
 
