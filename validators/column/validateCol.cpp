@@ -140,3 +140,25 @@ std::string ValidateCol::checkAddErrors(const std::string& argsString)
 
     return NONE;
 }
+
+std::string ValidateCol::checkRemoveErrors(const std::string& indexString)
+{
+    DataStore& store = DataStore::getInstance();
+
+    if (Helper().isInt(indexString) == false) 
+    {
+        return INVALID_COLUMN_NUMBER_ERROR;
+    }
+
+    if (std::stoi(indexString) - 1 < 0 || std::stoi(indexString) - 1 > store.descriptor.size()) 
+    {
+        return INVALID_COLUMN_NUMBER_ERROR;
+    }
+
+    if (store.database.size() != 0) 
+    {
+        return CANNOT_DELETE_COLUMNS_WITH_EXISTING_ROWS_ERROR;
+    }
+
+    return NONE;
+}

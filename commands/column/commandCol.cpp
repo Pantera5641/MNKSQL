@@ -25,6 +25,25 @@ void CommandCol::add(const std::string& argsString)
     std::cout << COLUMN_ADDED_MESSAGE << std::endl;
 }
 
+void CommandCol::edit(const std::string& indexString, const std::string& argsString)
+{
+   
+}
+
+void CommandCol::remove(const std::string& indexString)
+{
+    std::string error {ValidateCol().checkRemoveErrors(indexString)};
+    if (error != NONE) 
+    {
+        std::cout << error << std::endl;
+        return;
+    }
+
+    DataStore& store = DataStore::getInstance();
+
+    store.descriptor.removeByIndex(std::stoi(indexString) - 1);
+}
+
 void CommandCol::execute(const std::vector<std::string>& items)
 {
     Commands cmd = strToAction(items.at(1));
@@ -38,7 +57,7 @@ void CommandCol::execute(const std::vector<std::string>& items)
         } 
         catch (...) 
         {
-        
+            std::cout << INVALID_ARGUMENTS_ERROR << std::endl;
         }
         break;
 

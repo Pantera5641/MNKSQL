@@ -20,4 +20,6 @@ struct ValidateCol
 
     public:
     std::string checkAddErrors(const std::string& argsString);
+
+    std::string checkRemoveErrors(const std::string& indexString);
 };
