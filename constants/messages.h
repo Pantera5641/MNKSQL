@@ -35,7 +35,7 @@ inline const std::string SYSTEM_FILE_PASSWORD_ERROR {"ERROR: It is not possible 
 //row messages
 inline const std::string VALUE_ERROR_MESSAGE {"Error in value: "};
 inline const std::string ROW_ADDED_MESSAGE {"Row added in database"};
-inline const std::string ROW_REWRITTEN_MESSAGE {"Row was rewrite"};
+inline const std::string ROW_EDITED_MESSAGE {"Row was edited"};
 inline const std::string ROW_DELETED_MESSAGE {"Row was deleted"};
 inline const std::string ASSIGN_TO_NONEXISTENT_FIELD_ERROR {"ERROR: You are trying to assign a value to a non-existent field"};
 inline const std::string INSUFFICIENT_COLUMNS_ERROR {"ERROR: At least 1 column is needed to create a row"};

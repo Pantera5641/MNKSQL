@@ -11,12 +11,6 @@ std::string ValidateRow::checkAddErrors(const std::string& argsString)
         return INSUFFICIENT_COLUMNS_ERROR;
     }
 
-    std::vector<std::string> args {Helper().strip(argsString, COMMA)};
-    if (args.size() != descriptorSize)
-    {
-        return INVALID_ARGUMENTS_ERROR;
-    }
-
     for (std::string item : Helper().strip(argsString, COMMA))
     {
         if (item.find(EQUALS_SIGN) == std::string::npos) 
@@ -40,12 +34,32 @@ std::string ValidateRow::checkAddErrors(const std::string& argsString)
         }
     }
 
+    for (int i = 0; i < descriptorSize; i++)
+    {
+        try 
+        {
+            std::string userItem {Helper().strip(argsString, COMMA).at(i)};
+            std::string userNameOfField {Parser().cutAfter(userItem, EQUALS_SIGN)};
+            std::string userField {Parser().cutBefore(userItem, EQUALS_SIGN)};
+            
+            bool isFieldNameExist = store.descriptor.getFieldNameIndex(userNameOfField) != -1;
+            bool isFieldPassValidate = 
+                UtilsCommandRow().validator(userField, store.descriptor.getFieldNameIndex(userNameOfField)) != true;
+
+            if (isFieldNameExist && isFieldPassValidate) 
+            {
+                return VALUE_ERROR_MESSAGE + userNameOfField;
+            }
+        }
+        catch(...) {}
+    }
+
     return NONE;
 }
 
-std::string ValidateRow::checkRewriteErrors(const std::string& indexString, const std::string& argsString)
+std::string ValidateRow::checkEditErrors(const std::string& indexString, const std::string& argsString)
 {
-    std::string errorIndex {checkRemoveErrors(argsString)};
+    std::string errorIndex {checkRemoveErrors(indexString)};
     if (errorIndex != NONE) 
     {
         return errorIndex;

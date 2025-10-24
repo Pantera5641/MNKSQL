@@ -1,7 +1,7 @@
 #include "utilsCommandRow.h"
 
 
-bool UtilsCommandRow::inDiapasone(int num, const std::string& argsString)
+bool UtilsCommandRow::inRange(int num, const std::string& argsString)
 {
     if (argsString.find(GREATER_THAN) && std::count(argsString.begin(), argsString.end(), GREATER_THAN) == 1) 
     {
@@ -58,9 +58,45 @@ bool UtilsCommandRow::validator(const std::string& item, int index)
         return true;
     }
 
-    if (inDiapasone(intItem ,param)) 
+    if (inRange(intItem ,param)) 
     {
         return true;
     }
     return false;
+}
+
+std::string UtilsCommandRow::prepareArgs(const std::string& argsString)
+{
+    DataStore& store = DataStore::getInstance();
+    int descriptorSize {store.descriptor.size()};
+
+    std::vector<std::string> args {Helper().strip(argsString, COMMA)};
+    std::vector<std::string> fields(descriptorSize);
+
+    for (std::string item : args)
+    {
+        std::string userNameOfField {Parser().cutAfter(item, EQUALS_SIGN)};
+        std::string userField {Parser().cutBefore(item, EQUALS_SIGN)};
+
+        for (int i = 0; i < descriptorSize; i++)
+        {
+            std::string nameOfField {store.descriptor.getFieldNames()[i]};
+
+            if (userNameOfField == nameOfField)
+            {
+                fields[i] = userField;
+                break;
+            }
+        } 
+    }
+
+    for (int i = 0; i < descriptorSize; i++) 
+    {
+        if (fields.at(i) == std::string()) 
+        {
+            fields.at(i) = NONE;
+        }
+    }
+
+    return Helper().connect(fields, COMMA);
 }

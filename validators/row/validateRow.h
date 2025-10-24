@@ -9,6 +9,7 @@
 #include "symbols.h"
 #include "messages.h"
 #include "utilsTable.h"
+#include "utilsCommandRow.h"
 
 
 struct ValidateRow
@@ -16,7 +17,7 @@ struct ValidateRow
     public:
     std::string checkAddErrors(const std::string& argsString);
 
-    std::string checkRewriteErrors(const std::string& indexString, const std::string& argsString);
+    std::string checkEditErrors(const std::string& indexString, const std::string& argsString);
 
     std::string checkRemoveErrors(const std::string& indexString);
 };

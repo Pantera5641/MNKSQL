@@ -4,7 +4,7 @@
 CommandRow::Commands CommandRow::strToAction(std::string str)
 {
     if(str == "ADD") return Commands::Add; 
-    if(str == "REWRITE") return Commands::Rewrite; 
+    if(str == "EDIT") return Commands::Rewrite; 
     if(str == "DELETE") return Commands::Remove; 
     return Commands::Unknown;
 }
@@ -19,42 +19,16 @@ void CommandRow::add(const std::string& argsString)
     }
 
     DataStore& store = DataStore::getInstance();
-    int descriptorSize {store.descriptor.size()};
+    std::string fields = UtilsCommandRow().prepareArgs(argsString);
 
-    std::vector<std::string> args {Helper().strip(argsString, COMMA)};
-    std::vector<std::string> fields(descriptorSize);
-
-    for (std::string item : args)
-    {
-        std::string userNameOfField {Parser().cutAfter(item, EQUALS_SIGN)};
-        std::string userField {Parser().cutBefore(item, EQUALS_SIGN)};
-
-        for (int i = 0; i < descriptorSize; i++)
-        {
-            std::string nameOfField {store.descriptor.getFieldNames()[i]};
-
-            if (userNameOfField == nameOfField)
-            {
-                if (UtilsCommandRow().validator(userField, i) != true) 
-                {
-                    std::cout << VALUE_ERROR_MESSAGE << userNameOfField << std::endl;
-                    return;
-                }
-
-                fields[i] = userField;
-                break;
-            }
-        } 
-    }
-
-    store.addContainer(Helper().connect(fields, COMMA));
+    store.addContainer(fields);
 
     std::cout << ROW_ADDED_MESSAGE << std::endl;
 }
 
-void CommandRow::rewrite(const std::string& indexString, const std::string& argsString)
+void CommandRow::edit(const std::string& indexString, const std::string& argsString)
 {
-    std::string error {ValidateRow().checkRewriteErrors(indexString, argsString)};
+    std::string error {ValidateRow().checkEditErrors(indexString, argsString)};
     if (error != NONE) 
     {
         std::cout << error << std::endl;
@@ -63,10 +37,19 @@ void CommandRow::rewrite(const std::string& indexString, const std::string& args
 
     int index {std::stoi(indexString) - 1};
     DataStore& store = DataStore::getInstance();
+    std::vector<std::string> fields = Helper().strip(UtilsCommandRow().prepareArgs(argsString), COMMA);
 
-    store.database[index] = store.descriptor.createContainer(argsString);
+    for (int i = 0; i < store.descriptor.size(); i++) 
+    {
+        if (fields.at(i) == NONE) 
+        {
+            fields.at(i) = store.database.at(index).getItem(i);
+        }
+    }
 
-    std::cout << ROW_REWRITTEN_MESSAGE << std::endl;
+    store.database[index] = store.descriptor.createContainer(Helper().connect(fields, COMMA));
+
+    std::cout << ROW_EDITED_MESSAGE << std::endl;
 }
 
 void CommandRow::remove(const std::string& indexString)
@@ -107,7 +90,7 @@ void CommandRow::execute(const std::vector<std::string>& items)
     case Commands::Rewrite:
         try 
         {
-            rewrite(items.at(2), items.at(3));
+            edit(items.at(2), items.at(3));
         } 
         catch (...) 
         {
