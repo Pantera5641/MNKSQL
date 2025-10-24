@@ -43,5 +43,7 @@ struct Descriptor
 
     std::vector<std::string> getAllField();
 
+    int getFieldNameIndex(const std::string& name);
+
     int size();
 };

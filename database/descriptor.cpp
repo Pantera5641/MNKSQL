@@ -103,6 +103,19 @@ std::vector<std::string> Descriptor::getAllField()
     return fields;
 }
 
+int Descriptor::getFieldNameIndex(const std::string& name)
+{
+    for (int i = 0; i < size(); i++) 
+    {
+        if (name == fieldNames[i]) 
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 int Descriptor::size()
 {
     return fieldNames.size();
