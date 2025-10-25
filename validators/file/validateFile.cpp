@@ -40,3 +40,15 @@ std::string ValidateFile::checkLoadAndRemoveErrors(const std::string& fileName, 
 
     return NONE;
 }
+
+std::string ValidateFile::checkListErrors(const std::string& path)
+{
+    auto files {std::filesystem::directory_iterator(path)};
+
+    if (files->exists() == false)
+    {
+        return FILE_NOT_FOUND_ERROR;
+    }
+
+    return NONE;
+}

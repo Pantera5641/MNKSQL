@@ -20,4 +20,6 @@ struct ValidateFile
     std::string checkSaveErrors(const std::string& fileName, const std::string& password);
 
     std::string checkLoadAndRemoveErrors(const std::string& fileName, const std::string& password);
+
+    std::string checkListErrors(const std::string& path);
 };

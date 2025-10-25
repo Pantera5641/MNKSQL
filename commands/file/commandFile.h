@@ -8,6 +8,7 @@
 
 #include "dataStore.h"
 #include "path.h"
+#include "paths.h"
 #include "messages.h"
 
 
@@ -19,6 +20,7 @@ struct CommandFile
         Save,
         Load,
         Remove,
+        List,
         Unknown
     };
 
@@ -29,6 +31,8 @@ struct CommandFile
     void load(const std::string& fileName, const std::string& password = NONE);
 
     void remove(const std::string& fileName, const std::string& password = NONE);
+
+    void list();
 
     public:
     void execute(const std::vector<std::string>& items);
