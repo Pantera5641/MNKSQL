@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <algorithm>
 
 #include "dataStore.h"
 #include "helper.h"

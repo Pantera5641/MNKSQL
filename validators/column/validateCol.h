@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <filesystem>
+#include <algorithm>
 
 #include "parser.h"
 #include "path.h"
