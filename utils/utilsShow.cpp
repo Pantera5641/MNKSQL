@@ -1,11 +1,17 @@
 #include "utilsShow.h"
 
 
-void UtilsShow::showTable(const std::vector<std::string>& db)
+void UtilsShow::showTable(std::vector<std::string>& db)
 {
     std::vector<int> maxElementSize {};
-    int numOfColumn = Helper().strip(db.at(0), COMMA).size();
 
+    db.at(0) = "id," + db.at(0);
+    for (int i = 1; i < db.size(); i++)
+    {
+        db.at(i) = std::to_string(i) + COMMA + db.at(i);
+    }
+
+    int numOfColumn = Helper().strip(db.at(0), COMMA).size();
     for (int i = 0; i < numOfColumn; i++)
     {
         std::vector<std::string> column = Parser().getColumn(db,i);

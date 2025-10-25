@@ -10,5 +10,5 @@
 struct UtilsShow
 {
     public:
-    void showTable(const std::vector<std::string>& db);
+    void showTable(std::vector<std::string>& db);
 };
