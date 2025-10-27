@@ -19,7 +19,8 @@ struct CommandRow
     enum class Commands
     {
         Add,
-        Rewrite,
+        Edit,
+        Insert,
         Remove,
         Unknown
     };
@@ -29,6 +30,8 @@ struct CommandRow
     void add(const std::string& argsString);
 
     void edit(const std::string& indexString, const std::string& argsString);
+
+    void insert(const std::string& indexString, const std::string& argsString);
 
     void remove(const std::string& indexString);
 
