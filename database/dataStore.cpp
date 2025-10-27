@@ -20,6 +20,33 @@ void DataStore::addContainer(const std::string& argsString)
     database.push_back(container);
 }
 
+void DataStore::insertContainer(const std::string& fieldsString, int index)
+{
+    std::vector<Container> tempDatabase = database;
+    for (int i = 0; i < tempDatabase.size() + 1; i++)
+    {
+        if (i < index) 
+        {
+            continue;
+        }
+
+        if (i == index) 
+        {
+            database.at(index) = descriptor.createContainer(fieldsString);
+            continue;
+        }
+
+        try 
+        {
+            database.at(i) = tempDatabase.at(i-1);
+        } 
+        catch (...) 
+        {
+            database.push_back(tempDatabase.at(i-1));
+        }
+    }
+}
+
 std::vector<std::string> DataStore::getLine(int num)
 {
     return database[num].getFields();

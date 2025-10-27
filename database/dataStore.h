@@ -24,6 +24,8 @@ struct DataStore
 
     void addContainer(const std::string& fieldsString);
 
+    void insertContainer(const std::string& fieldsString, int index);
+
     std::vector<std::string> getLine(int num);
 
     std::vector<std::string> getColumn(int num);
