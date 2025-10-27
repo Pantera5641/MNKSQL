@@ -14,7 +14,7 @@ struct CommandCol
     enum Commands
     {
         Add,
-        Edit,
+        Insert,
         Delete,
         Unknown
     };
@@ -23,7 +23,7 @@ struct CommandCol
 
     void add(const std::string& argsString);
 
-    void edit(const std::string& indexString, const std::string& argsString);
+    void insert(const std::string& indexString, const std::string& argsString);
 
     void remove(const std::string& indexString);
 

@@ -8,9 +8,9 @@ inline const std::string DATA_LOADED_MESSAGE {"Data loaded"};
 
 //column messages
 inline const std::string COLUMN_ADDED_MESSAGE {"Column added in database"};
+inline const std::string COLUMN_INSERT_MESSAGE {"Column inserted in database"};
 inline const std::string INVALID_COLUMN_NUMBER_ERROR {"ERROR: Invalid number of column"};
-inline const std::string CANNOT_ADD_COLUMNS_WITH_EXISTING_ROWS_ERROR {"ERROR: You cannot add new columns while rows exist"};
-inline const std::string CANNOT_DELETE_COLUMNS_WITH_EXISTING_ROWS_ERROR {"ERROR: You cannot delete columns while rows exist"};
+inline const std::string CANNOT_WORK_WITH_COLUMNS_WITH_EXISTING_ROWS_ERROR {"ERROR: You cannot work with columns while rows exist"};
 
 //database messages
 inline const std::string CONFIRM_DATABASE_DELETE_PROMPT {"This will delete all data from the database. Are you sure?(Y/N)"};
