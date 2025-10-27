@@ -57,7 +57,7 @@ std::string ValidateRow::checkAddErrors(const std::string& argsString)
     return NONE;
 }
 
-std::string ValidateRow::checkEditErrors(const std::string& indexString, const std::string& argsString)
+std::string ValidateRow::checkEditAndInsertErrors(const std::string& indexString, const std::string& argsString)
 {
     std::string errorIndex {checkRemoveErrors(indexString)};
     if (errorIndex != NONE) 
