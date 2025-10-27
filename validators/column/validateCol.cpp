@@ -135,7 +135,29 @@ std::string ValidateCol::checkAddErrors(const std::string& argsString)
     DataStore& store = DataStore::getInstance();
     if (store.database.size() != 0)
     {
-        return CANNOT_ADD_COLUMNS_WITH_EXISTING_ROWS_ERROR;
+        return CANNOT_WORK_WITH_COLUMNS_WITH_EXISTING_ROWS_ERROR;
+    }
+
+    return NONE;
+}
+
+std::string ValidateCol::checkInsertErrors(const std::string& indexString, const std::string& argsString)
+{
+    std::string indexError {checkRemoveErrors(indexString)};
+    if (indexError != NONE) 
+    {
+        return indexError;
+    }
+
+    std::string argsError {checkAddErrors(argsString)};
+    if (argsError != NONE) 
+    {
+        return argsError;
+    }
+
+    if (Helper().strip(argsString, COMMA).size() != 1)
+    {
+        return SYNTAX_ERROR;
     }
 
     return NONE;
@@ -149,15 +171,15 @@ std::string ValidateCol::checkRemoveErrors(const std::string& indexString)
     {
         return INVALID_COLUMN_NUMBER_ERROR;
     }
-
-    if (std::stoi(indexString) - 1 < 0 || std::stoi(indexString) - 1 > store.descriptor.size()) 
+    int index {std::stoi(indexString) - 1};
+    if (index < 0 || index > store.descriptor.size()) 
     {
         return INVALID_COLUMN_NUMBER_ERROR;
     }
 
     if (store.database.size() != 0) 
     {
-        return CANNOT_DELETE_COLUMNS_WITH_EXISTING_ROWS_ERROR;
+        return CANNOT_WORK_WITH_COLUMNS_WITH_EXISTING_ROWS_ERROR;
     }
 
     return NONE;
