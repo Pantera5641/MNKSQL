@@ -52,6 +52,27 @@ void Descriptor::fill(const std::string& argsString)
     }
 }
 
+void Descriptor::insert(const std::string& argsString, int index)
+{
+    int fieldsSize = fieldNames.size();
+    std::vector<std::string> tempFields {getAllField()};
+
+    clear();
+
+    for (int i = 0; i < fieldsSize; i++)
+    {
+        if (i == index) 
+        {
+            fill(argsString);
+            i--;
+            index = -1;
+            continue;
+        }
+
+        fill(tempFields.at(i));
+    }
+}
+
 void Descriptor::removeByIndex(int index)
 {
     fieldNames.erase(fieldNames.begin() + index);
