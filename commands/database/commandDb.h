@@ -19,6 +19,7 @@ struct CommandDb
     {
         Show,
         Clean,
+        TempSort,
         Unknown
     };
 
@@ -27,6 +28,12 @@ struct CommandDb
     void show();
 
     void clean();
+
+    //temp
+    void bubbleSort(int index);
+
+    //temp
+    void tempSort(const std::string& fieldsString);
 
     public:
     void execute(const std::vector<std::string>& items);
