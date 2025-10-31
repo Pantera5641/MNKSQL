@@ -8,7 +8,7 @@ bool ValidateCol::checkParamErrors(const std::string& param)
         return true;
     }
 
-    if (param.find(GREATER_THAN) && std::count(param.begin(), param.end(), GREATER_THAN) == 1)
+    if (param.find(GREATER_THAN) != std::string::npos && std::count(param.begin(), param.end(), GREATER_THAN) == 1)
     {
         bool checkX {Parser().cutAfter(param, GREATER_THAN) == "X"};
         bool checkInt {Helper().isInt(Parser().cutBefore(param,GREATER_THAN))};
@@ -19,7 +19,7 @@ bool ValidateCol::checkParamErrors(const std::string& param)
         }
     }
 
-    if (param.find(LESS_THAN) && std::count(param.begin(), param.end(), LESS_THAN) == 1)
+    if (param.find(LESS_THAN) != std::string::npos && std::count(param.begin(), param.end(), LESS_THAN) == 1)
     {
         bool checkX {Parser().cutAfter(param, LESS_THAN) == "X"};
         bool checkInt {Helper().isInt(Parser().cutBefore(param,LESS_THAN))};
@@ -30,13 +30,14 @@ bool ValidateCol::checkParamErrors(const std::string& param)
         }
     }
 
-    if (param.find(LESS_THAN) && std::count(param.begin(), param.end(), LESS_THAN) == 1)
+    if (param.find(LESS_THAN) != std::string::npos && std::count(param.begin(), param.end(), LESS_THAN) == 2)
     {
         bool checkX {Parser().extractBetween(param, LESS_THAN, LESS_THAN) == "X"};
         
-        std::string cuttedParam {Parser().cutBefore(param,LESS_THAN)};
-        bool checkLeftInt {Helper().isInt(cuttedParam)};
-        bool checkRightInt {Helper().isInt(Parser().cutBefore(cuttedParam,LESS_THAN))};
+        std::string cuttedLeftParam {Parser().cutAfter(param,LESS_THAN)};
+        std::string cuttedRightParam {Parser().cutBefore(param,LESS_THAN)};
+        bool checkLeftInt {Helper().isInt(cuttedLeftParam)};
+        bool checkRightInt {Helper().isInt(Parser().cutBefore(cuttedRightParam,LESS_THAN))};
         
         if(checkX == true && checkLeftInt == true && checkRightInt == true)
         {
