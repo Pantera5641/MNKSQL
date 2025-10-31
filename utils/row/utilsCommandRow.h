@@ -11,9 +11,12 @@
 
 struct UtilsCommandRow
 {
-    public:
+    private:
+    bool inStringDigits(const std::string& str);
+
     bool inRange(int num, const std::string& argsString);
 
+    public:
     bool validator(const std::string& rowElement, int index);
 
     std::string prepareArgs(const std::string& argsString);

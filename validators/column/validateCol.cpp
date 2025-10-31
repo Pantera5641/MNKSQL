@@ -1,13 +1,23 @@
 #include "validateCol.h"
 
 
-bool ValidateCol::checkParamErrors(const std::string& param)
+bool ValidateCol::checkParamErrors(const std::string& type, const std::string& param)
 {
     if (param == NONE) 
     {
         return true;
     }
 
+    if (type == STRING && param == NO_DIGITS)
+    {
+        return true;
+    }
+    
+    if (type != INT)
+    {
+        return false;
+    }
+    
     if (param.find(GREATER_THAN) != std::string::npos && std::count(param.begin(), param.end(), GREATER_THAN) == 1)
     {
         bool checkX {Parser().cutAfter(param, GREATER_THAN) == "X"};
@@ -104,14 +114,14 @@ bool ValidateCol::checkSyntaxErrors(const std::string& item)
             return false;
         }
 
-        std::string param {Parser().extractBetween(item, LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET)};
-        if (checkParamErrors(param) == false) 
+        std::string type {Parser().extractBetween(item, LEFT_PARENTHESIS, LEFT_SQUARE_BRACKET)};
+        if (!(type == STRING || type == INT)) 
         {
             return false;
         }
 
-        std::string type {Parser().extractBetween(item, LEFT_PARENTHESIS, LEFT_SQUARE_BRACKET)};
-        if (!(type == STRING || type == INT)) 
+        std::string param {Parser().extractBetween(item, LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET)};
+        if (checkParamErrors(type, param) == false) 
         {
             return false;
         }

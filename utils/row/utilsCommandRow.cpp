@@ -1,6 +1,18 @@
 #include "utilsCommandRow.h"
 
 
+bool UtilsCommandRow::inStringDigits(const std::string& str)
+{
+    for (char item : str)
+    {
+        if (Helper().isInt({item}) == true)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool UtilsCommandRow::inRange(int num, const std::string& argsString)
 {
     if (argsString.find(GREATER_THAN) && std::count(argsString.begin(), argsString.end(), GREATER_THAN) == 1) 
@@ -38,30 +50,16 @@ bool UtilsCommandRow::validator(const std::string& item, int index)
     std::type_index type {store.descriptor.getFieldTypes()[index]};
     std::string param {store.descriptor.getFieldParams()[index]};
 
-    if (typeid(item) == type) 
+    if (type == STRING_TYPE && inStringDigits(item))
     {
         return true;
     }
 
-    int intItem {};
-    try 
-    {
-        intItem = std::stoi(item);
-    } 
-    catch(...)
-    {
-        return false;
-    }
-
-    if (param == NONE) 
+    if (Helper().isInt(item) == true && type == INT_TYPE && inRange(std::stoi(item) ,param)) 
     {
         return true;
     }
 
-    if (inRange(intItem ,param)) 
-    {
-        return true;
-    }
     return false;
 }
 
