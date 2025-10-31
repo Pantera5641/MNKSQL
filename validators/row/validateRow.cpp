@@ -41,14 +41,15 @@ std::string ValidateRow::checkAddErrors(const std::string& argsString)
             std::string userItem {Helper().strip(argsString, COMMA).at(i)};
             std::string userNameOfField {Parser().cutAfter(userItem, EQUALS_SIGN)};
             std::string userField {Parser().cutBefore(userItem, EQUALS_SIGN)};
-            
-            bool isFieldNameExist = store.descriptor.getFieldNameIndex(userNameOfField) != -1;
-            bool isFieldPassValidate = 
-                UtilsCommandRow().validator(userField, store.descriptor.getFieldNameIndex(userNameOfField)) != true;
+
+            int indexOfField {store.descriptor.getFieldNameIndex(userNameOfField)};
+            bool isFieldNameExist {indexOfField != -1};
+            bool isFieldPassValidate {UtilsCommandRow().validator(userField, indexOfField) != true};
 
             if (isFieldNameExist && isFieldPassValidate) 
             {
-                return VALUE_ERROR_MESSAGE + userNameOfField;
+                std::string param {store.descriptor.getFieldParams().at(indexOfField)};
+                return "ERROR: Value " + userField + " in "+ userNameOfField + " must correspond to the modifier " + param;
             }
         }
         catch(...) {}

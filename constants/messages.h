@@ -44,6 +44,7 @@ inline const std::string INVALID_ROW_NUMBER_ERROR {"ERROR: Invalid number of row
 
 //error messages
 inline const std::string SYNTAX_ERROR {"ERROR: Syntax error"};
+inline const std::string SYNTAX_ERROR_IN {"ERROR: Syntax error in "};
 inline const std::string UNKNOWN_COMMAND_ERROR {"ERROR: Unknown command"};
 inline const std::string UNKNOWN_OPERATOR_ERROR {"ERROR: Unknown operator"};
 

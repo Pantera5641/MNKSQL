@@ -15,9 +15,9 @@
 struct ValidateCol
 {
     private:
-    bool checkParamErrors(const std::string& type, const std::string& param);
+    std::string checkParamErrors(const std::string& type, const std::string& param);
 
-    bool checkSyntaxErrors(const std::string& argsString);
+    std::string checkSyntaxErrors(const std::string& argsString);
 
     public:
     std::string checkAddErrors(const std::string& argsString);

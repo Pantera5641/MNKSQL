@@ -1,21 +1,21 @@
 #include "validateCol.h"
 
 
-bool ValidateCol::checkParamErrors(const std::string& type, const std::string& param)
+std::string ValidateCol::checkParamErrors(const std::string& type, const std::string& param)
 {
     if (param == NONE) 
     {
-        return true;
+        return NONE;
     }
 
     if (type == STRING && param == NO_DIGITS)
     {
-        return true;
+        return NONE;
     }
     
     if (type != INT)
     {
-        return false;
+        return "ERROR: You cant use modifier " + param + " with type " + type;
     }
     
     if (param.find(GREATER_THAN) != std::string::npos && std::count(param.begin(), param.end(), GREATER_THAN) == 1)
@@ -25,7 +25,7 @@ bool ValidateCol::checkParamErrors(const std::string& type, const std::string& p
 
         if(checkX == true && checkInt == true)
         {
-            return true;
+            return NONE;
         }
     }
 
@@ -36,7 +36,7 @@ bool ValidateCol::checkParamErrors(const std::string& type, const std::string& p
         
         if(checkX == true && checkInt == true)
         {
-            return true;
+            return NONE;
         }
     }
 
@@ -51,85 +51,87 @@ bool ValidateCol::checkParamErrors(const std::string& type, const std::string& p
         
         if(checkX == true && checkLeftInt == true && checkRightInt == true)
         {
-            return true;
+            return NONE;
         }
     }
 
-    return false;
+    return "ERROR: You cant use modifier " + param + " with type " + type;
 }
 
-bool ValidateCol::checkSyntaxErrors(const std::string& item)
+std::string ValidateCol::checkSyntaxErrors(const std::string& item)
 {
     if ((item.find(LEFT_PARENTHESIS) == std::string::npos) && (item.find(LEFT_SQUARE_BRACKET) == std::string::npos))
     {
         if (item.find(RIGHT_PARENTHESIS) != std::string::npos || item.find(RIGHT_SQUARE_BRACKET) != std::string::npos)
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
-        return true;
+        return NONE;
     }
 
     if (item.find(LEFT_PARENTHESIS) != std::string::npos && item.find(LEFT_SQUARE_BRACKET) == std::string::npos)
     {
         if (item.find(RIGHT_PARENTHESIS) == std::string::npos || item.find(RIGHT_SQUARE_BRACKET) != std::string::npos)
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
         int countLeftParenthesis = std::count(item.begin(), item.end(), LEFT_PARENTHESIS);
         int countRightParenthesis = std::count(item.begin(), item.end(), RIGHT_PARENTHESIS);
         if (countLeftParenthesis != 1 || countRightParenthesis != 1) 
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
         std::string type {Parser().extractBetween(item, LEFT_PARENTHESIS, RIGHT_PARENTHESIS)};
         if (!(type == STRING || type == INT)) 
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
-        return true;
+        return NONE;
     }
 
     if (item.find(LEFT_PARENTHESIS) != std::string::npos && item.find(LEFT_SQUARE_BRACKET) != std::string::npos)
     {
         if (item.find(RIGHT_PARENTHESIS) == std::string::npos || item.find(RIGHT_SQUARE_BRACKET) == std::string::npos)
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
         int countLeftParenthesis = std::count(item.begin(), item.end(), LEFT_PARENTHESIS);
         int countRightParenthesis = std::count(item.begin(), item.end(), RIGHT_PARENTHESIS);
         if (countLeftParenthesis != 1 || countRightParenthesis != 1) 
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
         int countLeftSquareBracket = std::count(item.begin(), item.end(), LEFT_SQUARE_BRACKET);
         int countRightSquareBracket = std::count(item.begin(), item.end(), RIGHT_SQUARE_BRACKET);
         if (countLeftSquareBracket != 1 || countRightSquareBracket != 1) 
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
         std::string type {Parser().extractBetween(item, LEFT_PARENTHESIS, LEFT_SQUARE_BRACKET)};
         if (!(type == STRING || type == INT)) 
         {
-            return false;
+            return SYNTAX_ERROR_IN + item;
         }
 
         std::string param {Parser().extractBetween(item, LEFT_SQUARE_BRACKET, RIGHT_SQUARE_BRACKET)};
-        if (checkParamErrors(type, param) == false) 
+
+        std::string error {checkParamErrors(type, param)};
+        if (error != NONE) 
         {
-            return false;
+            return error;
         }
 
-        return true;
+        return NONE;
     }
 
-    return false;
+    return SYNTAX_ERROR_IN + item;
 }
 
 std::string ValidateCol::checkAddErrors(const std::string& argsString)
@@ -137,9 +139,10 @@ std::string ValidateCol::checkAddErrors(const std::string& argsString)
     std::vector<std::string> args = Helper().strip(argsString, COMMA);
     for (std::string item : args)
     {
-        if (checkSyntaxErrors(item) == false) 
+        std::string error {checkSyntaxErrors(item)};
+        if (error != NONE) 
         {
-            return SYNTAX_ERROR;
+            return error;
         }
     }
 
