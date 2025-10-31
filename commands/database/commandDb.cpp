@@ -55,7 +55,7 @@ void CommandDb::clean()
     }
 }
 
-void CommandDb::bubbleSort(int index) 
+void CommandDb::bubbleSortString(int index) 
 {
     DataStore& store = DataStore::getInstance();
 
@@ -78,17 +78,53 @@ void CommandDb::bubbleSort(int index)
     }
 }
 
+void CommandDb::bubbleSortInt(int index) 
+{
+    DataStore& store = DataStore::getInstance();
+
+    for (int i = 0; i < store.database.size() - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < store.database.size() - i - 1; j++) 
+        {
+            if (std::stoi(store.database.at(j).getItem(index)) > std::stoi(store.database.at(j + 1).getItem(index))) 
+            {
+                // меняем местами элементы
+                Container temp = store.database.at(j);
+                store.database.at(j) = store.database.at(j + 1);
+                store.database.at(j + 1) = temp;
+                swapped = true;
+            }
+        }
+
+        if (!swapped)
+            break;
+    }
+}
+
 void CommandDb::tempSort(const std::string& fieldsString)
 {   
     DataStore& store = DataStore::getInstance();
 
     std::vector<std::string> fields {Helper().strip(fieldsString, COMMA)};
+    std::vector<std::string> reverseFields {};
+
+    for (int i = fields.size() - 1; i >= 0; i--)
+    {
+        reverseFields.push_back(fields.at(i));
+    }
+    
 
     for (int i = 0; i < fields.size(); i++) 
     {
-        int columnIndex {store.descriptor.getFieldNameIndex(fields.at(i))};
-
-        bubbleSort(columnIndex);
+        int columnIndex {store.descriptor.getFieldNameIndex(reverseFields.at(i))};
+        if (store.descriptor.getFieldTypes().at(columnIndex) == INT_TYPE)
+        {
+            bubbleSortInt(columnIndex);
+        }
+        else
+        {
+            bubbleSortString(columnIndex);
+        }
     }
 }
 

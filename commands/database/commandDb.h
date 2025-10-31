@@ -4,6 +4,7 @@
 #include <string>
 
 #include "symbols.h"
+#include "types.h"
 #include "messages.h"
 #include "dataStore.h"
 #include "helper.h"
@@ -30,7 +31,8 @@ struct CommandDb
     void clean();
 
     //temp
-    void bubbleSort(int index);
+    void bubbleSortString(int index);
+    void bubbleSortInt(int index);
 
     //temp
     void tempSort(const std::string& fieldsString);
