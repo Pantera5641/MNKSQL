@@ -39,7 +39,21 @@ std::vector<std::string> UtilsTable::loadTxt(const std::string& fileName)
 
 std::vector<std::string> UtilsTable::loadBin(const std::string& fileName)
 {
-    return {};
+    std::fstream file(Path().construct(fileName), std::ios::in | std::ios::binary);
+    std::vector<std::string> lines {};
+
+    while (file.peek() != EOF) 
+    {
+        int len {};
+        file.read(reinterpret_cast<char*>(&len), sizeof(len));
+
+        std::string line(len, '\0');
+        file.read(line.data(), len);
+
+        lines.push_back(line);
+    }
+
+    return lines;
 }
 
 void UtilsTable::saveRawData(const std::string& fileName, const std::string& password)
@@ -57,14 +71,7 @@ void UtilsTable::saveRawData(const std::string& fileName, const std::string& pas
 
     std::filesystem::remove(Path().construct(fileName));
 
-    if (Parser().cutBefore(fileName, DOT) == "txt")
-    {
-        saveTxt(fileName, rawData);
-    }
-    else 
-    {
-        saveBin(fileName, rawData);
-    }
+    saveFile(fileName, rawData);
 }
 
 void UtilsTable::loadRawData(const std::string& fileName, const std::string& password)
@@ -72,15 +79,7 @@ void UtilsTable::loadRawData(const std::string& fileName, const std::string& pas
     DataStore& store = DataStore::getInstance();
     std::vector<std::string> rawData {};
 
-    if (Parser().cutBefore(fileName, DOT) == "txt") 
-    {
-        rawData = loadTxt(fileName);
-    }
-    else
-    {
-        rawData = loadBin(fileName);
-    }
-
+    rawData = loadFile(fileName);
     store.descriptor.clear();
     store.descriptor.fill(rawData.at(1));
     
