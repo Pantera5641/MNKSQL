@@ -1,8 +1,10 @@
 #include <iostream>
+#include <thread>
 
-#include "MNKSQL_MAIN/startMain.h"
+#include "startMain.h"
+#include "startDrg.h"
 
 int main()
 {
-    startMain();
+    startDrg();
 }

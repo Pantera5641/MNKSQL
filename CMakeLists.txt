@@ -13,6 +13,7 @@ set(BUILD_SHARED_LIBS OFF)
 
 file(GLOB_RECURSE SOURCES 
     "MNKSQL_MAIN/*.cpp"
+    "MNKSQL_DRG/*.cpp"
     "main.cpp"
 )
 add_executable(MNKSQL ${SOURCES})
@@ -22,9 +23,17 @@ file(GLOB COMMAND_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/commands/*")
 file(GLOB VALIDATOR_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/validators/*")
 file(GLOB UTILS_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/utils/*")
 
+file(GLOB MNKSQL_DRG_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/*")
+file(GLOB MENU_LOGIC_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/menuLogic/*")
+
 target_include_directories(MNKSQL PRIVATE
+    "MNKSQL_MAIN/"
     ${MNKSQL_MAIN_DIRS}
     ${COMMAND_DIRS}
     ${VALIDATOR_DIRS}
     ${UTILS_DIRS}
+
+    "MNKSQL_DRG/"
+    ${MNKSQL_DRG_DIRS}
+    ${MENU_LOGIC_DIRS}
     )

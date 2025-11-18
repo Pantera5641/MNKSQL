@@ -1,0 +1,12 @@
+#pragma once
+#include <iostream>
+#include <fstream>
+
+#include "menuType.h"
+
+
+void show(const std::string& path);
+
+void showMenu(MenuType menuType, const std::string& language);
+
+void clear();
