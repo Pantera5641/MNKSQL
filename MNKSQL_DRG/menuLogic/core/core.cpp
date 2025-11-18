@@ -12,6 +12,10 @@ MenuType execute(MenuType menuType, int num)
         case MenuType::Language:
             return executeLanguageMenu(num);
             break;
+        
+        case MenuType::User:
+            return executeUserMenu(num);
+            break;
 
         default:
             std::cout << "unknown" << std::endl;

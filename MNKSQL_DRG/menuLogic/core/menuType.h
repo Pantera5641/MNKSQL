@@ -5,6 +5,7 @@ enum MenuType
 {
     Main,
     Language,
+    User,
     Unknown
 };
 
