@@ -12,10 +12,10 @@ MenuType executeMainMenu(int num)
             return User;
 
         case 3:
-            return Main;
+            return Admin;
 
         case 4:
-            return Main;
+            return Admin;
 
         case 5:
             return Language;

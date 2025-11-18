@@ -7,19 +7,17 @@ MenuType execute(MenuType menuType, int num)
     {
         case MenuType::Main:
             return executeMainMenu(num);
-            break;
         
         case MenuType::Language:
             return executeLanguageMenu(num);
-            break;
         
         case MenuType::User:
             return executeUserMenu(num);
-            break;
+
+        case MenuType::Admin:
+            return executeAdminMenu(num);
 
         default:
-            std::cout << "unknown" << std::endl;
             return Unknown;
-            break;
     }
 }

@@ -7,19 +7,15 @@ MenuType executeUserMenu(int num)
     {
         case 1:
             return User;
-            break;
 
         case 2:
             return User;
-            break;
 
         case 3:
             return User;
-            break;
 
         case 0:
             return Main;
-            break;
 
         default:
             return User;
