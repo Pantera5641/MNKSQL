@@ -3,7 +3,7 @@
 
 std::string Path::construct(const std::string& fileName)
 {
-    const std::string path = "tables/";
+    const std::string path = "MNKSQL_MAIN/tables/";
     return path + fileName;
 }
 

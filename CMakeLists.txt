@@ -12,25 +12,19 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 set(BUILD_SHARED_LIBS OFF)
 
 file(GLOB_RECURSE SOURCES 
-    "commands/*.cpp"
-    "constants/*.cpp"
-    "database/*.cpp" 
-    "logic/*.cpp" 
-    "utils/*.cpp" 
-    "validators/*.cpp"
+    "MNKSQL_MAIN/*.cpp"
     "main.cpp"
 )
 add_executable(MNKSQL ${SOURCES})
 
-file(GLOB COMMAND_DIRS "${CMAKE_SOURCE_DIR}/commands/*")
-file(GLOB VALIDATOR_DIRS "${CMAKE_SOURCE_DIR}/validators/*")
-file(GLOB UTILS_DIRS "${CMAKE_SOURCE_DIR}/utils/*")
+file(GLOB MNKSQL_MAIN_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/*")
+file(GLOB COMMAND_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/commands/*")
+file(GLOB VALIDATOR_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/validators/*")
+file(GLOB UTILS_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/utils/*")
 
 target_include_directories(MNKSQL PRIVATE
+    ${MNKSQL_MAIN_DIRS}
     ${COMMAND_DIRS}
     ${VALIDATOR_DIRS}
     ${UTILS_DIRS}
-    ${CMAKE_SOURCE_DIR}/constants
-    ${CMAKE_SOURCE_DIR}/database
-    ${CMAKE_SOURCE_DIR}/logic
     )
