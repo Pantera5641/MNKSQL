@@ -9,15 +9,16 @@ MenuType executeLanguageMenu(int num)
     {
         case 1:
             globalLanguage = "en";
-            break;
+            return Language;
 
         case 2:
             globalLanguage = "ru";
-            break;
+            return Language;
+        
+        case 0:
+            return Main;
 
         default:
-            return Unknown;
+            return Language;
     }
-
-    return Main;
 }

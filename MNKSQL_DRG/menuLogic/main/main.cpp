@@ -6,24 +6,19 @@ MenuType executeMainMenu(int num)
     switch (num) 
     {
         case 1:
-            return Main;
-            break;
+            return User;
 
         case 2:
-            return Main;
-            break;
+            return User;
 
         case 3:
             return Main;
-            break;
 
         case 4:
             return Main;
-            break;
 
         case 5:
             return Language;
-            break;
 
         case 0:
             std::exit(0);
