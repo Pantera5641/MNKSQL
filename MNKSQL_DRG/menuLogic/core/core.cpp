@@ -18,6 +18,6 @@ MenuType execute(MenuType menuType, int num)
             return executeAdminMenu(num);
 
         default:
-            return Unknown;
+            return Main;
     }
 }

@@ -25,6 +25,6 @@ MenuType executeMainMenu(int num)
             break;
 
         default:
-            return Unknown;
+            return Main;
     }
 }
