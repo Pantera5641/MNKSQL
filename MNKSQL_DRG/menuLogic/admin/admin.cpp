@@ -6,36 +6,36 @@ MenuType executeAdminMenu(int num)
     switch (num) 
     {
         case 1:
-            return Admin;
+            return MenuType::Admin;
 
         case 2:
-            return Admin;
+            return MenuType::Admin;
 
         case 3:
-            return Admin;
+            return MenuType::Admin;
         
         case 4:
-            return Admin;
+            return MenuType::Admin;
         
         case 5:
-            return Admin;
+            return MenuType::Admin;
         
         case 6:
-            return Admin;
+            return MenuType::Admin;
         
         case 7:
-            return Admin;
+            return MenuType::Admin;
 
         case 8:
-            return Admin;
+            return MenuType::Admin;
 
         case 9:
-            return Admin;
+            return MenuType::Admin;
 
         case 0:
-            return Main;
+            return MenuType::Main;
 
         default:
-            return Admin;
+            return MenuType::Admin;
     }
 }

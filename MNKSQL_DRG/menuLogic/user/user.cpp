@@ -6,18 +6,18 @@ MenuType executeUserMenu(int num)
     switch (num) 
     {
         case 1:
-            return User;
+            return MenuType::User;
 
         case 2:
-            return User;
+            return MenuType::User;
 
         case 3:
-            return User;
+            return MenuType::User;
 
         case 0:
-            return Main;
+            return MenuType::Main;
 
         default:
-            return User;
+            return MenuType::User;
     }
 }
