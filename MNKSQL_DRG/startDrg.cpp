@@ -17,7 +17,7 @@ void startDrg()
         showMenu(menuType, globalLanguage);
         std::cin >> input;
 
-        if (input.size() == 1 && std::isdigit(input.at(0))) 
+        if (isDigit(input)) 
         {
             menuType = execute(menuType, std::stoi(input));
         }
