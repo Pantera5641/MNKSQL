@@ -23,6 +23,9 @@ MenuType execute(MenuType menuType, int num)
         
         case MenuType::AdminLoad:
             return executeAdminLoadMenu(num);
+        
+        case MenuType::Save:
+            return executeSaveMenu(num);
 
         default:
             return Main;
