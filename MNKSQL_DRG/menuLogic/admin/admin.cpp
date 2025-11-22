@@ -9,7 +9,7 @@ MenuType executeAdminMenu(int num)
             return MenuType::Admin;
 
         case 2:
-            return MenuType::Admin;
+            return MenuType::AdminLoad;
 
         case 3:
             return MenuType::Admin;

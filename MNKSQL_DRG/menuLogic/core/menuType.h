@@ -7,7 +7,8 @@ enum MenuType
     Language,
     User,
     UserLoad,
-    Admin
+    Admin,
+    AdminLoad
 };
 
 std::string nameOf(MenuType menuType);

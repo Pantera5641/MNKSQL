@@ -8,5 +8,6 @@ std::string nameOf(MenuType menuType)
     if (menuType == MenuType::User) return "user";
     if (menuType == MenuType::UserLoad) return "userLoad";
     if (menuType == MenuType::Admin) return "admin";
+    if (menuType == MenuType::AdminLoad) return "adminLoad";
     return "unknown";
 }
