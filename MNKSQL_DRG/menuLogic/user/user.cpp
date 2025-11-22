@@ -9,7 +9,7 @@ MenuType executeUserMenu(int num)
             return MenuType::User;
 
         case 2:
-            return MenuType::User;
+            return MenuType::UserLoad;
 
         case 3:
             return MenuType::User;
