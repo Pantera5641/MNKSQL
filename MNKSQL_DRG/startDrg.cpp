@@ -10,9 +10,7 @@ void startDrg()
 
     while (true) 
     {   
-        std::cout << "\033[0;31m";
-        show("MNKSQL_DRG/data/logo.txt");
-        std::cout << "\033[0m" << std::endl;
+        show("MNKSQL_DRG/data/logo.txt", "\033[0;31m");
 
         showMenu(menuType, globalLanguage);
         std::cin >> input;

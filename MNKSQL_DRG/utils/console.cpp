@@ -12,6 +12,13 @@ void show(const std::string& path)
     }
 }
 
+void show(const std::string& path, const std::string& color)
+{
+    std::cout << color;
+    show(path);
+    std::cout << "\033[0m" << std::endl;
+}
+
 void showMenu(MenuType menuType, const std::string& language)
 {
     show("MNKSQL_DRG/data/menu/" + language + '/' + nameOf(menuType) + ".txt");
