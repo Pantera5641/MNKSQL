@@ -30,7 +30,7 @@ MenuType executeAdminMenu(int num)
             return MenuType::Admin;
 
         case 9:
-            return MenuType::Admin;
+            return MenuType::Save;
 
         case 0:
             return MenuType::Main;
