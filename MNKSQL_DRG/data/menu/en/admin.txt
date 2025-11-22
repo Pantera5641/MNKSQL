@@ -8,7 +8,7 @@
 :                              (5) Add Record                                :
 :                              (6) Query Data                                :
 :                              (7) Sort Data                                 :
-:                        (8) Export Text to Binary File                      :
+:                             (8) Convert file                               :
 :                               (9) Save Data                                :
 :                                 (0) Back                                   :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

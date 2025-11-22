@@ -9,7 +9,8 @@ enum MenuType
     UserLoad,
     Admin,
     AdminLoad,
-    Save
+    Save,
+    Convert
 };
 
 std::string nameOf(MenuType menuType);

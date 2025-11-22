@@ -27,7 +27,7 @@ MenuType executeAdminMenu(int num)
             return MenuType::Admin;
 
         case 8:
-            return MenuType::Admin;
+            return MenuType::Convert;
 
         case 9:
             return MenuType::Save;

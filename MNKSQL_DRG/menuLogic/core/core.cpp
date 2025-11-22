@@ -26,6 +26,9 @@ MenuType execute(MenuType menuType, int num)
         
         case MenuType::Save:
             return executeSaveMenu(num);
+        
+        case MenuType::Convert:
+            return executeConvertMenu(num);
 
         default:
             return Main;
