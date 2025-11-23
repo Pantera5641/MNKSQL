@@ -1,0 +1,63 @@
+#include "dataStore.h"
+
+
+std::vector<Student> studentsList {};
+
+
+std::string getFieldByIndex(Student student, int index)
+{
+    switch (index) 
+    {
+        case 0:
+            return student.lastName;
+
+        case 1:
+            return student.firstName;
+
+        case 2:
+            return student.surname;
+
+        case 3:
+            return std::to_string(student.yearOfBirth);
+
+        case 4:
+            return std::to_string(student.yearOfAdmission);
+
+        case 5:
+            return std::to_string(student.course);
+
+        case 6:
+            return student.group;
+    }
+
+    return std::string();
+}
+
+std::vector<std::string> getColumn(int index)
+{
+    std::vector<std::string> column {};
+
+    for (int i = 0; i < studentsList.size(); i++) 
+    {
+        column.push_back(getFieldByIndex(studentsList.at(i), index));
+    }
+
+    return column;
+}
+
+std::vector<std::string> getLine(int index)
+{
+    Student student {studentsList.at(index)};
+
+    std::vector<std::string> line {
+        student.lastName, 
+        student.firstName,
+        student.surname,
+        std::to_string(student.yearOfBirth),
+        std::to_string(student.yearOfAdmission),
+        std::to_string(student.course),
+        student.group
+    };
+
+    return line;
+}
