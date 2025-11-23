@@ -1,18 +1,16 @@
 #include "language.h"
 
 
-std::string globalLanguage = "en";
-
 MenuType executeLanguageMenu(int num)
 {
     switch (num) 
     {
         case 1:
-            globalLanguage = "en";
+            setLanguage("en");
             return MenuType::Language;
 
         case 2:
-            globalLanguage = "ru";
+            setLanguage("ru");
             return MenuType::Language;
         
         case 0:
