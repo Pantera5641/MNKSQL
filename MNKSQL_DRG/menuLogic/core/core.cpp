@@ -1,4 +1,5 @@
 #include "core.h"
+#include "userLoad.h"
 
 
 MenuType execute(MenuType menuType, int num)
@@ -13,11 +14,23 @@ MenuType execute(MenuType menuType, int num)
         
         case MenuType::User:
             return executeUserMenu(num);
+        
+        case MenuType::UserLoad:
+            return executeUserLoadMenu(num);
 
         case MenuType::Admin:
             return executeAdminMenu(num);
+        
+        case MenuType::AdminLoad:
+            return executeAdminLoadMenu(num);
+        
+        case MenuType::Save:
+            return executeSaveMenu(num);
+        
+        case MenuType::Convert:
+            return executeConvertMenu(num);
 
         default:
-            return Unknown;
+            return Main;
     }
 }

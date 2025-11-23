@@ -9,18 +9,18 @@ MenuType executeUserMenu(int num)
             clear();
             showTable();
             await();
-            return User;
+            return MenuType::User;
 
         case 2:
-            return User;
+            return MenuType::UserLoad;
 
         case 3:
-            return User;
+            return MenuType::User;
 
         case 0:
-            return Main;
+            return MenuType::Main;
 
         default:
-            return User;
+            return MenuType::User;
     }
 }
