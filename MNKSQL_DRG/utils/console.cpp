@@ -21,3 +21,12 @@ void clear()
 {
     std::cout << "\033c";
 }
+
+void await()
+{
+    std::cout << "\033[1;37m";
+    std::cout << "Press any button to continue..." << std::endl;
+    std::cout << "\033[0m" << std::endl;
+    std::cin.ignore();
+    std::cin.get();
+}
