@@ -6,6 +6,9 @@ MenuType executeUserMenu(int num)
     switch (num) 
     {
         case 1:
+            clear();
+            showTable();
+            await();
             return User;
 
         case 2:

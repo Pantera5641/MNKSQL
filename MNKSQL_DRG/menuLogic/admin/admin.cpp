@@ -6,6 +6,9 @@ MenuType executeAdminMenu(int num)
     switch (num) 
     {
         case 1:
+            clear();
+            showTable();
+            await();
             return Admin;
 
         case 2:
