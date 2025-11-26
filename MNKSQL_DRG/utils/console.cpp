@@ -21,7 +21,12 @@ void show(const std::string& path, const std::string& color)
 
 void showMenu(MenuType menuType, const std::string& language)
 {
-    show("MNKSQL_DRG/data/menu/" + language + '/' + nameOf(menuType) + ".txt");
+    show("MNKSQL_DRG/data/localization/" + language + "/menu/" + nameOf(menuType) + ".txt");
+}
+
+void showLine(const std::string& lineName, const std::string& language)
+{
+    show("MNKSQL_DRG/data/localization/" + language + "/lines/" + lineName + ".txt");
 }
 
 void clear()
