@@ -6,9 +6,7 @@ MenuType executeUserMenu(int num)
     switch (num) 
     {
         case 1:
-            clear();
-            showTable();
-            await();
+            showEvent();
             return MenuType::User;
 
         case 2:
