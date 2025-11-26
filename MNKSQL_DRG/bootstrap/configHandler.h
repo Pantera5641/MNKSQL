@@ -5,6 +5,7 @@
 #include <fstream>
 
 #include "utils/helper.h"
+#include "..\constants\paths.h"
 
 
 std::string getParam(const std::string& paramName);
