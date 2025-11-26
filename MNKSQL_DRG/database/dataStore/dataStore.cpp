@@ -71,3 +71,19 @@ void removeStudent(int index)
 {
     studentsList.erase(studentsList.begin() + index);
 }
+
+void sort(const std::vector<int>& indexs)
+{   
+    std::vector<int> reverseIndexs {};
+
+    for (int i = indexs.size() - 1; i >= 0; i--)
+    {
+        reverseIndexs.push_back(indexs.at(i));
+    }
+    
+
+    for (int i = 0; i < indexs.size(); i++) 
+    {
+        bubbleSort(reverseIndexs.at(i), studentsList);
+    }
+}

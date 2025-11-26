@@ -44,3 +44,26 @@ void removeEvent()
 
     await();
 }
+
+void queryEvent()
+{
+    clear();
+
+    sort({3, 5});
+    showTable();
+    
+    await();
+}
+
+void sortEvent()
+{
+    clear();
+    std::string indexsString {};
+    std::cout << "Enter indexs:" << std::endl;
+    std::getline(std::cin, indexsString);
+
+    sort(strip(indexsString, ' '));
+    showTable();
+    
+    await();
+}

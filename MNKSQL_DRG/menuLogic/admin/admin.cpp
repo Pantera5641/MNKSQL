@@ -20,13 +20,14 @@ MenuType executeAdminMenu(int num)
             return MenuType::Admin;
         
         case 5:
-            addEvent();
             return MenuType::Admin;
         
         case 6:
+            queryEvent();
             return MenuType::Admin;
         
         case 7:
+            sortEvent();
             return MenuType::Admin;
 
         case 8:

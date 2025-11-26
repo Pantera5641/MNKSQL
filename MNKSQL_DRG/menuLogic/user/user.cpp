@@ -13,6 +13,7 @@ MenuType executeUserMenu(int num)
             return MenuType::UserLoad;
 
         case 3:
+            sortEvent();
             return MenuType::User;
 
         case 0:

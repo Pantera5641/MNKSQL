@@ -28,3 +28,39 @@ std::string cutBefore(const std::string& line, char item)
 
     return result;
 }
+
+std::vector<int> strip(const std::string& str, char toRemove)
+{
+    std::vector<int> list {};
+    std::string item {};
+
+    std::istringstream iss(str);
+
+    while (std::getline(iss, item, toRemove))
+    {
+        item.erase(std::remove(item.begin(), item.end(), toRemove), item.end());
+        list.push_back(std::stoi(item));
+    }
+
+    return list;
+}
+
+void bubbleSort(int index, std::vector<Student>& list) 
+{
+    for (int i = 0; i < list.size() - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < list.size() - i - 1; j++) 
+        {
+            if (getFieldByIndex(list.at(j), index) > getFieldByIndex(list.at(j + 1), index)) 
+            {
+                Student temp = list.at(j);
+                list.at(j) = list.at(j + 1);
+                list.at(j + 1) = temp;
+                swapped = true;
+            }
+        }
+
+        if (!swapped)
+            break;
+    }
+}

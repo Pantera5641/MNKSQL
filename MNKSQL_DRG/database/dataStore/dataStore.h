@@ -14,6 +14,7 @@ struct Student
     std::string group {};
 };
 
+#include "utils/helper.h"
 extern std::vector<Student> studentsList;
 
 
@@ -26,3 +27,5 @@ std::vector<std::string> getLine(int index);
 void addStudent(Student student);
 
 void removeStudent(int index);
+
+void sort(const std::vector<int>& indexs);
