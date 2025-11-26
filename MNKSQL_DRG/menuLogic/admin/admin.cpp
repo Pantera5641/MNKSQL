@@ -6,9 +6,7 @@ MenuType executeAdminMenu(int num)
     switch (num) 
     {
         case 1:
-            clear();
-            showTable();
-            await();
+            showEvent();
             return MenuType::Admin;
 
         case 2:

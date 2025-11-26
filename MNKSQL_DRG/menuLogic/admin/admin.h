@@ -1,6 +1,5 @@
 #pragma once
 #include "menuType.h"
-#include "commands/show/show.h"
-#include "console.h"
+#include "events.h"
 
 MenuType executeAdminMenu(int num);
