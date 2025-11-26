@@ -61,3 +61,13 @@ std::vector<std::string> getLine(int index)
 
     return line;
 }
+
+void addStudent(Student student)
+{
+    studentsList.push_back(student);
+}
+
+void removeStudent(int index)
+{
+    studentsList.erase(studentsList.begin() + index);
+}

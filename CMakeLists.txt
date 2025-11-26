@@ -25,6 +25,7 @@ file(GLOB UTILS_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/utils/*")
 
 file(GLOB MNKSQL_DRG_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/*")
 file(GLOB MENU_LOGIC_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/menuLogic/*")
+file(GLOB MENU_CORE_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/menuLogic/core/*")
 
 target_include_directories(MNKSQL PRIVATE
     "MNKSQL_MAIN/"
@@ -36,4 +37,5 @@ target_include_directories(MNKSQL PRIVATE
     "MNKSQL_DRG/"
     ${MNKSQL_DRG_DIRS}
     ${MENU_LOGIC_DIRS}
+    ${MENU_CORE_DIRS}
     )

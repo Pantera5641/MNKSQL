@@ -56,10 +56,11 @@ void showTable()
     std::cout << "::" << std::endl;
 
     int columnSize = getColumn(0).size();
-    for (int i = 1; i < columnSize; i++)
+    for (int i = 0; i < columnSize; i++)
     {
         std::vector<std::string> lines {std::to_string(i + 1)};
-        lines.insert(lines.end(), getLine(i).begin(), getLine(i).end());
+        std::vector<std::string> additionalLines {getLine(i)};
+        lines.insert(lines.end(), additionalLines.begin(), additionalLines.end());
 
         for (int j = 0; j < numOfColumn; j++)
         {

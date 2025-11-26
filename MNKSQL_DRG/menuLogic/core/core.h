@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-#include "menuType.h"
+#include "menuTypes/menuType.h"
 //menus
 #include "main.h"
 #include "language.h"
