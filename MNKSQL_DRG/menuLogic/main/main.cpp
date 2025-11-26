@@ -9,15 +9,12 @@ MenuType executeMainMenu(int num)
             return MenuType::User;
 
         case 2:
-            return MenuType::User;
+            return MenuType::Admin;
 
         case 3:
             return MenuType::Admin;
 
         case 4:
-            return MenuType::Admin;
-
-        case 5:
             return MenuType::Language;
 
         case 0:
