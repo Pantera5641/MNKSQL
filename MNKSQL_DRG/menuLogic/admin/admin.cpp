@@ -13,6 +13,7 @@ MenuType executeAdminMenu(int num)
             return MenuType::AdminLoad;
 
         case 3:
+            editEvent();
             return MenuType::Admin;
         
         case 4:
@@ -20,6 +21,7 @@ MenuType executeAdminMenu(int num)
             return MenuType::Admin;
         
         case 5:
+            addEvent();
             return MenuType::Admin;
         
         case 6:

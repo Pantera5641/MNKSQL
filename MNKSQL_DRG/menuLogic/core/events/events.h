@@ -13,6 +13,8 @@ void showEvent();
 
 void addEvent();
 
+void editEvent();
+
 void removeEvent();
 
 void queryEvent();
@@ -23,6 +25,12 @@ void saveTxtEvent();
 
 void saveBinEvent();
 
+void loadKeyboardEvent();
+
 void loadTxtEvent();
 
 void loadBinEvent();
+
+void convertTxtToBinEvent();
+
+void convertBinToTxtEvent();

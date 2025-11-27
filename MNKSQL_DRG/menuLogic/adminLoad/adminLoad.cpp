@@ -14,7 +14,7 @@ MenuType executeAdminLoadMenu(int num)
             return MenuType::AdminLoad;
         
         case 3:
-            addEvent();
+            loadKeyboardEvent();
             return MenuType::AdminLoad;
 
         case 0:

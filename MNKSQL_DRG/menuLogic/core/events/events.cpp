@@ -28,6 +28,12 @@ void addEvent()
     await();
 }
 
+void editEvent()
+{
+    clear();
+    await();
+}
+
 void removeEvent()
 {
     int index {};
@@ -49,7 +55,7 @@ void queryEvent()
 {
     clear();
 
-    sort({3, 5});
+    sort({5, 3});
     showTable();
     
     await();
@@ -82,6 +88,11 @@ void saveBinEvent()
     await();  
 }
 
+void loadKeyboardEvent()
+{
+    addEvent();
+}
+
 void loadTxtEvent()
 {
     clear();
@@ -93,5 +104,29 @@ void loadBinEvent()
 {
     clear();
     rewriteData(loadBin("pipa2"));
+    await();
+}
+
+void convertTxtToBinEvent()
+{
+    clear();
+
+    std::vector<Student> tempList {studentsList};
+    rewriteData(loadTxt("pipa"));
+    saveBin("pipa3");
+    rewriteData(tempList);
+
+    await();
+}
+
+void convertBinToTxtEvent()
+{
+    clear();
+
+    std::vector<Student> tempList {studentsList};
+    rewriteData(loadBin("pipa1"));
+    saveTxt("pipa4");
+    rewriteData(tempList);
+
     await();
 }
