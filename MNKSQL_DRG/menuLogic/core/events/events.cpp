@@ -11,15 +11,40 @@ void showEvent()
 void addEvent()
 {
     clear();
+
     Student student {};
-    std::cout << "Enter lastname, firstname and surname:" << std::endl;
-    std::cin >> student.lastName >> student.firstName >> student.surname;
+    std::string tempString {};
+    
+    do
+    {
+        std::cout << "Enter lastname, firstname and surname:" << std::endl;
+        std::cin >> student.lastName >> student.firstName >> student.surname;
+    }
+    while (!isContainDigits(student.lastName + student.firstName + student.surname));
 
-    std::cout << "Enter yearOfBirth:" << std::endl;
-    std::cin >> student.yearOfBirth;
+    do 
+    {
+        std::cout << "Enter yearOfBirth:" << std::endl;
+        std::cin >> tempString;
+    }
+    while (!inRange(tempString, 1900, 2026));
+    student.yearOfBirth = std::stoi(tempString);
 
-    std::cout << "Enter yearOfAdmission, course and group" << std::endl;
-    std::cin >> student.yearOfAdmission >> student.course >> student.group;
+    do 
+    {
+        std::cout << "Enter yearOfAdmission:" << std::endl;
+        std::cin >> tempString;
+    }
+    while (!inRange(tempString, 2000, 2026));
+    student.yearOfAdmission = std::stoi(tempString);
+
+    do 
+    {
+        std::cout << "Enter course and group" << std::endl;
+        std::cin >> tempString >> student.group;
+    }
+    while (!inRange(tempString, 0, 7));
+    student.course = std::stoi(tempString);
 
     addStudent(student);
 
@@ -31,18 +56,105 @@ void addEvent()
 void editEvent()
 {
     clear();
+
+    int index {};
+    std::string tempString {};
+    Student student {};
+    Student newStudent {};
+
+    showTable();
+
+    do 
+    {
+        std::cout << "Enter index of line to edit: (0 - to exit)" << std::endl;
+        std::cin >> tempString;
+    }
+    while (!inRange(tempString, -1, studentsList.size() + 1));
+    index = std::stoi(tempString);
+
+    if (index == 0) return;
+
+    clear();
+    
+    student = studentsList.at(index - 1);
+
+    bool isLastNameContainDigits {};
+    bool isFirstNameContainDigits {};
+    bool isSurnameContainDigits {};
+    do
+    {   
+        std::cout << "Enter new lastname, firstname and surname: (0 - to skip)" << std::endl;
+        std::cin >> newStudent.lastName >> newStudent.firstName >> newStudent.surname;
+
+        isLastNameContainDigits = isContainDigits(newStudent.lastName) || newStudent.lastName == "0";
+        isFirstNameContainDigits = isContainDigits(newStudent.firstName) || newStudent.firstName == "0";
+        isSurnameContainDigits = isContainDigits(newStudent.surname) || newStudent.surname == "0";
+    }
+    while (!(isLastNameContainDigits && isFirstNameContainDigits && isSurnameContainDigits));
+
+    clear();
+
+    do 
+    {
+        std::cout << "Enter new yearOfBirth: (0 - to skip)" << std::endl;
+        std::cin >> tempString;
+    }
+    while (!(tempString == "0" || inRange(tempString, 1900, 2026)));
+    newStudent.yearOfBirth = std::stoi(tempString);
+
+    clear();
+
+    do 
+    {
+        std::cout << "Enter new yearOfAdmission: (0 - to skip)" << std::endl;
+        std::cin >> tempString;
+    }
+    while (!(tempString == "0" || inRange(tempString, 2000, 2026)));
+    newStudent.yearOfAdmission = std::stoi(tempString);
+
+    clear();
+    
+    do 
+    {
+        std::cout << "Enter new course and group (0 - to skip)" << std::endl;
+        std::cin >> tempString >> newStudent.group;
+    }
+    while (!(tempString == "0" || inRange(tempString, 0, 7)));
+    newStudent.course = std::stoi(tempString);
+
+    student.lastName = newStudent.lastName == "0" ? student.lastName : newStudent.lastName;
+    student.firstName = newStudent.firstName == "0" ? student.firstName : newStudent.firstName;
+    student.surname = newStudent.surname == "0" ? student.surname : newStudent.surname;
+    student.yearOfBirth = newStudent.yearOfBirth == 0 ? student.yearOfBirth : newStudent.yearOfBirth;
+    student.yearOfAdmission = newStudent.yearOfAdmission == 0 ? student.yearOfAdmission : newStudent.yearOfAdmission;
+    student.course = newStudent.course == 0 ? student.course : newStudent.course;
+    student.group = newStudent.group == "0" ? student.group : newStudent.group;
+
+    studentsList.at(index - 1) = student;
+
+    std::cout << "Student edited!" << std::endl;
+
     await();
 }
 
 void removeEvent()
 {
-    int index {};
-
     clear();
+
+    int index {};
+    std::string tempString {};
+
     showTable();
 
-    std::cout << "Enter index of line to remove:" << std::endl;
-    std::cin >> index;
+    do 
+    {
+        std::cout << "Enter index of line to remove: (0 - to exit)" << std::endl;
+        std::cin >> tempString;
+    }
+    while (isDigit(tempString) && inRange(std::stoi(tempString), -1, studentsList.size() + 1));
+    index = std::stoi(tempString);
+
+    if (index == 0) return;
 
     removeStudent(index - 1);
 
@@ -64,14 +176,44 @@ void queryEvent()
 void sortEvent()
 {
     clear();
-    std::string indexsString {};
-    std::cout << "Enter indexs:" << std::endl;
-    std::getline(std::cin, indexsString);
 
-    sort(stripToInt(indexsString, ' '));
     showTable();
+
+    std::string indexsStr {};
+    std::vector<std::string> indexs {};
+    bool flag {};
+
+    do 
+    {
+        flag = true;
+
+        std::cout << "Enter indexs: (indexes start from 1 and field lastname)" << std::endl;
+        std::getline(std::cin >> std::ws, indexsStr);
+
+        indexs = strip(indexsStr, ' ');
+
+        if (isDigit(connect(indexs, '0'))) 
+        {
+            for (int i = 0; i < indexs.size(); i++)
+                flag *= inRange(indexs.at(i), 0, 8);
+        }
+    }
+    while (!flag);
+
+    clear();
+
+    if (studentsList.empty()) 
+    {
+        showTable();
+        await(true);
+        return;
+    }
+
+    sort(changeValuesOn(stripToInt(indexsStr, ' '), -1));
+    showTable();
+
     
-    await();
+    await(true);
 }
 
 void saveTxtEvent()
@@ -90,7 +232,9 @@ void saveBinEvent()
 
 void loadKeyboardEvent()
 {
+    clear();
     addEvent();
+    await();
 }
 
 void loadTxtEvent()
@@ -112,6 +256,7 @@ void convertTxtToBinEvent()
     clear();
 
     std::vector<Student> tempList {studentsList};
+
     rewriteData(loadTxt("pipa"));
     saveBin("pipa3");
     rewriteData(tempList);
@@ -124,6 +269,7 @@ void convertBinToTxtEvent()
     clear();
 
     std::vector<Student> tempList {studentsList};
+
     rewriteData(loadBin("pipa1"));
     saveTxt("pipa4");
     rewriteData(tempList);

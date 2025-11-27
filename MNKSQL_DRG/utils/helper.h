@@ -20,3 +20,5 @@ std::vector<int> stripToInt(const std::string& str, char toRemove);
 void bubbleSort(int index, std::vector<Student>& list);
 
 std::string connect(const std::vector<std::string>& vector, char item);
+
+std::vector<int> changeValuesOn(const std::vector<int>& nums, int on);

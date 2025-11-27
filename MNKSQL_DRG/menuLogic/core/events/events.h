@@ -4,6 +4,7 @@
 #include "commands/show/show.h"
 #include "commands/file/file.h"
 #include "console.h"
+#include "checkers.h"
 
 
 extern std::vector<Student> studentsList;

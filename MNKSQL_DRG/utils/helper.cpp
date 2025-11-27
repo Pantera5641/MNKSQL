@@ -82,12 +82,23 @@ std::string connect(const std::vector<std::string>& vector, char item)
 {
     std::string line {};
 
-    for (int i = 0; i < vector.size(); i++)
+    for (int i = 0; i < vector.size() - 1; i++)
     {
-        line.append(vector.at(i) + item);
+        line += vector.at(i) + item;
     }
 
-    line.pop_back();
+    line += vector.back();
 
     return line;
+}
+
+std::vector<int> changeValuesOn(const std::vector<int>& nums, int on)
+{
+    std::vector<int> newNums {};
+    for (int i = 0; i < nums.size(); i++) 
+    {
+        newNums.push_back(nums.at(i) + on);
+    }
+
+    return newNums;
 }
