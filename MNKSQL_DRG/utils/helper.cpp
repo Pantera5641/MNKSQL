@@ -29,9 +29,9 @@ std::string cutBefore(const std::string& line, char item)
     return result;
 }
 
-std::vector<int> strip(const std::string& str, char toRemove)
+std::vector<std::string> strip(const std::string& str, char toRemove)
 {
-    std::vector<int> list {};
+    std::vector<std::string> list {};
     std::string item {};
 
     std::istringstream iss(str);
@@ -39,10 +39,23 @@ std::vector<int> strip(const std::string& str, char toRemove)
     while (std::getline(iss, item, toRemove))
     {
         item.erase(std::remove(item.begin(), item.end(), toRemove), item.end());
-        list.push_back(std::stoi(item));
+        list.push_back(item);
     }
 
     return list;
+}
+
+std::vector<int> stripToInt(const std::string& str, char toRemove)
+{
+    std::vector<std::string> strings {strip(str, toRemove)};
+    std::vector<int> ints {};
+
+    for (int i = 0; i < strings.size(); i++)
+    {
+        ints.push_back(std::stoi(strings.at(i)));
+    }
+    
+    return ints;
 }
 
 void bubbleSort(int index, std::vector<Student>& list) 
@@ -63,4 +76,18 @@ void bubbleSort(int index, std::vector<Student>& list)
         if (!swapped)
             break;
     }
+}
+
+std::string connect(const std::vector<std::string>& vector, char item)
+{
+    std::string line {};
+
+    for (int i = 0; i < vector.size(); i++)
+    {
+        line.append(vector.at(i) + item);
+    }
+
+    line.pop_back();
+
+    return line;
 }

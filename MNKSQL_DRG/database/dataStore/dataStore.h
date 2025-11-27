@@ -29,3 +29,7 @@ void addStudent(Student student);
 void removeStudent(int index);
 
 void sort(const std::vector<int>& indexs);
+
+void rewriteData(const std::vector<Student>& students);
+
+void rewriteData(const std::vector<std::string>& students);

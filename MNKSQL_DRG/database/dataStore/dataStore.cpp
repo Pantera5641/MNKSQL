@@ -87,3 +87,32 @@ void sort(const std::vector<int>& indexs)
         bubbleSort(reverseIndexs.at(i), studentsList);
     }
 }
+
+
+void rewriteData(const std::vector<Student>& students)
+{
+    studentsList = students;
+}
+
+void rewriteData(const std::vector<std::string>& students)
+{
+    std::vector<Student> newStudentsList {};
+    
+    for (int i = 0; i < students.size(); i++)
+    {
+        Student student {};
+        std::vector<std::string> fields {strip(students.at(i), ',')};
+
+        student.lastName = fields.at(0);
+        student.firstName = fields.at(1);
+        student.surname = fields.at(2);
+        student.yearOfBirth = std::stoi(fields.at(3));
+        student.yearOfAdmission = std::stoi(fields.at(4));
+        student.course = std::stoi(fields.at(5));
+        student.group = fields.at(6);
+
+        newStudentsList.push_back(student);
+    }
+    
+    rewriteData(newStudentsList);
+}

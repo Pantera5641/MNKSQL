@@ -62,8 +62,36 @@ void sortEvent()
     std::cout << "Enter indexs:" << std::endl;
     std::getline(std::cin, indexsString);
 
-    sort(strip(indexsString, ' '));
+    sort(stripToInt(indexsString, ' '));
     showTable();
     
+    await();
+}
+
+void saveTxtEvent()
+{
+    clear();
+    saveTxt("pipa");
+    await();
+}
+
+void saveBinEvent()
+{
+    clear();
+    saveBin("pipa2");
+    await();  
+}
+
+void loadTxtEvent()
+{
+    clear();
+    rewriteData(loadTxt("pipa"));
+    await();
+}
+
+void loadBinEvent()
+{
+    clear();
+    rewriteData(loadBin("pipa2"));
     await();
 }
