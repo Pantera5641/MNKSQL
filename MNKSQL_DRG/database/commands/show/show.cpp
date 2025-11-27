@@ -19,7 +19,7 @@ void showTable()
     int numOfColumn {8};
     for (int i = 1; i < numOfColumn; i++)
     {
-        std::vector<std::string> column {getColumn(i)};
+        std::vector<std::string> column {getColumn(i - 1)};
         column.push_back(zeroLine.at(i));
 
         auto item = std::max_element(column.begin(), column.end(),
