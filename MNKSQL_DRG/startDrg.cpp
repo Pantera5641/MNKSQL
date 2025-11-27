@@ -1,7 +1,5 @@
 #include "startDrg.h"
 
-extern std::string globalLanguage;
-
 
 void startDrg()
 {
@@ -12,7 +10,7 @@ void startDrg()
     {   
         show(LOGO_PATH_DRG, "\033[0;31m");
 
-        showMenu(menuType, globalLanguage);
+        showMenu(menuType);
         std::cin >> input;
 
         if (isDigit(input)) 

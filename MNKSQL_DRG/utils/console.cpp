@@ -19,14 +19,14 @@ void show(const std::string& path, const std::string& color)
     std::cout << "\033[0m" << std::endl;
 }
 
-void showMenu(MenuType menuType, const std::string& language)
+void showMenu(MenuType menuType)
 {
-    show("MNKSQL_DRG/data/localization/" + language + "/menu/" + nameOf(menuType) + ".txt");
+    show(TO_LOCALIZATION_PATH + globalLanguage + "/menu/" + nameOf(menuType) + ".txt");
 }
 
-void showLine(const std::string& lineName, const std::string& language)
+void showLine(const std::string& lineName)
 {
-    show("MNKSQL_DRG/data/localization/" + language + "/lines/" + lineName + ".txt");
+    show(TO_LOCALIZATION_PATH + globalLanguage + "/messages/" + lineName + ".txt");
 }
 
 void clear()
@@ -34,11 +34,12 @@ void clear()
     std::cout << "\033c";
 }
 
-void await()
+void await(bool offIgnore)
 {
-    std::cout << "\033[1;37m";
-    std::cout << "Press any button to continue..." << std::endl;
-    std::cout << "\033[0m" << std::endl;
-    std::cin.ignore();
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messages/await.txt"};
+    show(path, "\033[1;37m");
+    
+    if (offIgnore == false) 
+        std::cin.ignore();
     std::cin.get();
 }
