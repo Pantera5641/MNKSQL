@@ -13,7 +13,7 @@ std::string ValidateCol::checkParamErrors(const std::string& type, const std::st
         return NONE;
     }
     
-    if (type != INT)
+    if (type != MYINT)
     {
         return "ERROR: You cant use modifier " + param + " with type " + type;
     }
@@ -85,7 +85,7 @@ std::string ValidateCol::checkSyntaxErrors(const std::string& item)
         }
 
         std::string type {Parser().extractBetween(item, LEFT_PARENTHESIS, RIGHT_PARENTHESIS)};
-        if (!(type == STRING || type == INT)) 
+        if (!(type == STRING || type == MYINT)) 
         {
             return SYNTAX_ERROR_IN + item;
         }
@@ -115,7 +115,7 @@ std::string ValidateCol::checkSyntaxErrors(const std::string& item)
         }
 
         std::string type {Parser().extractBetween(item, LEFT_PARENTHESIS, LEFT_SQUARE_BRACKET)};
-        if (!(type == STRING || type == INT)) 
+        if (!(type == STRING || type == MYINT)) 
         {
             return SYNTAX_ERROR_IN + item;
         }

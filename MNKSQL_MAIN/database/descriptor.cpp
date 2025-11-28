@@ -10,7 +10,7 @@ std::type_index Descriptor::setType(const std::string& typeString)
 std::string Descriptor::getType(std::type_index type)
 {
     if (type == STRING_TYPE) {return STRING;};
-    return INT;
+    return MYINT;
 }
 
 Descriptor::Descriptor(const std::string& argsString)
