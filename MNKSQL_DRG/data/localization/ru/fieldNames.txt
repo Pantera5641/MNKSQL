@@ -1,0 +1,8 @@
+id=id
+lastName=Фамилия
+firstName=Имя
+surname=Отчество
+yearOfBirth=Год Рождения
+yearOfAdmission=Год вступления
+course=Курс
+group=Группа

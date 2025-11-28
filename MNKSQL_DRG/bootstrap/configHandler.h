@@ -8,6 +8,6 @@
 #include "..\constants\paths.h"
 
 
-std::string getParam(const std::string& paramName);
+std::string getParam(const std::string& paramName, const std::string& path = CONFIG_PATH);
 
 void setParam(const std::string& paramName, const std::string& newParam);
