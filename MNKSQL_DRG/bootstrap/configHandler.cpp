@@ -1,10 +1,10 @@
 #include "configHandler.h"
 
 
-std::string getParam(const std::string& paramName)
+std::string getParam(const std::string& paramName, const std::string& path)
 {
     std::string line {};
-    std::fstream file(CONFIG_PATH, std::ios::in);
+    std::fstream file(path, std::ios::in);
 
     while (std::getline(file, line)) 
     {

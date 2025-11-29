@@ -33,6 +33,42 @@ std::string getFieldByIndex(Student student, int index)
     return std::string();
 }
 
+Student setFieldByIndex(Student student, const std::string& field, int index)
+{
+    switch (index) 
+    {
+        case 0:
+            student.lastName = field;
+            break;
+
+        case 1:
+            student.firstName = field;
+            break;
+
+        case 2:
+            student.surname = field;
+            break;
+
+        case 3:
+            student.yearOfBirth = std::stoi(field);
+            break;
+
+        case 4:
+            student.yearOfAdmission = std::stoi(field);
+            break;
+
+        case 5:
+            student.course = std::stoi(field);
+            break;
+
+        case 6:
+            student.group = field;
+            break;
+    }
+
+    return student;
+}
+
 std::vector<std::string> getColumn(int index)
 {
     std::vector<std::string> column {};

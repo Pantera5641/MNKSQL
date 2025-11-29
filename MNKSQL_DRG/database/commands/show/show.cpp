@@ -3,16 +3,17 @@
 
 void showTable()
 {
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/fieldNames.txt"};
     std::vector<std::string> zeroLine
     {
-        "id",
-        "lastName",
-        "firstName",
-        "surname",
-        "yearOfBirth",
-        "yearOfAdmission",
-        "course",
-        "group"
+        getParam("id", path),
+        getParam("lastName", path),
+        getParam("firstName", path),
+        getParam("surname", path),
+        getParam("yearOfBirth", path),
+        getParam("yearOfAdmission", path),
+        getParam("course", path),
+        getParam("group", path)
     };
 
     std::vector<int> maxElementSize {2};

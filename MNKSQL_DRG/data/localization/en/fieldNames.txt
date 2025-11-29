@@ -1,0 +1,8 @@
+id=id
+lastName=LastName
+firstName=FirstName
+surname=Surname
+yearOfBirth=Year Of Birth
+yearOfAdmission=Year Of Admission
+course=Course
+group=Group

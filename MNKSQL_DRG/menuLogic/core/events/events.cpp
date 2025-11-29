@@ -46,6 +46,13 @@ void addEvent()
     while (!inRange(tempString, 0, 7));
     student.course = std::stoi(tempString);
 
+    for (int i = 0; i < 3; i++)
+    {
+        std::string field {getFieldByIndex(student, i)};
+        toUpper(field.at(0));
+        student = setFieldByIndex(student, field, i);
+    }
+
     addStudent(student);
 
     std::cout << "Student added!" << std::endl;
@@ -78,19 +85,20 @@ void editEvent()
     
     student = studentsList.at(index - 1);
 
-    bool isLastNameContainDigits {};
-    bool isFirstNameContainDigits {};
-    bool isSurnameContainDigits {};
+    bool isFieldContainDigits {true};
     do
     {   
         std::cout << "Enter new lastname, firstname and surname: (0 - to skip)" << std::endl;
         std::cin >> newStudent.lastName >> newStudent.firstName >> newStudent.surname;
+        isFieldContainDigits = true;
 
-        isLastNameContainDigits = isContainDigits(newStudent.lastName) || newStudent.lastName == "0";
-        isFirstNameContainDigits = isContainDigits(newStudent.firstName) || newStudent.firstName == "0";
-        isSurnameContainDigits = isContainDigits(newStudent.surname) || newStudent.surname == "0";
+        for (int i = 0; i < 3; i++)
+        {
+            std::string field {getFieldByIndex(newStudent, i)};
+            isFieldContainDigits *= isContainDigits(field) || field == "0";
+        }
     }
-    while (!(isLastNameContainDigits && isFirstNameContainDigits && isSurnameContainDigits));
+    while (!(isFieldContainDigits));
 
     clear();
 
@@ -122,13 +130,20 @@ void editEvent()
     while (!(tempString == "0" || inRange(tempString, 0, 7)));
     newStudent.course = std::stoi(tempString);
 
-    student.lastName = newStudent.lastName == "0" ? student.lastName : newStudent.lastName;
-    student.firstName = newStudent.firstName == "0" ? student.firstName : newStudent.firstName;
-    student.surname = newStudent.surname == "0" ? student.surname : newStudent.surname;
-    student.yearOfBirth = newStudent.yearOfBirth == 0 ? student.yearOfBirth : newStudent.yearOfBirth;
-    student.yearOfAdmission = newStudent.yearOfAdmission == 0 ? student.yearOfAdmission : newStudent.yearOfAdmission;
-    student.course = newStudent.course == 0 ? student.course : newStudent.course;
-    student.group = newStudent.group == "0" ? student.group : newStudent.group;
+    for (int i = 0; i < 7; i++)
+    {   
+        std::string newStudentField {getFieldByIndex(newStudent, i)};
+
+        if (newStudentField != "0")
+            student = setFieldByIndex(student, newStudentField, i);
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        std::string field {getFieldByIndex(student, i)};
+        toUpper(field.at(0));
+        student = setFieldByIndex(student, field, i);
+    }
 
     studentsList.at(index - 1) = student;
 
@@ -151,7 +166,7 @@ void removeEvent()
         std::cout << "Enter index of line to remove: (0 - to exit)" << std::endl;
         std::cin >> tempString;
     }
-    while (isDigit(tempString) && inRange(std::stoi(tempString), -1, studentsList.size() + 1));
+    while (!inRange(tempString, -1, studentsList.size() + 1));
     index = std::stoi(tempString);
 
     if (index == 0) return;
