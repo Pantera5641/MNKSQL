@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "menuType.h"
-#include "../constants/paths.h"
+#include "..\MNKSQL_DRG\constants\paths.h"
 
 extern std::string globalLanguage;
 

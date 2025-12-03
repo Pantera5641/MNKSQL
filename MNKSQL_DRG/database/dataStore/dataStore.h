@@ -14,7 +14,8 @@ struct Student
     std::string group {};
 };
 
-#include "utils/helper.h"
+#include "../helper/helper.h"
+
 extern std::vector<Student> studentsList;
 
 
