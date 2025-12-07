@@ -3,7 +3,7 @@
 
 void showTable()
 {
-    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/fieldNames.txt"};
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/showCommand.txt"};
     std::vector<std::string> zeroLine
     {
         getParam("id", path),

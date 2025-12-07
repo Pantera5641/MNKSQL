@@ -1,0 +1,4 @@
+enterLogin=Введите логин: 
+enterPassword=Введите пароль: 
+loginSuccess=Вход выполнен успешно!
+loginFailed=Неверный логин или пароль!

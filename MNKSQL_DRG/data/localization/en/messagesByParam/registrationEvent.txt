@@ -1,0 +1,9 @@
+enterEmail=Enter your email: 
+emailExists=User with this email already exists! Registration cancelled.
+enterUsername=Enter your Username: 
+enterOtp=Enter the one-time code sent to your email: 
+invalidOtp=Invalid code! Registration cancelled.
+enterPassword=Enter your password: 
+repeatPassword=Repeat your password: 
+passwordsMismatch=Passwords do not match! Registration cancelled.
+registrationSuccess=Registration completed successfully!

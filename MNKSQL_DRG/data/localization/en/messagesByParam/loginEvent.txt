@@ -1,0 +1,4 @@
+enterLogin=Enter login: 
+enterPassword=Enter password: 
+loginSuccess=Login successful!
+loginFailed=Invalid login or password!

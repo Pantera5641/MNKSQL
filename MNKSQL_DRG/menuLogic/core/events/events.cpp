@@ -301,7 +301,9 @@ void registrationEvent()
     srand(time(NULL));
     std::string code {std::to_string(rand() % (9999 - 1111 + 1) + 1111)};
 
-    std::cout << "Enter your email: ";
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/registrationEvent.txt"};
+
+    std::cout << getParam("enterEmail", path);
     std::cin >> email;
 
     std::fstream file(USERS_PATH, std::ios::in);
@@ -310,44 +312,44 @@ void registrationEvent()
     {
         if (strip(str, ',').at(1) == email) 
         {
-            std::cout << "User with this email already exist! Registration cancelled." << std::endl;
+            std::cout << getParam("emailExists", path) << std::endl;
             await();
             return;
         }
     }
     file.close();
 
-    std::cout << "Enter your UserName: ";
+    std::cout << getParam("enterUsername", path);
     std::cin >> userName;
 
     sendEmailAsync(userName, email, code);
 
-    std::cout << "Enter the one-time code sent to your email: ";
+    std::cout << getParam("enterOtp", path);
     std::cin >> userCode;
 
     if (code != userCode) 
     {
-        std::cout << "Invalid code! Registration cancelled." << std::endl;
+        std::cout << getParam("invalidOtp", path) << std::endl;
         await();
         return;
     }
 
-    std::cout << "Enter your password: ";
+    std::cout << getParam("enterPassword", path);
     std::cin >> password1;
 
-    std::cout << "Repeat your password: ";
+    std::cout << getParam("repeatPassword", path);
     std::cin >> password2;
 
     if (password1 != password2) 
     {
-        std::cout << "Passwords do not match! Registration cancelled." << std::endl;
+        std::cout << getParam("passwordsMismatch", path) << std::endl;
         await();
         return;
     }
 
     file.open(USERS_PATH, std::ios::out | std::ios::app);
     file << userName << ',' << email << ',' << password1 << '\n';
-    std::cout << "Registration completed successfully!" << std::endl;
+    std::cout << getParam("registrationSuccess", path) << std::endl;
 
     await();
 }
@@ -356,12 +358,13 @@ MenuType loginEvent()
 {
     clear();
 
-    std::string login, password;
+    std::string login {}, password {};
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/loginEvent.txt"};
 
-    std::cout << "Enter login: ";
+    std::cout << getParam("enterLogin", path);
     std::cin >> login;
 
-    std::cout << "Enter password: ";
+    std::cout << getParam("enterPassword", path);
     std::cin >> password;
 
     std::fstream file(USERS_PATH, std::ios::in);
@@ -378,12 +381,12 @@ MenuType loginEvent()
 
     if (flag == true) 
     {
-        std::cout << "Login successful!" << std::endl;
+        std::cout << getParam("loginSuccess", path) << std::endl;
         await();
         return MenuType::Admin;
     } 
 
-    std::cout << "Invalid login or password!" << std::endl;
+    std::cout << getParam("loginFailed", path) << std::endl;
     await();
     return MenuType::Main;
 }
