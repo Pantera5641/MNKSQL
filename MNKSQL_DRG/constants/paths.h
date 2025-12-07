@@ -4,6 +4,8 @@
 
 inline std::string CONFIG_PATH {"MNKSQL_DRG/config.txt"};
 
+inline std::string USERS_PATH {"MNKSQL_DRG/users.txt"};
+
 inline std::string LOGO_PATH_DRG {"MNKSQL_DRG/data/logo.txt"};
 
 inline std::string TO_TABLE_PATH {"MNKSQL_DRG/tables/"};

@@ -9,10 +9,11 @@ MenuType executeMainMenu(int num)
             return MenuType::User;
 
         case 2:
-            return MenuType::Admin;
+            return loginEvent();
 
         case 3:
-            return MenuType::Admin;
+            registrationEvent();
+            return MenuType::Main;
 
         case 4:
             return MenuType::Language;

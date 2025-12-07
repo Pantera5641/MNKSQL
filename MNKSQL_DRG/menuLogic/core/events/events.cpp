@@ -291,3 +291,99 @@ void convertBinToTxtEvent()
 
     await();
 }
+
+void registrationEvent()
+{
+    clear();
+
+    std::string email {}, userCode {}, userName {}, password1 {}, password2 {};
+
+    srand(time(NULL));
+    std::string code {std::to_string(rand() % (9999 - 1111 + 1) + 1111)};
+
+    std::cout << "Enter your email: ";
+    std::cin >> email;
+
+    std::fstream file(USERS_PATH, std::ios::in);
+    std::string str {};
+    while (std::getline(file, str)) 
+    {
+        if (strip(str, ',').at(1) == email) 
+        {
+            std::cout << "User with this email already exist! Registration cancelled." << std::endl;
+            await();
+            return;
+        }
+    }
+    file.close();
+
+    std::cout << "Enter your UserName: ";
+    std::cin >> userName;
+
+    sendEmailAsync(userName, email, code);
+
+    std::cout << "Enter the one-time code sent to your email: ";
+    std::cin >> userCode;
+
+    if (code != userCode) 
+    {
+        std::cout << "Invalid code! Registration cancelled." << std::endl;
+        await();
+        return;
+    }
+
+    std::cout << "Enter your password: ";
+    std::cin >> password1;
+
+    std::cout << "Repeat your password: ";
+    std::cin >> password2;
+
+    if (password1 != password2) 
+    {
+        std::cout << "Passwords do not match! Registration cancelled." << std::endl;
+        await();
+        return;
+    }
+
+    file.open(USERS_PATH, std::ios::out | std::ios::app);
+    file << userName << ',' << email << ',' << password1 << '\n';
+    std::cout << "Registration completed successfully!" << std::endl;
+
+    await();
+}
+
+MenuType loginEvent()
+{
+    clear();
+
+    std::string login, password;
+
+    std::cout << "Enter login: ";
+    std::cin >> login;
+
+    std::cout << "Enter password: ";
+    std::cin >> password;
+
+    std::fstream file(USERS_PATH, std::ios::in);
+    std::string str {};
+    bool flag {};
+    while (std::getline(file, str)) 
+    {
+        std::vector<std::string> userData {strip(str, ',')};
+        if (userData.at(0) == login && userData.at(2) == password) 
+        {
+            flag = true;
+        }
+    }
+
+    if (flag == true) 
+    {
+        std::cout << "Login successful!" << std::endl;
+        await();
+        return MenuType::Admin;
+    } 
+
+    std::cout << "Invalid login or password!" << std::endl;
+    await();
+    return MenuType::Main;
+}

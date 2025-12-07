@@ -5,6 +5,7 @@
 #include "commands/file/file.h"
 #include "console.h"
 #include "checkers.h"
+#include "emailSender.h"
 
 
 extern std::vector<Student> studentsList;
@@ -35,3 +36,7 @@ void loadBinEvent();
 void convertTxtToBinEvent();
 
 void convertBinToTxtEvent();
+
+void registrationEvent();
+
+MenuType loginEvent();
