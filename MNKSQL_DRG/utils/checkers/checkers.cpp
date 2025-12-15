@@ -33,7 +33,7 @@ bool isContainDigits(const std::string& str)
 
 bool inRange(int num, int leftBorder, int rightBorder)
 {
-    return leftBorder < num && num < rightBorder;
+    return leftBorder <= num && num < rightBorder;
 }
 
 bool inRange(const std::string& numStr, int leftBorder, int rightBorder)
