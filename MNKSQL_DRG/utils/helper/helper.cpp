@@ -107,3 +107,23 @@ void toUpper(char& ch)
 {
     ch-=32;
 }
+
+int getMaxValue(const std::vector<int>& nums)
+{
+    int maxValue {};
+
+    for (int i = 0; i < nums.size(); i++) 
+        maxValue = nums.at(i) > maxValue ? nums.at(i) : maxValue;
+
+    return maxValue;
+}
+
+int getMaxLength(const std::vector<std::string>& items)
+{
+    std::vector<int> lengths {};
+
+    for (int i = 0; i < items.size(); i++) 
+        lengths.push_back(items.at(i).size());
+
+    return getMaxValue(lengths);
+}

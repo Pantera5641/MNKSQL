@@ -23,11 +23,7 @@ void showTable()
         std::vector<std::string> column {getColumn(i - 1)};
         column.push_back(zeroLine.at(i));
 
-        auto item = std::max_element(column.begin(), column.end(),
-        [](const std::string& a, const std::string& b)
-        {return a.size() < b.size();});
-
-        int maxLength = item->size();
+        int maxLength = getMaxLength(column);
 
         maxElementSize.push_back(maxLength);
     }

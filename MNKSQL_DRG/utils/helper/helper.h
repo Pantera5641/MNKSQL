@@ -24,3 +24,7 @@ std::string connect(const std::vector<std::string>& vector, char item);
 std::vector<int> changeValuesOn(const std::vector<int>& nums, int on);
 
 void toUpper(char& ch);
+
+int getMaxValue(const std::vector<int>& nums);
+
+int getMaxLength(const std::vector<std::string>& items);
