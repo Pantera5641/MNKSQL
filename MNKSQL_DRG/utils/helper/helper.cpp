@@ -103,11 +103,6 @@ std::vector<int> changeValuesOn(const std::vector<int>& nums, int on)
     return newNums;
 }
 
-void toUpper(char& ch)
-{
-    ch-=32;
-}
-
 int getMaxValue(const std::vector<int>& nums)
 {
     int maxValue {};
