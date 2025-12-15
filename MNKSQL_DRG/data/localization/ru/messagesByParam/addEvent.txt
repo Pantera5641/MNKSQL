@@ -1,0 +1,9 @@
+enterFullName=Введите фамилию, имя и отчество:
+errorNameDigits=Ошибка: ФИО не должно содержать цифры
+enterYearOfBirth=Введите год рождения:
+errorYearOfBirth=Ошибка: некорректный год рождения
+enterYearOfAdmission=Введите год поступления:
+errorYearOfAdmission=Ошибка: некорректный год поступления
+enterCourseGroup=Введите курс и группу:
+errorCourseRange=Ошибка: курс должен быть в диапазоне от 0 до 6
+studentAdded=Студент добавлен!

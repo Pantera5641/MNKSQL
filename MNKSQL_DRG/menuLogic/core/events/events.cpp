@@ -12,50 +12,70 @@ void addEvent()
 {
     clear();
 
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/addEvent.txt"};
+
     Student student {};
     std::string tempString {};
-    
+    bool flag {};
+
     do
     {
-        std::cout << "Enter lastname, firstname and surname:" << std::endl;
+        std::cout << getParam("enterFullName", path) << std::endl;
         std::cin >> student.lastName >> student.firstName >> student.surname;
-    }
-    while (!isContainDigits(student.lastName + student.firstName + student.surname));
 
-    do 
-    {
-        std::cout << "Enter yearOfBirth:" << std::endl;
-        std::cin >> tempString;
+        flag = !isContainDigits(student.lastName + student.firstName + student.surname);
+        if (flag)
+        {
+            std::cout << getParam("errorNameDigits", path) << std::endl;
+        }
     }
-    while (!inRange(tempString, 1900, 2026));
+    while (flag);
+
+    do
+    {
+        std::cout << getParam("enterYearOfBirth", path) << std::endl;
+        std::cin >> tempString;
+
+        flag = !inRange(tempString, 1900, 2026);
+        if (flag)
+        {
+            std::cout << getParam("errorYearOfBirth", path) << std::endl;
+        }
+    }
+    while (flag);
     student.yearOfBirth = std::stoi(tempString);
 
-    do 
+    do
     {
-        std::cout << "Enter yearOfAdmission:" << std::endl;
+        std::cout << getParam("enterYearOfAdmission", path) << std::endl;
         std::cin >> tempString;
+
+        flag = !inRange(tempString, 2000, 2026);
+        if (flag)
+        {
+            std::cout << getParam("errorYearOfAdmission", path) << std::endl;
+        }
     }
-    while (!inRange(tempString, 2000, 2026));
+    while (flag);
     student.yearOfAdmission = std::stoi(tempString);
 
-    do 
+    do
     {
-        std::cout << "Enter course and group" << std::endl;
+        std::cout << getParam("enterCourseGroup", path) << std::endl;
         std::cin >> tempString >> student.group;
-    }
-    while (!inRange(tempString, 0, 7));
-    student.course = std::stoi(tempString);
 
-    for (int i = 0; i < 3; i++)
-    {
-        std::string field {getFieldByIndex(student, i)};
-        toUpper(field.at(0));
-        student = setFieldByIndex(student, field, i);
+        flag = !inRange(tempString, 0, 7);
+        if (flag)
+        {
+            std::cout << getParam("errorCourseRange", path) << std::endl;
+        }
     }
+    while (flag);
+    student.course = std::stoi(tempString);
 
     addStudent(student);
 
-    std::cout << "Student added!" << std::endl;
+    std::cout << getParam("studentAdded", path) << std::endl;
 
     await();
 }
@@ -67,94 +87,162 @@ void editEvent()
     int index {};
     std::string tempString {};
     Student student {};
-    Student newStudent {};
+    bool isEditing { true };
+    bool flag {};
 
     showTable();
 
-    do 
+    do
     {
-        std::cout << "Enter index of line to edit: (0 - to exit)" << std::endl;
+        std::cout << "Enter index of line to edit (0 - exit):" << std::endl;
         std::cin >> tempString;
     }
-    while (!inRange(tempString, -1, studentsList.size() + 1));
-    index = std::stoi(tempString);
+    while (!inRange(tempString, 0, studentsList.size() + 1));
 
+    index = std::stoi(tempString);
     if (index == 0) return;
 
-    clear();
-    
     student = studentsList.at(index - 1);
 
-    bool isFieldContainDigits {true};
-    do
-    {   
-        std::cout << "Enter new lastname, firstname and surname: (0 - to skip)" << std::endl;
-        std::cin >> newStudent.lastName >> newStudent.firstName >> newStudent.surname;
-        isFieldContainDigits = true;
 
-        for (int i = 0; i < 3; i++)
+
+    while (isEditing)
+    {
+        clear();
+
+        do 
         {
-            std::string field {getFieldByIndex(newStudent, i)};
-            isFieldContainDigits *= isContainDigits(field) || field == "0";
+            std::cout << "Editing student:" << std::endl;
+            std::cout << connect(getLine(index - 1), ',') << std::endl;
+
+            std::cout << std::endl;
+            std::cout << "1 - Edit lastname / firstname / surname" << std::endl;
+            std::cout << "2 - Edit year of birth" << std::endl;
+            std::cout << "3 - Edit year of admission" << std::endl;
+            std::cout << "4 - Edit course" << std::endl;
+            std::cout << "5 - Edit group" << std::endl;
+            std::cout << "0 - Save and exit" << std::endl;
+
+            std::cin >> tempString;
+            clear();
         }
+        while (!inRange(tempString, 0, 5));
+
+
+        switch (std::stoi(tempString))
+        {
+            case 1:
+            {
+                std::string tempLastName {};
+                std::string tempFirstName {};
+                std::string tempSurname {};
+
+                do
+                {
+                    std::cout << "Enter new lastname, firstname and surname:" << std::endl;
+                    std::cin >> tempLastName >> tempFirstName >> tempSurname;
+
+                    flag = !isContainDigits(tempLastName + tempFirstName + tempSurname);
+                    if (flag)
+                    {
+                        std::cout << "Error: names must not contain digits" << std::endl;
+                    }
+                }
+                while (flag);
+
+                student.lastName = tempLastName;
+                student.firstName = tempFirstName;
+                student.surname = tempSurname;
+
+                break;
+            }
+
+            case 2:
+            {
+                do
+                {
+                    std::cout << "Enter new yearOfBirth:" << std::endl;
+                    std::cin >> tempString;
+
+                    flag = !inRange(tempString, 1900, 2026);
+                    if (flag)
+                    {
+                        std::cout << "Error: invalid year" << std::endl;
+                    }
+                }
+                while (flag);
+
+                student.yearOfBirth = std::stoi(tempString);
+                break;
+            }
+
+            case 3:
+            {
+                do
+                {
+                    std::cout << "Enter new yearOfAdmission:" << std::endl;
+                    std::cin >> tempString;
+
+                    flag = !inRange(tempString, 2000, 2026);
+                    if (flag)
+                    {
+                        std::cout << "Error: invalid year" << std::endl;
+                    }
+                }
+                while (flag);
+
+                student.yearOfAdmission = std::stoi(tempString);
+                break;
+            }
+
+            case 4:
+            {
+                do
+                {
+                    std::cout << "Enter new course:" << std::endl;
+                    std::cin >> tempString;
+
+                    flag = !inRange(tempString, 0, 7);
+                    if (flag)
+                    {
+                        std::cout << "Error: course must be between 0 and 6" << std::endl;
+                    }
+                }
+                while (flag);
+
+                student.course = std::stoi(tempString);
+                break;
+            }
+
+            case 5:
+            {
+
+                std::cout << "Enter new group:" << std::endl;
+                std::cin >> tempString >> student.group;
+            
+                student.group = tempString;
+                break;
+            }
+
+            case 0:
+            {
+                isEditing = false;
+                break;
+            }
+        }
+
+        studentsList.at(index - 1) = student;
     }
-    while (!(isFieldContainDigits));
-
-    clear();
-
-    do 
-    {
-        std::cout << "Enter new yearOfBirth: (0 - to skip)" << std::endl;
-        std::cin >> tempString;
-    }
-    while (!(tempString == "0" || inRange(tempString, 1900, 2026)));
-    newStudent.yearOfBirth = std::stoi(tempString);
-
-    clear();
-
-    do 
-    {
-        std::cout << "Enter new yearOfAdmission: (0 - to skip)" << std::endl;
-        std::cin >> tempString;
-    }
-    while (!(tempString == "0" || inRange(tempString, 2000, 2026)));
-    newStudent.yearOfAdmission = std::stoi(tempString);
-
-    clear();
-    
-    do 
-    {
-        std::cout << "Enter new course and group (0 - to skip)" << std::endl;
-        std::cin >> tempString >> newStudent.group;
-    }
-    while (!(tempString == "0" || inRange(tempString, 0, 7)));
-    newStudent.course = std::stoi(tempString);
-
-    for (int i = 0; i < 7; i++)
-    {   
-        std::string newStudentField {getFieldByIndex(newStudent, i)};
-
-        if (newStudentField != "0")
-            student = setFieldByIndex(student, newStudentField, i);
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
-        std::string field {getFieldByIndex(student, i)};
-        toUpper(field.at(0));
-        student = setFieldByIndex(student, field, i);
-    }
-
-    studentsList.at(index - 1) = student;
 
     std::cout << "Student edited!" << std::endl;
-
     await();
 }
 
 void removeEvent()
 {
     clear();
+
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/removeEvent.txt"};
 
     int index {};
     std::string tempString {};
@@ -163,17 +251,17 @@ void removeEvent()
 
     do 
     {
-        std::cout << "Enter index of line to remove: (0 - to exit)" << std::endl;
+        std::cout << getParam("enterRemoveIndex", path) << std::endl;
         std::cin >> tempString;
     }
-    while (!inRange(tempString, -1, studentsList.size() + 1));
+    while (!inRange(tempString, 0, studentsList.size() + 1));
     index = std::stoi(tempString);
 
     if (index == 0) return;
 
     removeStudent(index - 1);
 
-    std::cout << "Line removed" << std::endl;
+    std::cout << getParam("lineRemoved", path) << std::endl;
 
     await();
 }

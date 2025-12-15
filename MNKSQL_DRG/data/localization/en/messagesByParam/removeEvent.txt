@@ -1,0 +1,2 @@
+enterRemoveIndex=Enter the index of the line to remove (0 to exit):
+lineRemoved=The line has been removed.
