@@ -10,6 +10,7 @@ MenuType executeSaveMenu(int num)
             return MenuType::Save;
 
         case 2:
+            saveBinEvent();
             return MenuType::Save;
 
         case 0:
