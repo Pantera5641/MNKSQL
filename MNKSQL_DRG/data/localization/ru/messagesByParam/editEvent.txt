@@ -1,0 +1,21 @@
+studentEditMenuTitle=МЕНЮ РЕДАКТИРОВАНИЯ СТУДЕНТА
+editingStudent=Редактирование студента:
+editOptionLastName=(1) Редактировать фамилию / имя / отчество
+editOptionYearOfBirth=(2) Редактировать год рождения
+editOptionYearOfAdmission=(3) Редактировать год поступления
+editOptionCourse=(4) Редактировать курс
+editOptionGroup=(5) Редактировать группу
+editOptionExit=(0) Выйти
+
+
+enterEditIndex=Введите номер строки для редактирования (0 — выход):
+enterFullName=Введите новую фамилию, имя и отчество:
+errorNameDigits=Ошибка: ФИО не должно содержать цифры или спецсимволы
+enterYearOfBirth=Введите новый год рождения:
+enterYearOfAdmission=Введите новый год поступления:
+invalidYear=Ошибка: некорректный год
+enterCourse=Введите новый курс:
+errorCourseRange=Ошибка: курс должен быть в диапазоне от 0 до 6
+enterGroup=Введите новую группу:
+errorGroupChars=Ошибка: группа содержит недопустимые символы
+studentEdited=Студент успешно отредактирован!

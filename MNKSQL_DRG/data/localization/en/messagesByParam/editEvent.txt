@@ -1,0 +1,21 @@
+studentEditMenuTitle=STUDENT EDIT MENU
+editingStudent=Editing student:
+editOptionLastName=(1) Edit last name / first name / patronymic
+editOptionYearOfBirth=(2) Edit year of birth
+editOptionYearOfAdmission=(3) Edit year of admission
+editOptionCourse=(4) Edit course
+editOptionGroup=(5) Edit group
+editOptionExit=(0) Exit
+
+
+enterEditIndex=Enter the index of the line to edit (0 to exit):
+enterFullName=Enter new last name, first name, and patronymic:
+errorNameDigits=Error: names must not contain digits or special characters
+enterYearOfBirth=Enter new year of birth:
+enterYearOfAdmission=Enter new year of admission:
+invalidYear=Error: invalid year
+enterCourse=Enter new course:
+errorCourseRange=Error: course must be between 0 and 6
+enterGroup=Enter new group:
+errorGroupChars=Error: group contains invalid characters
+studentEdited=Student successfully edited!

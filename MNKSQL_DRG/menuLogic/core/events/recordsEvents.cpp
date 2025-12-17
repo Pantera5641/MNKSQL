@@ -110,10 +110,11 @@ void loadKeyboardEvent()
     }
 }
 
-//-
 void editEvent()
 {
     clear();
+
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/editEvent.txt"};
 
     int index {};
     std::string tempString {};
@@ -125,7 +126,7 @@ void editEvent()
 
     do
     {
-        std::cout << "Enter index of line to edit (0 - exit):" << std::endl;
+        std::cout << getParam("enterEditIndex", path) << std::endl;
         std::cin >> tempString;
     }
     while (!inRange(tempString, 0, studentsList.size() + 1));
@@ -143,16 +144,20 @@ void editEvent()
 
         do 
         {
-            std::cout << "Editing student:" << std::endl;
-            std::cout << connect(getLine(index - 1), ',') << std::endl;
-
-            std::cout << std::endl;
-            std::cout << "1 - Edit lastname / firstname / surname" << std::endl;
-            std::cout << "2 - Edit year of birth" << std::endl;
-            std::cout << "3 - Edit year of admission" << std::endl;
-            std::cout << "4 - Edit course" << std::endl;
-            std::cout << "5 - Edit group" << std::endl;
-            std::cout << "0 - Save and exit" << std::endl;
+            std::vector<std::string> fields
+            {
+                getParam("editingStudent", path),
+                connect(getLine(index - 1), ','),
+                std::string(),
+                getParam("editOptionLastName", path),
+                getParam("editOptionYearOfBirth", path),
+                getParam("editOptionYearOfAdmission", path),
+                getParam("editOptionCourse", path),
+                getParam("editOptionGroup", path),
+                getParam("editOptionExit", path)
+            };
+            show(LOGO_PATH_DRG, "\033[0;31m");
+            showMenu(getParam("studentEditMenuTitle", path), fields);
 
             std::cin >> tempString;
             clear();
@@ -170,14 +175,14 @@ void editEvent()
 
                 do
                 {
-                    std::cout << "Enter new lastname, firstname and surname:" << std::endl;
+                    std::cout << getParam("enterFullName", path) << std::endl;
                     std::cin >> tempLastName >> tempFirstName >> tempSurname;
 
                     flag = !(isContainDigits(tempLastName + tempFirstName + tempSurname) 
                     && isContainSpecialSigns(tempLastName + tempFirstName + tempSurname));
                     if (flag)
                     {
-                        std::cout << "Error: names must not contain digits" << std::endl;
+                        std::cout << getParam("errorNameDigits", path) << std::endl;
                     }
                 }
                 while (flag);
@@ -193,13 +198,13 @@ void editEvent()
             {
                 do
                 {
-                    std::cout << "Enter new yearOfBirth:" << std::endl;
+                    std::cout << getParam("enterYearOfBirth", path) << std::endl;
                     std::cin >> tempString;
 
                     flag = !inRange(tempString, 1900, 2026);
                     if (flag)
                     {
-                        std::cout << "Error: invalid year" << std::endl;
+                        std::cout << getParam("invalidYear", path) << std::endl;
                     }
                 }
                 while (flag);
@@ -212,13 +217,13 @@ void editEvent()
             {
                 do
                 {
-                    std::cout << "Enter new yearOfAdmission:" << std::endl;
+                    std::cout << getParam("enterYearOfAdmission", path) << std::endl;
                     std::cin >> tempString;
 
                     flag = !inRange(tempString, 2000, 2026);
                     if (flag)
                     {
-                        std::cout << "Error: invalid year" << std::endl;
+                        std::cout << getParam("invalidYear", path) << std::endl;
                     }
                 }
                 while (flag);
@@ -231,13 +236,13 @@ void editEvent()
             {
                 do
                 {
-                    std::cout << "Enter new course:" << std::endl;
+                    std::cout << getParam("enterCourse", path) << std::endl;
                     std::cin >> tempString;
 
                     flag = !inRange(tempString, 0, 7);
                     if (flag)
                     {
-                        std::cout << "Error: course must be between 0 and 6" << std::endl;
+                        std::cout << getParam("errorCourseRange", path) << std::endl;
                     }
                 }
                 while (flag);
@@ -250,13 +255,13 @@ void editEvent()
             {
                 do
                 {
-                    std::cout << "Enter new group:" << std::endl;
+                    std::cout << getParam("enterGroup", path) << std::endl;
                     std::cin >> tempString;
 
                     flag = !isContainSpecialSigns(tempString);
                     if (flag)
                     {
-                        std::cout << "Error: group contains invalid characters " << std::endl;
+                        std::cout << getParam("errorGroupChars", path) << std::endl;
                     }
                 }
                 while (flag);
@@ -275,7 +280,7 @@ void editEvent()
         studentsList.at(index - 1) = student;
     }
 
-    std::cout << "Student edited!" << std::endl;
+    std::cout << getParam("studentEdited", path) << std::endl;
     await();
 }
 
