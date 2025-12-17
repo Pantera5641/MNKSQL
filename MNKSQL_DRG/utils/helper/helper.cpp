@@ -123,13 +123,13 @@ int getMaxLength(const std::vector<std::string>& items)
     return getMaxValue(lengths);
 }
 
-int utf8Length(const std::string& s)
+int utf8Length(const std::string& str)
 {
     int count {};
 
-    for (int i = 0; i < s.size(); i++) 
+    for (int i = 0; i < str.size(); i++) 
     {
-        unsigned char ch = static_cast<unsigned char>(s[i]);
+        unsigned char ch = static_cast<unsigned char>(str[i]);
         if ((ch & 0b11000000) != 0b11000000) 
             count++;
     }
