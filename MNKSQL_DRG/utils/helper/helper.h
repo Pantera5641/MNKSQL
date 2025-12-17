@@ -27,4 +27,4 @@ int getMaxValue(const std::vector<int>& nums);
 
 int getMaxLength(const std::vector<std::string>& items);
 
-int utf8Length(const std::string& s);
+int utf8Length(const std::string& str);
