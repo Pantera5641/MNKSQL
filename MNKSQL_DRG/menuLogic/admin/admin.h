@@ -1,5 +1,5 @@
 #pragma once
 #include "menuType.h"
-#include "events.h"
+#include "recordsEvents.h"
 
 MenuType executeAdminMenu(int num);

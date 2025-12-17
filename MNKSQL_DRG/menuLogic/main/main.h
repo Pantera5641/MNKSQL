@@ -1,6 +1,6 @@
 #pragma once
 #include "menuType.h"
-#include "events.h"
+#include "logEvents.h"
 
 
 MenuType executeMainMenu(int num);
