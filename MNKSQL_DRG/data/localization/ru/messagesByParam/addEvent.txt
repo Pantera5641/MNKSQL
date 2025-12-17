@@ -1,5 +1,5 @@
 enterFullName=Введите фамилию, имя и отчество:
-errorNameDigits=Ошибка: ФИО не должно содержать цифры
+errorNameDigits=Ошибка: ФИО не должно содержать цифры или специальные символы
 enterYearOfBirth=Введите год рождения:
 errorYearOfBirth=Ошибка: некорректный год рождения
 enterYearOfAdmission=Введите год поступления:

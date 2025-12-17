@@ -30,6 +30,21 @@ bool isContainDigits(const std::string& str)
     return true;
 }
 
+bool isContainSpecialSigns(const std::string& str)
+{
+    std::string signs {".,<>/?|;:"};
+
+    for (int i = 0; i < signs.size(); i++) 
+    {
+        for (int j = 0; j < str.size(); j++)
+        {
+            if (signs.at(i) == str.at(j)) return false;
+        }
+    }
+
+    return true;
+}
+
 bool inRange(int num, int leftBorder, int rightBorder)
 {
     return leftBorder <= num && num < rightBorder;

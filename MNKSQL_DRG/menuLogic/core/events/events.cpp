@@ -23,7 +23,9 @@ void addEvent()
         std::cout << getParam("enterFullName", path) << std::endl;
         std::cin >> student.lastName >> student.firstName >> student.surname;
 
-        flag = !isContainDigits(student.lastName + student.firstName + student.surname);
+        flag = !(isContainDigits(student.lastName + student.firstName + student.surname) 
+        && isContainSpecialSigns(student.lastName + student.firstName + student.surname));
+
         if (flag)
         {
             std::cout << getParam("errorNameDigits", path) << std::endl;
@@ -64,7 +66,8 @@ void addEvent()
         std::cout << getParam("enterCourseGroup", path) << std::endl;
         std::cin >> tempString >> student.group;
 
-        flag = !inRange(tempString, 0, 7);
+        flag = !(inRange(tempString, 0, 7) 
+        && isContainSpecialSigns(student.group));
         if (flag)
         {
             std::cout << getParam("errorCourseRange", path) << std::endl;
@@ -80,6 +83,7 @@ void addEvent()
     await();
 }
 
+//-
 void editEvent()
 {
     clear();
@@ -126,7 +130,7 @@ void editEvent()
             std::cin >> tempString;
             clear();
         }
-        while (!inRange(tempString, 0, 5));
+        while (!inRange(tempString, 0, 6));
 
 
         switch (std::stoi(tempString))
@@ -142,7 +146,8 @@ void editEvent()
                     std::cout << "Enter new lastname, firstname and surname:" << std::endl;
                     std::cin >> tempLastName >> tempFirstName >> tempSurname;
 
-                    flag = !isContainDigits(tempLastName + tempFirstName + tempSurname);
+                    flag = !(isContainDigits(tempLastName + tempFirstName + tempSurname) 
+                    && isContainSpecialSigns(tempLastName + tempFirstName + tempSurname));
                     if (flag)
                     {
                         std::cout << "Error: names must not contain digits" << std::endl;
@@ -216,10 +221,19 @@ void editEvent()
 
             case 5:
             {
+                do
+                {
+                    std::cout << "Enter new group:" << std::endl;
+                    std::cin >> tempString;
 
-                std::cout << "Enter new group:" << std::endl;
-                std::cin >> tempString >> student.group;
-            
+                    flag = !isContainSpecialSigns(tempString);
+                    if (flag)
+                    {
+                        std::cout << "Error: group contains invalid characters " << std::endl;
+                    }
+                }
+                while (flag);
+
                 student.group = tempString;
                 break;
             }
@@ -276,6 +290,7 @@ void queryEvent()
     await();
 }
 
+//-
 void sortEvent()
 {
     clear();
@@ -319,6 +334,7 @@ void sortEvent()
     await(true);
 }
 
+//-
 void saveTxtEvent()
 {
     clear();
@@ -326,6 +342,7 @@ void saveTxtEvent()
     await();
 }
 
+//-
 void saveBinEvent()
 {
     clear();
@@ -360,6 +377,7 @@ void loadKeyboardEvent()
     }
 }
 
+//-
 void loadTxtEvent()
 {
     clear();
@@ -367,6 +385,7 @@ void loadTxtEvent()
     await();
 }
 
+//-
 void loadBinEvent()
 {
     clear();
@@ -374,6 +393,7 @@ void loadBinEvent()
     await();
 }
 
+//-
 void convertTxtToBinEvent()
 {
     clear();
@@ -387,6 +407,7 @@ void convertTxtToBinEvent()
     await();
 }
 
+//-
 void convertBinToTxtEvent()
 {
     clear();

@@ -1,5 +1,5 @@
 enterFullName=Enter last name, first name, and surname:
-errorNameDigits=Error: names must not contain any digits
+errorNameDigits=Error: names must not contain any digits or special signs
 enterYearOfBirth=Enter the year of birth:
 errorYearOfBirth=Error: invalid year of birth
 enterYearOfAdmission=Enter the year of admission:
