@@ -118,7 +118,21 @@ int getMaxLength(const std::vector<std::string>& items)
     std::vector<int> lengths {};
 
     for (int i = 0; i < items.size(); i++) 
-        lengths.push_back(items.at(i).size());
+        lengths.push_back(utf8Length(items.at(i)));
 
     return getMaxValue(lengths);
+}
+
+int utf8Length(const std::string& s)
+{
+    int count {};
+
+    for (int i = 0; i < s.size(); i++) 
+    {
+        unsigned char ch = static_cast<unsigned char>(s[i]);
+        if ((ch & 0b11000000) != 0b11000000) 
+            count++;
+    }
+
+    return count;
 }

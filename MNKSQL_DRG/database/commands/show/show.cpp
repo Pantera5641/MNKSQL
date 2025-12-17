@@ -61,7 +61,7 @@ void showTable()
 
         for (int j = 0; j < numOfColumn; j++)
         {
-            int itemSize = maxElementSize[j] - lines[j].size();
+            int itemSize = maxElementSize[j] - utf8Length(lines[j]);
             std::cout << "::" << ' ' << lines[j] << repeat(itemSize, ' ') << repeat(2, ' ');
         }
         std::cout << "::" << std::endl;
