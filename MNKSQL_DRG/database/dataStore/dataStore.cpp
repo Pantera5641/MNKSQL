@@ -81,10 +81,8 @@ std::vector<std::string> getColumn(int index)
     return column;
 }
 
-std::vector<std::string> getLine(int index)
+std::vector<std::string> getLine(Student student)
 {
-    Student student {studentsList.at(index)};
-
     std::vector<std::string> line {
         student.lastName, 
         student.firstName,
@@ -96,6 +94,11 @@ std::vector<std::string> getLine(int index)
     };
 
     return line;
+}
+
+std::vector<std::string> getLine(int index)
+{
+    return getLine(studentsList.at(index));
 }
 
 void addStudent(Student student)

@@ -25,6 +25,8 @@ Student setFieldByIndex(Student student, const std::string& field, int index);
 
 std::vector<std::string> getColumn(int index);
 
+std::vector<std::string> getLine(Student student);
+
 std::vector<std::string> getLine(int index);
 
 void addStudent(Student student);
