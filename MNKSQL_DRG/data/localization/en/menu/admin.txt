@@ -1,14 +1,11 @@
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::  ADMIN MENU  ::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:                            (1) View Data in Table                          :
-:                               (2) Load Data                                :
-:                              (3) Edit Record                               :
-:                             (4) Delete Record                              :
-:                              (5) Add Record                                :
-:                              (6) Query Data                                :
-:                              (7) Sort Data                                 :
-:                             (8) Convert file                               :
-:                               (9) Save Data                                :
-:                                 (0) Back                                   :
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ADMIN MENU
+(1) View Data in Table
+(2) Load Data
+(3) Edit Record
+(4) Delete Record
+(5) Add Record
+(6) Query Data
+(7) Sort Data
+(8) Convert file
+(9) Save Data
+(0) Back

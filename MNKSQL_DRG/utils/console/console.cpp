@@ -19,9 +19,84 @@ void show(const std::string& path, const std::string& color)
     std::cout << "\033[0m" << std::endl;
 }
 
-void showMenu(MenuType menuType)
+void showMenu(const std::string& title, const std::vector<std::string>& fields)
 {
-    show(TO_LOCALIZATION_PATH + globalLanguage + "/menu/" + nameOf(menuType) + ".txt");
+    const int width {78};
+    int repeatCount {};
+
+    std::cout << repeat(width, ':') << std::endl;
+
+    repeatCount = (width - utf8Length(title) - 4) / 2;
+    if ((utf8Length(title)) % 2 == 0) 
+    {
+        std::cout 
+        << repeat(repeatCount, ':') 
+        << repeat(2, ' ')
+        << title
+        << repeat(2, ' ')
+        << repeat(repeatCount, ':') << std::endl;
+    }
+    else 
+    {
+        std::cout 
+        << repeat(repeatCount, ':') 
+        << repeat(2, ' ')
+        << title
+        << repeat(3, ' ')
+        << repeat(repeatCount, ':') << std::endl;
+    }
+     
+    std::cout << repeat(width, ':') << std::endl;
+
+    for (int i = 0; i < fields.size(); i++) 
+    {
+        repeatCount = (width - utf8Length(fields.at(i)) - 4) / 2;
+        if ((utf8Length(fields.at(i))) % 2 == 0) 
+        {
+            std::cout 
+            << repeat(2, ':') 
+            << repeat(repeatCount, ' ')
+            << fields.at(i)
+            << repeat(repeatCount, ' ')
+            << repeat(2, ':') << std::endl;
+        }
+        else 
+        {
+            std::cout 
+            << repeat(2, ':') 
+            << repeat(repeatCount, ' ')
+            << fields.at(i)
+            << repeat(repeatCount + 1, ' ')
+            << repeat(2, ':') << std::endl;
+        }
+    }
+
+    std::cout << repeat(width, ':') << std::endl;
+}
+
+void showMenu(MenuType menuType)
+{   
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/menu/" + nameOf(menuType) + ".txt"};
+
+    std::fstream file(path, std::ios::in);
+    std::string str {};
+
+    std::string title {};
+    std::vector<std::string> fields {};
+
+    while (std::getline(file, str)) 
+    {
+        if (title == std::string()) 
+        {
+            title = str;
+        }
+        else 
+        {
+            fields.push_back(str);
+        }
+    }
+    
+    showMenu(title, fields);
 }
 
 void showLine(const std::string& lineName)

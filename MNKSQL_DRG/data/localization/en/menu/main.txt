@@ -1,9 +1,6 @@
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::  MAIN MENU  :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:                            (1) Enter as User                               :
-:                         (2) Login as Administrator                         :
-:                       (3) Register as Administrator                        :
-:                        (4) Language Settings                               :
-:                                (0) Exit                                    :
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+MAIN MENU
+(1) Enter as User
+(2) Login as Administrator
+(3) Register as Administrator
+(4) Language Settings
+(0) Exit
