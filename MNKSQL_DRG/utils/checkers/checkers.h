@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cwctype>
 
 
 bool isDigit(char ch);

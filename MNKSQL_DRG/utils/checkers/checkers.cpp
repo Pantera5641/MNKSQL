@@ -1,10 +1,9 @@
 #include "checkers.h"
 
 
-
 bool isDigit(char ch)
 {
-    return std::isdigit(ch);
+    return std::iswdigit(ch);
 }
 
 bool isDigit(const std::string& str)
