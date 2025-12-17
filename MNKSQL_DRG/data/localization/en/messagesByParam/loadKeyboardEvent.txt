@@ -1,0 +1,2 @@
+enterNumOfStudents=Enter the number of students:
+errorNumOfStudents=Error: the number of students is invalid

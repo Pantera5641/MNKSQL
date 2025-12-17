@@ -1,0 +1,2 @@
+enterNumOfStudents=Введите количество студентов:
+errorNumOfStudents=Ошибка: количество студентов некорректно

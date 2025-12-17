@@ -336,8 +336,28 @@ void saveBinEvent()
 void loadKeyboardEvent()
 {
     clear();
-    addEvent();
-    await();
+
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/loadKeyboardEvent.txt"};
+
+    std::string numOfStudents {};
+    bool isNumInRange {};
+    do 
+    {
+        std::cout << getParam("enterNumOfStudents", path) << std::endl;
+        std::cin >> numOfStudents;
+
+        isNumInRange = !inRange(numOfStudents, 1, INT_MAX);
+        if (isNumInRange)
+        {
+            std::cout << getParam("errorNumOfStudents", path) << std::endl;
+        }
+    }
+    while (isNumInRange);
+
+    for (int i = 0; i < std::stoi(numOfStudents); i++)
+    {
+        addEvent();
+    }
 }
 
 void loadTxtEvent()
