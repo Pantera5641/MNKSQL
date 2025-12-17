@@ -3,9 +3,21 @@
 #include "startMain.h"
 #include "startDrg.h"
 
+#if _WIN32
+#include <windows.h>
+#endif
+
 
 int main()
 {
+    #if _WIN32
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+    #else
+    std::locale::global(std::locale("C.UTF-8"))
+    std::wcout.imbue(std::locale())
+    #endif
+
     std::string input {};
 
     while (true) 
