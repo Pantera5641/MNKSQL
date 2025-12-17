@@ -13,7 +13,9 @@ struct BinStudent
 
 void saveTxt(const std::string& fileName)
 {
-    std::fstream file(TO_TABLE_PATH + fileName + ".txt", std::ios::out);
+    std::filesystem::create_directories(TO_TABLE_PATH);
+
+    std::fstream file(TO_TABLE_PATH + fileName + ".txt", std::ios::out | std::ios::trunc);
     for (int i = 0; i < studentsList.size(); i++) 
     {
         file << connect(getLine(i), ',') << '\n';
@@ -22,7 +24,9 @@ void saveTxt(const std::string& fileName)
 
 void saveBin(const std::string& fileName)
 {
-    std::fstream file(TO_TABLE_PATH + fileName + ".bin", std::ios::out | std::ios::binary);
+    std::filesystem::create_directories(TO_TABLE_PATH);
+
+    std::fstream file(TO_TABLE_PATH + fileName + ".bin", std::ios::out | std::ios::trunc | std::ios::binary);
 
     for (int i = 0; i < studentsList.size(); i++)
     {
