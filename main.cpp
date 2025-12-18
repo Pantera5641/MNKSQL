@@ -22,10 +22,15 @@ int main()
 
     while (true) 
     {
-        std::cout << "To start MNKSQL-MAIN enter \"Start Main\"" << std::endl;
-        std::cout << "Attention does not meet the limits" << std::endl;
-        std::cout << "or" << std::endl;
-        std::cout << "To start MNKSQL-DRG enter \"2\"" << std::endl;
+        std::cout << "Чтобы запустить MNKSQL-MAIN, введите \"Start Main\"" << std::endl;
+
+        std::cout << "\033[0;31m";
+        std::cout << "Внимание: эта версия не соответствует требованиям выполнения УТП!" << std::endl;
+        std::cout << "Внимание 2: версия сырая и незаконченная!" << std::endl;
+        std::cout << "\033[0m";
+
+        std::cout << "или" << std::endl;
+        std::cout << "Чтобы запустить MNKSQL-DRG, введите \"2\"" << std::endl;
 
         std::cin >> input;
         std::cout << "\033c";
