@@ -1,6 +1,17 @@
 #include "show.h"
 
 
+void drawBarrier(int numOfColumn, std::vector<int> maxElementSize)
+{
+    for (int i = 0; i < numOfColumn; i++)
+    {
+        int itemSize = maxElementSize[i];
+
+        std::cout << "::" <<  repeat(itemSize + 3, ':');
+    }
+    std::cout << "::" << std::endl;
+}
+
 void showTable()
 {
     std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/showCommand.txt"};
@@ -28,13 +39,7 @@ void showTable()
         maxElementSize.push_back(maxLength);
     }
 
-    for (int i = 0; i < numOfColumn; i++)
-    {
-        int itemSize = maxElementSize[i];
-
-        std::cout << "::" <<  repeat(itemSize + 3, ':');
-    }
-    std::cout << "::" << std::endl;
+    drawBarrier(numOfColumn, maxElementSize);
 
     for (int i = 0; i < numOfColumn; i++)
     { 
@@ -44,13 +49,7 @@ void showTable()
     }
     std::cout << "::" << std::endl;
     
-    for (int i = 0; i < numOfColumn; i++)
-    {
-        int itemSize = maxElementSize[i];
-
-        std::cout << "::" <<  repeat(itemSize + 3, ':');
-    }
-    std::cout << "::" << std::endl;
+    drawBarrier(numOfColumn, maxElementSize);
 
     int columnSize = getColumn(0).size();
     for (int i = 0; i < columnSize; i++)
@@ -66,4 +65,6 @@ void showTable()
         }
         std::cout << "::" << std::endl;
     }
+
+    drawBarrier(numOfColumn, maxElementSize);
 }
