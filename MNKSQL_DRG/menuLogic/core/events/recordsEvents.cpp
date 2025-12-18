@@ -142,23 +142,24 @@ void editEvent()
     {
         clear();
 
+        std::string title {getParam("studentEditMenuTitle", path)};
+        std::vector<std::string> fields
+        {
+            getParam("editingStudent", path),
+            connect(getLine(index - 1), ','),
+            std::string(),
+            getParam("editOptionLastName", path),
+            getParam("editOptionYearOfBirth", path),
+            getParam("editOptionYearOfAdmission", path),
+            getParam("editOptionCourse", path),
+            getParam("editOptionGroup", path),
+            getParam("editOptionExit", path)
+        };
+
         do 
         {
-            std::vector<std::string> fields
-            {
-                getParam("editingStudent", path),
-                connect(getLine(index - 1), ','),
-                std::string(),
-                getParam("editOptionLastName", path),
-                getParam("editOptionYearOfBirth", path),
-                getParam("editOptionYearOfAdmission", path),
-                getParam("editOptionCourse", path),
-                getParam("editOptionGroup", path),
-                getParam("editOptionExit", path)
-            };
             show(LOGO_PATH_DRG, "\033[0;31m");
-            showMenu(getParam("studentEditMenuTitle", path), fields);
-
+            showMenu(title, fields);
             std::cin >> tempString;
             clear();
         }
@@ -322,22 +323,47 @@ void queryEvent()
     await();
 }
 
-//-
 void sortEvent()
 {
     clear();
 
-    showTable();
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/sortEvent.txt"};
+
 
     std::string indexsStr {};
     std::vector<std::string> indexs {};
     bool flag {};
 
+    
+    std::string title {getParam("sortMenuTitle", path)};
+    std::vector<std::string> fields 
+    {
+        getParam("sortSelectFields", path),
+        std::string(),
+        getParam("sortOption1", path),
+        getParam("sortOption2", path),
+        getParam("sortOption3", path),
+        getParam("sortOption4", path),
+        getParam("sortOption5", path),
+        getParam("sortOption6", path),
+        getParam("sortOption7", path)
+    };
+
+    if (studentsList.empty()) 
+    {
+        std::cout << getParam("errorNoRecords", path) << std::endl;
+        await();
+        return;
+    }
+
     do 
     {
         flag = true;
 
-        std::cout << "Enter indexs: (indexes start from 1 and field lastname)" << std::endl;
+        show(LOGO_PATH_DRG, "\033[0;31m");
+        showMenu(title, fields);
+        std::cout << std::endl;
+        showTable();
         std::getline(std::cin >> std::ws, indexsStr);
 
         indexs = strip(indexsStr, ' ');
@@ -351,13 +377,6 @@ void sortEvent()
     while (!flag);
 
     clear();
-
-    if (studentsList.empty()) 
-    {
-        showTable();
-        await(true);
-        return;
-    }
 
     sort(changeValuesOn(stripToInt(indexsStr, ' '), -1));
     showTable();

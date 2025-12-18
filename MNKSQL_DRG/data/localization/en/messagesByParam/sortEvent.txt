@@ -1,0 +1,10 @@
+sortMenuTitle=SORT MENU
+sortSelectFields=Select fields to sort by (you can enter multiple numbers):
+sortOption1=(1) Last name
+sortOption2=(2) First name
+sortOption3=(3) Surname
+sortOption4=(4) Year of birth
+sortOption5=(5) Year of admission
+sortOption6=(6) Course
+sortOption7=(7) Group
+errorNoRecords=Error: no records available

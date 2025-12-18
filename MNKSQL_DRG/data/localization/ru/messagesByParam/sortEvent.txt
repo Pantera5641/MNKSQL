@@ -1,0 +1,10 @@
+sortMenuTitle=МЕНЮ СОРТИРОВКИ
+sortSelectFields=Выберите поля для сортировки (можно ввести несколько чисел):
+sortOption1=(1) Фамилия
+sortOption2=(2) Имя
+sortOption3=(3) Отчество
+sortOption4=(4) Год рождения
+sortOption5=(5) Год поступления
+sortOption6=(6) Курс
+sortOption7=(7) Группа
+errorNoRecords=Ошибка: записи отсутствуют
