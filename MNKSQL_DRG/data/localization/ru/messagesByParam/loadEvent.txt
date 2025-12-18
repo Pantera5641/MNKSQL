@@ -1,0 +1,4 @@
+loadTxtMenuTitle=МЕНЮ ЗАГРУЗКИ TXT
+loadBinMenuTitle=МЕНЮ ЗАГРУЗКИ BIN
+loadFrom=Загрузить из 
+dataLoaded=Данные загружены!

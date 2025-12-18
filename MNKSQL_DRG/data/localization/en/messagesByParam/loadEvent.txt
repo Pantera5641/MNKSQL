@@ -1,0 +1,4 @@
+loadTxtMenuTitle=LOAD TXT MENU
+loadBinMenuTitle=LOAD BIN MENU
+loadFrom=Load from 
+dataLoaded=Data loaded!

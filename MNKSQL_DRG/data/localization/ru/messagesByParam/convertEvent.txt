@@ -1,0 +1,4 @@
+convertToBinMenuTitle=МЕНЮ КОНВЕРТАЦИИ В BIN
+convertToTxtMenuTitle=МЕНЮ КОНВЕРТАЦИИ В TXT
+convertFrom=Конвертировать 
+fileConverted=Файл успешно конвертирован!

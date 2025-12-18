@@ -1,0 +1,4 @@
+convertToBinMenuTitle=CONVERT TO BIN MENU
+convertToTxtMenuTitle=CONVERT TO TXT MENU
+convertFrom=Convert 
+fileConverted=File successfully converted!

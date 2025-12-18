@@ -83,3 +83,23 @@ std::vector<std::string> loadBin(const std::string& fileName)
 
     return rawData;
 }
+
+std::vector<std::string> getFilesList(const std::string extension)
+{
+    std::filesystem::create_directories(TO_TABLE_PATH);
+    std::filesystem::directory_iterator directory(TO_TABLE_PATH);
+
+    std::vector<std::string> filesList {};
+
+    for (const auto& entry : directory)
+    {
+        std::string fileName {entry.path().filename().string()};
+
+        if (cutBefore(fileName, '.') == extension)
+        {
+            filesList.push_back(cutAfter(fileName, '.'));
+        }
+    }
+    
+    return filesList;
+}

@@ -15,3 +15,5 @@ void saveBin(const std::string& fileName);
 std::vector<std::string> loadTxt(const std::string& fileName);
 
 std::vector<std::string> loadBin(const std::string& fileName);
+
+std::vector<std::string> getFilesList(const std::string extension);
