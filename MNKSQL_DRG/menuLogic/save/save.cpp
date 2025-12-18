@@ -6,11 +6,11 @@ MenuType executeSaveMenu(int num)
     switch (num) 
     {
         case 1:
-            saveTxtEvent();
+            saveEvent();
             return MenuType::Save;
 
         case 2:
-            saveBinEvent();
+            saveEvent(true);
             return MenuType::Save;
 
         case 0:

@@ -1,5 +1,4 @@
 #include "fileEvents.h"
-#include "configHandler.h"
 
 
 std::string getFileNameFromUser(const std::string& menuTitle, const std::string& text, const std::string& extension)
@@ -25,20 +24,30 @@ std::string getFileNameFromUser(const std::string& menuTitle, const std::string&
     return filesList.at(std::stoi(input) - 1);
 }
 
-//-
-void saveTxtEvent()
+void saveEvent(bool binaryMode)
 {
     clear();
-    saveTxt("pipa");
-    await();
-}
 
-//-
-void saveBinEvent()
-{
-    clear();
-    saveBin("pipa2");
-    await();  
+    std::string path {TO_LOCALIZATION_PATH + globalLanguage + "/messagesByParam/saveEvent.txt"};
+
+    std::string fileName {};
+    bool flag {};
+
+    do 
+    {
+        std::cout << getParam("enterFilename", path) << std::endl;
+        std::cin >> fileName;
+
+        flag = !isContainSpecialSigns(fileName);
+        if (flag) 
+        {
+            std::cout << getParam("invalidFilename", path) << std::endl;
+        }
+    }
+    while (flag);
+
+    binaryMode ? saveBin(fileName) : saveTxt(fileName);
+    await();
 }
 
 void loadTxtEvent()

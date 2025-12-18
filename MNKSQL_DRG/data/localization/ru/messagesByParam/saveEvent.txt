@@ -1,0 +1,2 @@
+enterFilename=Введите имя файла:
+invalidFilename=Ошибка: недопустимое имя файла

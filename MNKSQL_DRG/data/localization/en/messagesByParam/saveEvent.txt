@@ -1,0 +1,2 @@
+enterFilename=Enter filename:
+invalidFilename=Error: invalid filename
