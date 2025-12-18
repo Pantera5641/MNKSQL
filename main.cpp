@@ -32,7 +32,7 @@ int main()
         std::cout << "или" << std::endl;
         std::cout << "Чтобы запустить MNKSQL-DRG, введите \"2\"" << std::endl;
 
-        std::cin >> input;
+        std::getline(std::cin, input);
         std::cout << "\033c";
 
         if (input == "Start Main")
