@@ -7,4 +7,6 @@ sortOption4=(4) Year of birth
 sortOption5=(5) Year of admission
 sortOption6=(6) Course
 sortOption7=(7) Group
+switchToASC=(8) Switch to ASC mode
+switchToDESC=(8) Switch to DESC mode
 errorNoRecords=Error: no records available

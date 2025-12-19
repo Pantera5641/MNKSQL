@@ -333,21 +333,7 @@ void sortEvent()
     std::string indexsStr {};
     std::vector<std::string> indexs {};
     bool flag {};
-
-    
-    std::string title {getParam("sortMenuTitle", path)};
-    std::vector<std::string> fields 
-    {
-        getParam("sortSelectFields", path),
-        std::string(),
-        getParam("sortOption1", path),
-        getParam("sortOption2", path),
-        getParam("sortOption3", path),
-        getParam("sortOption4", path),
-        getParam("sortOption5", path),
-        getParam("sortOption6", path),
-        getParam("sortOption7", path)
-    };
+    bool DESCMode {};
 
     if (studentsList.empty()) 
     {
@@ -358,6 +344,23 @@ void sortEvent()
 
     do 
     {
+        clear();
+        
+        std::string title {getParam("sortMenuTitle", path)};
+        std::vector<std::string> fields 
+        {
+            getParam("sortSelectFields", path),
+            std::string(),
+            getParam("sortOption1", path),
+            getParam("sortOption2", path),
+            getParam("sortOption3", path),
+            getParam("sortOption4", path),
+            getParam("sortOption5", path),
+            getParam("sortOption6", path),
+            getParam("sortOption7", path),
+            DESCMode ? getParam("switchToASC", path) : getParam("switchToDESC", path)
+        };
+
         flag = true;
 
         show(LOGO_PATH_DRG, "\033[0;31m");
@@ -373,12 +376,17 @@ void sortEvent()
             for (int i = 0; i < indexs.size(); i++)
                 flag *= inRange(indexs.at(i), 0, 8);
         }
+
+        if (indexsStr == "8") 
+        {
+            DESCMode = !DESCMode;
+        }
     }
-    while (!flag);
+    while (!flag || indexsStr == "8");
 
     clear();
 
-    sort(changeValuesOn(stripToInt(indexsStr, ' '), -1));
+    sort(changeValuesOn(stripToInt(indexsStr, ' '), -1), DESCMode);
     showTable();
 
     
