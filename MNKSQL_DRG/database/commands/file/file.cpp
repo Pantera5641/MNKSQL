@@ -33,13 +33,13 @@ void saveBin(const std::string& fileName)
         Student student {studentsList.at(i)};
         
         BinStudent binStudent {};
-        strcpy_s(binStudent.lastName, sizeof(binStudent.lastName), student.lastName.c_str());
-        strcpy_s(binStudent.firstName, sizeof(binStudent.firstName), student.firstName.c_str());
-        strcpy_s(binStudent.surname, sizeof(binStudent.surname), student.surname.c_str());
+        snprintf(binStudent.lastName, sizeof(binStudent.lastName), "%s", student.lastName.c_str());
+        snprintf(binStudent.firstName, sizeof(binStudent.firstName),"%s", student.firstName.c_str());
+        snprintf(binStudent.surname, sizeof(binStudent.surname),"%s", student.surname.c_str());
         binStudent.yearOfBirth = student.yearOfBirth;
         binStudent.yearOfAdmission = student.yearOfAdmission;
         binStudent.course = student.course;
-        strcpy_s(binStudent.group, sizeof(binStudent.group), student.group.c_str());
+        snprintf(binStudent.group, sizeof(binStudent.group),"%s", student.group.c_str());
         
         file.write((char *)&binStudent, sizeof(binStudent));
     }
