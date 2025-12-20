@@ -7,7 +7,7 @@
 #include "console.h"
 #include "menuType.h"
 #include "checkers.h"
-#include "constants\paths.h"
+#include "constants/paths.h"
 
 
 void startDrg();

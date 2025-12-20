@@ -7,10 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 set(CMAKE_CXX_EXTENSIONS false)
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
-set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
-set(BUILD_SHARED_LIBS OFF)
-
 file(GLOB_RECURSE SOURCES 
     "MNKSQL_MAIN/*.cpp"
     "MNKSQL_DRG/*.cpp"
@@ -41,3 +37,6 @@ target_include_directories(MNKSQL PRIVATE
     ${MENU_CORE_DIRS}
     ${DRG_UTILS_DIRS}
     )
+
+find_package(Threads REQUIRED)
+target_link_libraries(MNKSQL PRIVATE Threads::Threads)

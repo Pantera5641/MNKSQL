@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <climits>
 
 #include "dataStore/dataStore.h"
 #include "commands/show/show.h"

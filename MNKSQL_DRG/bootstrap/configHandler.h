@@ -5,7 +5,7 @@
 #include <fstream>
 
 #include "helper/helper.h"
-#include "..\constants\paths.h"
+#include "../constants/paths.h"
 
 
 std::string getParam(const std::string& paramName, const std::string& path = CONFIG_PATH);

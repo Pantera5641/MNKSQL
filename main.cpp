@@ -14,8 +14,8 @@ int main()
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
     #else
-    std::locale::global(std::locale("C.UTF-8"))
-    std::wcout.imbue(std::locale())
+    std::locale::global(std::locale("C.UTF-8"));
+    std::wcout.imbue(std::locale());
     #endif
 
     std::string input {};

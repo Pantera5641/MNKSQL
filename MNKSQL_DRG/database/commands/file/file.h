@@ -4,7 +4,7 @@
 #include <filesystem>
 
 #include "dataStore.h"
-#include "..\MNKSQL_DRG\constants\paths.h"
+#include "../MNKSQL_DRG/constants/paths.h"
 #include "helper/helper.h"
 
 
