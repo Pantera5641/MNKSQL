@@ -7,4 +7,6 @@ sortOption4=(4) Год рождения
 sortOption5=(5) Год поступления
 sortOption6=(6) Курс
 sortOption7=(7) Группа
+switchToASC=(8) Переключиться на ASC режим
+switchToDESC=(8) Переключиться на DESC режим
 errorNoRecords=Ошибка: записи отсутствуют

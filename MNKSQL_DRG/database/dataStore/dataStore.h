@@ -33,7 +33,7 @@ void addStudent(Student student);
 
 void removeStudent(int index);
 
-void sort(const std::vector<int>& indexs);
+void sort(const std::vector<int>& indexs, bool DESC = false);
 
 void rewriteData(const std::vector<Student>& students);
 

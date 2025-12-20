@@ -8,9 +8,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 set(CMAKE_CXX_EXTENSIONS false)
 
 file(GLOB_RECURSE SOURCES 
-    "MNKSQL_MAIN/*.cpp"
-    "MNKSQL_DRG/*.cpp"
-    "main.cpp"
+    "${CMAKE_SOURCE_DIR}/MNKSQL_MAIN/*.cpp"
+    "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/*.cpp"
+    "${CMAKE_SOURCE_DIR}/main.cpp"
 )
 add_executable(MNKSQL ${SOURCES})
 
@@ -23,6 +23,7 @@ file(GLOB MNKSQL_DRG_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/*")
 file(GLOB MENU_LOGIC_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/menuLogic/*")
 file(GLOB MENU_CORE_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/menuLogic/core/*")
 file(GLOB DRG_UTILS_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/utils/*")
+file(GLOB DRG_CONST_DIRS "${CMAKE_SOURCE_DIR}/MNKSQL_DRG/constants/*")
 
 target_include_directories(MNKSQL PRIVATE
     "MNKSQL_MAIN/"
@@ -36,6 +37,7 @@ target_include_directories(MNKSQL PRIVATE
     ${MENU_LOGIC_DIRS}
     ${MENU_CORE_DIRS}
     ${DRG_UTILS_DIRS}
+    ${DRG_CONST_DIRS}
     )
 
 find_package(Threads REQUIRED)

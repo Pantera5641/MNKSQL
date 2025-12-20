@@ -58,13 +58,15 @@ std::vector<int> stripToInt(const std::string& str, char toRemove)
     return ints;
 }
 
-void bubbleSort(int index, std::vector<Student>& list) 
+void bubbleSort(int index, std::vector<Student>& list, bool DESC) 
 {
     for (int i = 0; i < list.size() - 1; i++) {
         bool swapped = false;
         for (int j = 0; j < list.size() - i - 1; j++) 
         {
-            if (getFieldByIndex(list.at(j), index) > getFieldByIndex(list.at(j + 1), index)) 
+            std::string a {getFieldByIndex(list.at(j), index)};
+            std::string b {getFieldByIndex(list.at(j + 1), index)};
+            if ((DESC && a < b) || (!DESC && a > b)) 
             {
                 Student temp = list.at(j);
                 list.at(j) = list.at(j + 1);
