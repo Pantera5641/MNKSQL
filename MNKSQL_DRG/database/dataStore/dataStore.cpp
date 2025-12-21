@@ -111,19 +111,19 @@ void removeStudent(int index)
     studentsList.erase(studentsList.begin() + index);
 }
 
-void sort(const std::vector<int>& indexs, bool DESC)
+void sort(const std::vector<int>& indexes, bool DESC)
 {   
-    std::vector<int> reverseIndexs {};
+    std::vector<int> reverseIndexes {};
 
-    for (int i = indexs.size() - 1; i >= 0; i--)
+    for (int i = indexes.size() - 1; i >= 0; i--)
     {
-        reverseIndexs.push_back(indexs.at(i));
+        reverseIndexes.push_back(indexes.at(i));
     }
     
 
-    for (int i = 0; i < indexs.size(); i++) 
+    for (int i = 0; i < indexes.size(); i++) 
     {
-        bubbleSort(reverseIndexs.at(i), studentsList, DESC);
+        bubbleSort(reverseIndexes.at(i), studentsList, DESC);
     }
 }
 

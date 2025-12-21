@@ -60,8 +60,9 @@ std::vector<int> stripToInt(const std::string& str, char toRemove)
 
 void bubbleSort(int index, std::vector<Student>& list, bool DESC) 
 {
-    for (int i = 0; i < list.size() - 1; i++) {
-        bool swapped = false;
+    for (int i = 0; i < list.size() - 1; i++) 
+    {
+        bool swapped {};
         for (int j = 0; j < list.size() - i - 1; j++) 
         {
             std::string a {getFieldByIndex(list.at(j), index)};
